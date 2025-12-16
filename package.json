@@ -5,7 +5,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "lint": "bun run --bun biome check",
+    "fmt": "bun run --bun biome format --write",
+    "tsc": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.9",
@@ -16,7 +19,9 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.0-beta.102",
+    "@ai-sdk/openai-compatible": "^1.0.29",
     "@ai-sdk/react": "^3.0.0-beta.160",
+    "@t3-oss/env-nextjs": "^0.13.10",
     "ai": "^6.0.0-beta.157"
   }
 }
