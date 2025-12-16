@@ -17,7 +17,7 @@ export const models = [
   "mistralai/mistral-large-2411",
   "qwen/qwen3-vl-30b-a3b-instruct",
   "mistralai/devstral-medium",
-  "meta-llama/llama-3.3-70b-instruct"
-]
+  "meta-llama/llama-3.3-70b-instruct",
+];
 
 export const llmModel = (model: (typeof models)[number]) => llmProvider(model);
