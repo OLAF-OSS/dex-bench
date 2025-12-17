@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.3.0...dex-bench-v0.4.0) (2025-12-17)
+
+
+### Features
+
+* add Docker Compose setup for LiteLLM proxy ([035939f](https://github.com/OLAF-OSS/dex-bench/commit/035939fa10db56dc0f9fb0933087aa40e49bbf16))
+* implement GPU-based deployment for vLLM models ([de1c26c](https://github.com/OLAF-OSS/dex-bench/commit/de1c26cefe8f0f81995439881929084ca789de02))
+
+
+### Bug Fixes
+
+* update API base URLs in litellm_config.yaml to use os.environ for environment variable access ([20b3532](https://github.com/OLAF-OSS/dex-bench/commit/20b35321f5ae5681484aaea3bfbc762d6d0634aa))
+
 ## [0.3.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.2.1...dex-bench-v0.3.0) (2025-12-17)
 
 
