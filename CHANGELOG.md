@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.4.0...dex-bench-v0.5.0) (2025-12-17)
+
+
+### Features
+
+* add text completion support and structured output enhancements ([f11bc9f](https://github.com/OLAF-OSS/dex-bench/commit/f11bc9f1cc1a5fc59aa891361bdd0ffd94c0f49f))
+
 ## [0.4.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.3.0...dex-bench-v0.4.0) (2025-12-17)
 
 
