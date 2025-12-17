@@ -1,6 +1,6 @@
 # dex-bench
 
-A CLI tool for benchmarking LLM summarization performance across multiple models and documents.
+A CLI tool for benchmarking LLM performance across multiple models and documents.
 
 ## Installation
 
@@ -69,6 +69,22 @@ The markdown report includes:
 - Model averages comparison
 - Collapsible summaries for each model/document
 
+### Web Dashboard
+
+Build a static HTML dashboard with interactive charts:
+
+```bash
+bun bench:html
+```
+
+Preview the dashboard locally:
+
+```bash
+bun preview
+```
+
+The dashboard is automatically deployed to GitHub Pages on push to `main`.
+
 ### Help
 
 ```bash
@@ -77,7 +93,7 @@ bun src/bench.ts --help
 
 ## Models
 
-Models are configured in `src/lib/llm.ts`. Current models:
+Models are configured in `src/lib/models.ts`. Current models:
 
 - `openai/gpt-oss-20b`
 - `google/gemma-3-12b-it`
@@ -129,3 +145,12 @@ Results are saved as JSON with the following structure:
 - [Bun](https://bun.sh) - Runtime and package manager
 - [AI SDK v6](https://sdk.vercel.ai) - LLM integration
 - [gpt-tokenizer](https://github.com/niieani/gpt-tokenizer) - Token counting
+- [React 19](https://react.dev) - Web dashboard UI
+- [Recharts](https://recharts.org) - Chart visualizations
+- [TanStack Table](https://tanstack.com/table) - Data table with sorting/filtering
+- [Tailwind CSS v4](https://tailwindcss.com) - Styling
+- [Biome](https://biomejs.dev) - Linting and formatting
+
+## Development
+
+For technical implementation details, architecture decisions, and contribution guidelines, see [DEVELOPMENT.md](./DEVELOPMENT.md).
