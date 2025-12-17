@@ -21,6 +21,8 @@ vllm-b200   → gemma-3-12b, gemma-3-27b, qwen3-vl-30b
 - Uses only **5 endpoints** (stays under Modal's 8 endpoint limit)
 - Single endpoint per GPU serves any model
 - Model specified in request body
+- **Bearer API key authentication**
+- **Structured output support** (JSON schema enforcement)
 
 ### Legacy: Model-Based
 
@@ -53,6 +55,11 @@ vllm-gemma-3-12b-l40s, vllm-gemma-3-12b-a100, ...
    uv run modal secret create huggingface HF_TOKEN=hf_your_token_here
    ```
    This is required for gated models like Gemma.
+
+5. **API Key** (for GPU-based deployment): Create a Modal secret for API authentication
+   ```bash
+   uv run modal secret create vllm-api-key API_KEY=your-secret-key
+   ```
 
 ## Available Models
 
@@ -117,23 +124,32 @@ Update your `.env` file in the dex-bench root:
 
 ```env
 LLM_BASE_URL=https://your-workspace--vllm-h100-serve.modal.run/v1
-LLM_API_KEY=not-required
+LLM_API_KEY=your-secret-key
 ```
 
 ## API Endpoints
 
 Each deployment exposes an OpenAI-compatible API:
 
-- `GET /health` - Health check
-- `GET /v1/models` - List available models
-- `POST /v1/chat/completions` - Chat completions
-- `POST /v1/completions` - Text completions
+- `GET /health` - Health check (no auth required)
+- `GET /v1/models` - List available models (requires auth)
+- `POST /v1/chat/completions` - Chat completions (requires auth)
+
+### Authentication
+
+GPU-based endpoints require Bearer token authentication:
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/models \
+  -H "Authorization: Bearer your-secret-key"
+```
 
 ### Example Request (GPU-Based)
 
 ```bash
 # Specify model in request body
 curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Authorization: Bearer your-secret-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "google/gemma-3-12b-it",
@@ -143,6 +159,7 @@ curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
 
 # Also accepts short model names
 curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Authorization: Bearer your-secret-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gemma-3-12b",
@@ -151,10 +168,70 @@ curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
   }'
 ```
 
+### Structured Output
+
+The GPU-based endpoints support structured output via vLLM's guided decoding. This forces the model to generate valid JSON conforming to your schema.
+
+#### JSON Object Mode
+
+Force the model to output valid JSON:
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "messages": [{"role": "user", "content": "List 3 colors as JSON"}],
+    "response_format": {"type": "json_object"}
+  }'
+```
+
+#### JSON Schema Mode
+
+Force the model to output JSON conforming to a specific schema:
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "messages": [{"role": "user", "content": "Extract: John is 30 years old and lives in NYC"}],
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "person",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "age": {"type": "integer"},
+            "city": {"type": "string"}
+          },
+          "required": ["name", "age", "city"]
+        }
+      }
+    }
+  }'
+```
+
+Response:
+```json
+{
+  "choices": [{
+    "message": {
+      "content": "{\"name\": \"John\", \"age\": 30, \"city\": \"NYC\"}"
+    }
+  }]
+}
+```
+
 ### List Available Models
 
 ```bash
-curl https://your-workspace--vllm-h100-serve.modal.run/v1/models
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/models \
+  -H "Authorization: Bearer your-secret-key"
 ```
 
 ## Cold Starts
@@ -205,6 +282,11 @@ The model will automatically be available on all GPU endpoints.
 - Use GPU-based deployment (`--gpu`) instead of model-based (`--model`)
 - GPU-based uses only 5 endpoints vs 15 for model-based
 
+### Authentication Failed (401)
+- Ensure you created the `vllm-api-key` secret in Modal
+- Check that your API key matches the one in the secret
+- The `/health` endpoint doesn't require authentication
+
 ## Direct Modal Commands
 
 You can also use Modal CLI directly:
@@ -214,7 +296,7 @@ You can also use Modal CLI directly:
 GPU_KEY=h100 uv run modal deploy vllm_gpu_server.py
 
 # Run test
-GPU_KEY=h100 uv run modal run vllm_gpu_server.py --model gemma-3-12b
+GPU_KEY=h100 uv run modal run vllm_gpu_server.py --model gemma-3-12b --api-key your-secret-key
 
 # View logs
 uv run modal app logs vllm-h100
@@ -237,6 +319,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
 2. **Create `.env` file** in the project root:
    ```env
    MODAL_WORKSPACE=your-workspace-name
+   VLLM_API_KEY=your-secret-key
    ```
 
 3. **Start the proxy**:
@@ -249,11 +332,45 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    # List available models
    curl http://localhost:4000/v1/models
 
-   # Chat completion
+   # Chat completion (model name includes GPU suffix)
    curl http://localhost:4000/v1/chat/completions \
      -H "Content-Type: application/json" \
      -d '{
        "model": "gemma-3-12b-h100",
        "messages": [{"role": "user", "content": "Hello!"}]
      }'
+   
+   # With structured output
+   curl http://localhost:4000/v1/chat/completions \
+     -H "Content-Type: application/json" \
+     -d '{
+       "model": "gemma-3-12b-h100",
+       "messages": [{"role": "user", "content": "Extract: Alice is 25"}],
+       "response_format": {
+         "type": "json_schema",
+         "json_schema": {
+           "name": "person",
+           "schema": {
+             "type": "object",
+             "properties": {
+               "name": {"type": "string"},
+               "age": {"type": "integer"}
+             },
+             "required": ["name", "age"]
+           }
+         }
+       }
+     }'
    ```
+
+### LiteLLM Model Mapping
+
+LiteLLM routes model requests to the correct GPU endpoint:
+
+| LiteLLM Model | Routes To | Backend Model |
+|---------------|-----------|---------------|
+| `gemma-3-12b-h100` | `vllm-h100` endpoint | `google/gemma-3-12b-it` |
+| `gemma-3-27b-h100` | `vllm-h100` endpoint | `google/gemma-3-27b-it` |
+| `qwen3-vl-30b-h100` | `vllm-h100` endpoint | `qwen/qwen3-vl-30b-a3b-instruct` |
+
+All models on the same GPU share one Modal endpoint, reducing from 15 to 5 endpoints.

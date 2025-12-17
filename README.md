@@ -178,19 +178,29 @@ cd modal
 uv sync
 uv run modal token new
 
-# Deploy a model
-uv run python deploy.py --model gemma-3-12b-l40s
+# Create required secrets
+uv run modal secret create huggingface HF_TOKEN=hf_your_token
+uv run modal secret create vllm-api-key API_KEY=your-secret-key
+
+# Deploy GPU server (serves all models on one endpoint)
+uv run python deploy.py --gpu h100
 
 # Test it
-uv run python deploy.py --test gemma-3-12b-l40s
+uv run python deploy.py --test-gpu h100 --test-model gemma-3-12b
 ```
 
 After deployment, update your `.env`:
 
 ```env
-LLM_BASE_URL=https://your-workspace--vllm-gemma-3-12b-l40s-serve.modal.run/v1
-LLM_API_KEY=not-required
+LLM_BASE_URL=https://your-workspace--vllm-h100-serve.modal.run/v1
+LLM_API_KEY=your-secret-key
 ```
+
+**Features:**
+- GPU-based deployment (5 endpoints serve all models, stays under Modal's 8 endpoint limit)
+- Bearer API key authentication
+- Structured output support (JSON schema enforcement)
+- On-demand scaling with 15-minute idle timeout
 
 See [modal/README.md](./modal/README.md) for full documentation on available models, GPU options, and configuration.
 

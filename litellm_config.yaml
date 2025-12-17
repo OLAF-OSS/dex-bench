@@ -1,97 +1,118 @@
 # LiteLLM Proxy Configuration
-# Proxies all Modal vLLM server endpoints
+# Proxies all Modal vLLM GPU server endpoints
+#
+# Architecture: GPU-based multi-model servers
+#   - Each GPU endpoint serves ALL models (gemma-3-12b, gemma-3-27b, qwen3-vl-30b)
+#   - 5 endpoints total: vllm-l40s, vllm-a100, vllm-h100, vllm-h200, vllm-b200
 #
 # Environment variables required:
 #   MODAL_WORKSPACE - Your Modal workspace name
+#   VLLM_API_KEY - API key for vLLM endpoints (optional)
 #
 # Usage:
 #   docker compose up -d
 #   curl http://localhost:4000/v1/models
+#   curl http://localhost:4000/v1/chat/completions -d '{"model": "gemma-3-12b-h100", ...}'
 
 model_list:
   # ============================================
-  # Gemma 3 12B (google/gemma-3-12b-it)
+  # Gemma 3 12B on different GPUs
   # ============================================
   - model_name: gemma-3-12b-l40s
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-12b-l40s-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-l40s-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-12b-a100
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-12b-a100-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-a100-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-12b-h100
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-12b-h100-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-12b-h200
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-12b-h200-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-12b-b200
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-12b-b200-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   # ============================================
-  # Gemma 3 27B (google/gemma-3-27b-it)
+  # Gemma 3 27B on different GPUs
   # ============================================
   - model_name: gemma-3-27b-l40s
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-27b-l40s-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-l40s-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-27b-a100
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-27b-a100-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-a100-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-27b-h100
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-27b-h100-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-27b-h200
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-27b-h200-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: gemma-3-27b-b200
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-gemma-3-27b-b200-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   # ============================================
-  # Qwen3 VL 30B (qwen/qwen3-vl-30b-a3b-instruct)
+  # Qwen3 VL 30B on different GPUs
   # ============================================
   - model_name: qwen3-vl-30b-l40s
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-qwen3-vl-30b-l40s-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-l40s-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: qwen3-vl-30b-a100
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-qwen3-vl-30b-a100-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-a100-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: qwen3-vl-30b-h100
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-qwen3-vl-30b-h100-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: qwen3-vl-30b-h200
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-qwen3-vl-30b-h200-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
   - model_name: qwen3-vl-30b-b200
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://os.environ/MODAL_WORKSPACE--vllm-qwen3-vl-30b-b200-serve.modal.run/v1
+      api_base: https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
+      api_key: os.environ/VLLM_API_KEY
 
 # General settings
 general_settings:
@@ -100,4 +121,3 @@ general_settings:
 litellm_settings:
   drop_params: true  # Drop unsupported params instead of erroring
   request_timeout: 600  # 10 minute timeout for cold starts
-
