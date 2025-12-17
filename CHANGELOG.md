@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.2.1...dex-bench-v0.3.0) (2025-12-17)
+
+
+### Features
+
+* add vLLM deployment support and model configuration ([fdd53f6](https://github.com/OLAF-OSS/dex-bench/commit/fdd53f60a04ab2768e6c8ba28880d867a4961817))
+* enhance dex-bench with structured output and summarization benchmarks ([df568be](https://github.com/OLAF-OSS/dex-bench/commit/df568be7eb93ce95422814c796ab741494aef71e))
+
 ## [0.2.1](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.2.0...dex-bench-v0.2.1) (2025-12-17)
 
 
