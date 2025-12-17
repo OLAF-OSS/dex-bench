@@ -151,6 +151,43 @@ Available GPU options: `L40S`, `A100-80GB`, `H100`, `H200`, `B200`
 - Subsequent requests are fast while the server is warm
 - Consider running periodic health checks to keep servers warm
 
+## LiteLLM Proxy
+
+A Docker Compose setup is available in the project root to proxy all Modal endpoints through LiteLLM. This provides a unified API endpoint for all deployed models.
+
+### Setup
+
+1. **Find your Modal workspace name**:
+   ```bash
+   modal config show
+   ```
+
+2. **Create `.env` file** in the project root:
+   ```env
+   MODAL_WORKSPACE=your-workspace-name
+   ```
+
+3. **Start the proxy**:
+   ```bash
+   docker compose up -d
+   ```
+
+4. **Use the proxy** (port 4000):
+   ```bash
+   # List available models
+   curl http://localhost:4000/v1/models
+
+   # Chat completion
+   curl http://localhost:4000/v1/chat/completions \
+     -H "Content-Type: application/json" \
+     -d '{
+       "model": "gemma-3-12b-l40s",
+       "messages": [{"role": "user", "content": "Hello!"}]
+     }'
+   ```
+
+The proxy configuration (`litellm_config.yaml`) includes all 15 model+GPU combinations. Requests to models that haven't been deployed will fail - deploy only the models you need.
+
 ## Direct Modal Commands
 
 You can also use Modal CLI directly via `uv run`:
