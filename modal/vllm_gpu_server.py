@@ -36,7 +36,7 @@ GPU_KEY = os.environ.get("GPU_KEY", "h100")
 
 # Map short names to Modal GPU types
 GPU_SHORT_TO_MODAL = {v: k for k, v in GPU_SHORT_NAMES.items()}
-GPU_TYPE = GPU_SHORT_TO_MODAL.get(GPU_KEY, "H100")
+GPU_TYPE = f"{GPU_SHORT_TO_MODAL.get(GPU_KEY, 'H100')}:2"  # Request 2 GPUs
 
 # Container image with vLLM
 vllm_image = (
@@ -59,6 +59,8 @@ vllm_cache_vol = modal.Volume.from_name("vllm-cache", create_if_missing=True)
 
 # Configuration
 MINUTES = 60  # seconds
+MAX_MODEL_LEN = 49000  # Maximum context length
+TENSOR_PARALLEL_SIZE = 2  # Number of GPUs for tensor parallelism
 
 # Create Modal app with GPU-specific name
 app = modal.App(f"vllm-{GPU_KEY}")
@@ -101,7 +103,8 @@ class Gemma3_12B:
         self.llm = LLM(
             model=self.huggingface_id,
             enforce_eager=True,
-            max_model_len=65536,  # 64K context
+            max_model_len=MAX_MODEL_LEN,
+            tensor_parallel_size=TENSOR_PARALLEL_SIZE,
             trust_remote_code=True,
         )
         
@@ -170,7 +173,8 @@ class Gemma3_27B:
         self.llm = LLM(
             model=self.huggingface_id,
             enforce_eager=True,
-            max_model_len=65536,  # 64K context
+            max_model_len=MAX_MODEL_LEN,
+            tensor_parallel_size=TENSOR_PARALLEL_SIZE,
             trust_remote_code=True,
         )
         
@@ -239,7 +243,8 @@ class Qwen3_VL_30B:
         self.llm = LLM(
             model=self.huggingface_id,
             enforce_eager=True,
-            max_model_len=65536,  # 64K context
+            max_model_len=MAX_MODEL_LEN,
+            tensor_parallel_size=TENSOR_PARALLEL_SIZE,
             trust_remote_code=True,
         )
         
