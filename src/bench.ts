@@ -17,7 +17,7 @@ const cyan = Bun.color("cyan", "ansi");
 const reset = "\x1b[0m";
 
 function showHelp(): void {
-  console.log(`
+  console.info(`
 ${cyan}dex-bench${reset} - LLM Summarization Benchmark CLI
 
 ${cyan}Usage:${reset}

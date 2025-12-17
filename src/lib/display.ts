@@ -1,5 +1,5 @@
 import prettyMs from "pretty-ms";
-import type { BenchmarkRun, BenchmarkResult } from "@/lib/types";
+import type { BenchmarkRun } from "@/lib/types";
 
 const green = Bun.color("green", "ansi");
 const red = Bun.color("red", "ansi");
@@ -32,27 +32,27 @@ export function displayProgress(
 ): void {
   const progress = `[${index}/${total}]`;
   const shortModel = model.split("/").pop() || model;
-  console.log(
+  console.info(
     `${cyan}${progress}${reset} Running ${yellow}${shortModel}${reset} on ${gray}${document}${reset}`,
   );
 }
 
 export function displayResults(run: BenchmarkRun): void {
-  console.log("\n");
-  console.log(
+  console.info("\n");
+  console.info(
     `${cyan}═══════════════════════════════════════════════════════════════════════════════${reset}`,
   );
-  console.log(
+  console.info(
     `${cyan}                         BENCHMARK RESULTS                                     ${reset}`,
   );
-  console.log(
+  console.info(
     `${cyan}═══════════════════════════════════════════════════════════════════════════════${reset}`,
   );
-  console.log(`\n${gray}Run ID:${reset} ${run.id}`);
-  console.log(`${gray}Timestamp:${reset} ${run.timestamp}`);
-  console.log(`${gray}Models:${reset} ${run.models.length}`);
-  console.log(`${gray}Documents:${reset} ${run.documents.length}`);
-  console.log();
+  console.info(`\n${gray}Run ID:${reset} ${run.id}`);
+  console.info(`${gray}Timestamp:${reset} ${run.timestamp}`);
+  console.info(`${gray}Models:${reset} ${run.models.length}`);
+  console.info(`${gray}Documents:${reset} ${run.documents.length}`);
+  console.info();
 
   // Results table header
   const modelWidth = 30;
@@ -62,10 +62,10 @@ export function displayResults(run: BenchmarkRun): void {
   const speedWidth = 12;
   const statusWidth = 8;
 
-  console.log(
+  console.info(
     `${cyan}${pad("Model", modelWidth)} ${pad("Document", docWidth)} ${padLeft("Time", timeWidth)} ${padLeft("Tokens", tokensWidth)} ${padLeft("Tok/s", speedWidth)} ${pad("Status", statusWidth)}${reset}`,
   );
-  console.log(
+  console.info(
     `${gray}${"─".repeat(modelWidth + docWidth + timeWidth + tokensWidth + speedWidth + statusWidth + 5)}${reset}`,
   );
 
@@ -83,50 +83,50 @@ export function displayResults(run: BenchmarkRun): void {
 
     const statusColor = result.success ? "" : red;
 
-    console.log(
+    console.info(
       `${statusColor}${pad(shortModel, modelWidth)} ${pad(shortDoc, docWidth)} ${padLeft(time, timeWidth)} ${padLeft(tokens, tokensWidth)} ${padLeft(speed, speedWidth)} ${status}${reset}`,
     );
   }
 
   // Stats section
-  console.log();
-  console.log(
+  console.info();
+  console.info(
     `${cyan}═══════════════════════════════════════════════════════════════════════════════${reset}`,
   );
-  console.log(
+  console.info(
     `${cyan}                              STATISTICS                                       ${reset}`,
   );
-  console.log(
+  console.info(
     `${cyan}═══════════════════════════════════════════════════════════════════════════════${reset}`,
   );
-  console.log();
+  console.info();
 
   const { stats } = run;
-  console.log(
+  console.info(
     `${gray}Total Duration:${reset}   ${prettyMs(stats.totalDurationMs)}`,
   );
-  console.log(
+  console.info(
     `${gray}Average Duration:${reset} ${prettyMs(stats.averageDurationMs)}`,
   );
-  console.log();
+  console.info();
 
   if (stats.fastestResult.model) {
     const fastModel = stats.fastestResult.model.split("/").pop();
-    console.log(
+    console.info(
       `${green}⚡ Fastest:${reset} ${fastModel} on ${stats.fastestResult.document} (${prettyMs(stats.fastestResult.durationMs)})`,
     );
   }
 
   if (stats.slowestResult.model) {
     const slowModel = stats.slowestResult.model.split("/").pop();
-    console.log(
+    console.info(
       `${red}🐢 Slowest:${reset} ${slowModel} on ${stats.slowestResult.document} (${prettyMs(stats.slowestResult.durationMs)})`,
     );
   }
 
-  console.log();
-  console.log(`${cyan}Model Averages:${reset}`);
-  console.log(`${gray}${"─".repeat(50)}${reset}`);
+  console.info();
+  console.info(`${cyan}Model Averages:${reset}`);
+  console.info(`${gray}${"─".repeat(50)}${reset}`);
 
   const sortedAverages = Object.entries(stats.modelAverages).sort(
     ([, a], [, b]) => a - b,
@@ -134,10 +134,12 @@ export function displayResults(run: BenchmarkRun): void {
 
   for (const [model, avgMs] of sortedAverages) {
     const shortModel = model.split("/").pop() || model;
-    console.log(`  ${pad(shortModel, 30)} ${yellow}${prettyMs(avgMs)}${reset}`);
+    console.info(
+      `  ${pad(shortModel, 30)} ${yellow}${prettyMs(avgMs)}${reset}`,
+    );
   }
 
-  console.log();
+  console.info();
 }
 
 export function displayError(message: string): void {
@@ -145,9 +147,9 @@ export function displayError(message: string): void {
 }
 
 export function displaySuccess(message: string): void {
-  console.log(`${green}✓${reset} ${message}`);
+  console.info(`${green}✓${reset} ${message}`);
 }
 
 export function displayInfo(message: string): void {
-  console.log(`${cyan}ℹ${reset} ${message}`);
+  console.info(`${cyan}ℹ${reset} ${message}`);
 }

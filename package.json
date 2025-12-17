@@ -11,11 +11,16 @@
     "tsc": "tsc --noEmit",
     "bench": "bun src/bench.ts run",
     "bench:results": "bun src/bench.ts results",
-    "bench:md": "bun src/bench.ts markdown"
+    "bench:md": "bun src/bench.ts markdown",
+    "bench:html": "bun src/build-web.ts",
+    "preview": "bun src/build-web.ts preview"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.9",
-    "@types/bun": "latest"
+    "@tailwindcss/cli": "^4.1.18",
+    "@types/bun": "latest",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"
@@ -25,8 +30,11 @@
     "@ai-sdk/openai-compatible": "^1.0.29",
     "@ai-sdk/react": "^3.0.0-beta.160",
     "@t3-oss/env-nextjs": "^0.13.10",
+    "@tanstack/react-table": "^8.21.3",
     "ai": "^6.0.0-beta.157",
     "gpt-tokenizer": "^3.4.0",
-    "pretty-ms": "^9.3.0"
+    "pretty-ms": "^9.3.0",
+    "recharts": "^3.6.0",
+    "tailwindcss": "^4.1.18"
   }
 }
