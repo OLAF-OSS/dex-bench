@@ -9,14 +9,19 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import type { BenchmarkResult } from "../types";
+import type { SummarizationResult, StructuredOutputResult } from "../types";
 
 interface ModelComparisonChartProps {
   modelAverages: Record<string, number>;
+  label?: string;
 }
 
 interface TokensPerSecondChartProps {
-  results: BenchmarkResult[];
+  results: SummarizationResult[];
+}
+
+interface ExtractionsChartProps {
+  results: StructuredOutputResult[];
 }
 
 function getShortModelName(model: string): string {
@@ -47,9 +52,15 @@ interface CustomTooltipProps {
   active?: boolean;
   payload?: TooltipPayload[];
   label?: string;
+  suffix?: string;
 }
 
-const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+  suffix = "",
+}: CustomTooltipProps) => {
   if (active && payload && payload.length > 0) {
     const item = payload[0];
     if (!item) return null;
@@ -58,7 +69,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
         <p className="text-gray-200 font-medium text-sm">{label ?? ""}</p>
         <p className="text-accent-400 font-mono text-sm">
           {item.name}: {item.value.toFixed(1)}
-          {item.name === "Average Duration" ? "s" : " tok/s"}
+          {suffix}
         </p>
       </div>
     );
@@ -68,6 +79,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 
 export function ModelComparisonChart({
   modelAverages,
+  label = "Average Duration",
 }: ModelComparisonChartProps) {
   const data = useMemo(() => {
     return Object.entries(modelAverages)
@@ -107,10 +119,10 @@ export function ModelComparisonChart({
           width={95}
         />
         <Tooltip
-          content={<CustomTooltip />}
+          content={<CustomTooltip suffix="s" />}
           cursor={{ fill: "rgba(34, 211, 238, 0.1)" }}
         />
-        <Bar dataKey="avgSeconds" name="Average Duration" radius={[0, 4, 4, 0]}>
+        <Bar dataKey="avgSeconds" name={label} radius={[0, 4, 4, 0]}>
           {data.map((entry, index) => (
             <Cell key={entry.model} fill={getColor(index)} />
           ))}
@@ -122,7 +134,6 @@ export function ModelComparisonChart({
 
 export function TokensPerSecondChart({ results }: TokensPerSecondChartProps) {
   const data = useMemo(() => {
-    // Group by model and calculate average tokens per second
     const modelStats = new Map<string, { total: number; count: number }>();
 
     for (const result of results) {
@@ -172,10 +183,83 @@ export function TokensPerSecondChart({ results }: TokensPerSecondChartProps) {
           width={95}
         />
         <Tooltip
-          content={<CustomTooltip />}
+          content={<CustomTooltip suffix=" tok/s" />}
           cursor={{ fill: "rgba(34, 211, 238, 0.1)" }}
         />
         <Bar dataKey="avgTokPerSec" name="Tokens/sec" radius={[0, 4, 4, 0]}>
+          {data.map((entry, index) => (
+            <Cell key={entry.model} fill={getColor(index)} />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  );
+}
+
+export function ExtractionsChart({ results }: ExtractionsChartProps) {
+  const data = useMemo(() => {
+    const modelStats = new Map<
+      string,
+      { totalExtractions: number; count: number }
+    >();
+
+    for (const result of results) {
+      if (!result.success) continue;
+      const model = result.model;
+      const existing = modelStats.get(model) || {
+        totalExtractions: 0,
+        count: 0,
+      };
+      modelStats.set(model, {
+        totalExtractions: existing.totalExtractions + result.extractionCount,
+        count: existing.count + 1,
+      });
+    }
+
+    return Array.from(modelStats.entries())
+      .map(([model, stats]) => ({
+        model: getShortModelName(model),
+        fullModel: model,
+        avgExtractions: stats.totalExtractions / stats.count,
+      }))
+      .sort((a, b) => b.avgExtractions - a.avgExtractions);
+  }, [results]);
+
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart
+        data={data}
+        layout="vertical"
+        margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+      >
+        <CartesianGrid
+          strokeDasharray="3 3"
+          stroke="#2a3542"
+          horizontal={false}
+        />
+        <XAxis
+          type="number"
+          tick={{ fill: "#9ca3af", fontSize: 12 }}
+          axisLine={{ stroke: "#3a4756" }}
+          tickLine={{ stroke: "#3a4756" }}
+        />
+        <YAxis
+          type="category"
+          dataKey="model"
+          tick={{ fill: "#9ca3af", fontSize: 12 }}
+          axisLine={{ stroke: "#3a4756" }}
+          tickLine={{ stroke: "#3a4756" }}
+          width={95}
+        />
+        <Tooltip
+          content={<CustomTooltip suffix=" extractions" />}
+          cursor={{ fill: "rgba(34, 211, 238, 0.1)" }}
+        />
+        <Bar
+          dataKey="avgExtractions"
+          name="Avg Extractions"
+          radius={[0, 4, 4, 0]}
+        >
           {data.map((entry, index) => (
             <Cell key={entry.model} fill={getColor(index)} />
           ))}

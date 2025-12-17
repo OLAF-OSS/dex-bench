@@ -1,26 +1,23 @@
-export interface BenchmarkResult {
+// ============================================================================
+// Benchmark Categories
+// ============================================================================
+
+export type BenchmarkCategory = "summarization" | "structured-output";
+
+// ============================================================================
+// Base Types
+// ============================================================================
+
+export interface BaseBenchmarkResult {
   model: string;
   document: string;
-  inputTokens: number;
-  outputTokens: number;
-  totalTokens: number;
+  documentTokens: number;
   durationMs: number;
-  tokensPerSecond: number;
-  summary: string;
   success: boolean;
   error?: string;
 }
 
-export interface BenchmarkRun {
-  id: string;
-  timestamp: string;
-  models: string[];
-  documents: string[];
-  results: BenchmarkResult[];
-  stats: BenchmarkStats;
-}
-
-export interface BenchmarkStats {
+export interface BaseStats {
   totalDurationMs: number;
   averageDurationMs: number;
   fastestResult: {
@@ -36,8 +33,94 @@ export interface BenchmarkStats {
   modelAverages: Record<string, number>;
 }
 
+// ============================================================================
+// Summarization Benchmark
+// ============================================================================
+
+export interface SummarizationResult extends BaseBenchmarkResult {
+  type: "summarization";
+  inputTokens: number;
+  outputTokens: number;
+  totalTokens: number;
+  tokensPerSecond: number;
+  summary: string;
+}
+
+export interface SummarizationStats extends BaseStats {
+  type: "summarization";
+  totalInputTokens: number;
+  totalOutputTokens: number;
+  averageTokensPerSecond: number;
+}
+
+// ============================================================================
+// Structured Output Benchmark (Entity Extraction)
+// ============================================================================
+
+export interface Extraction {
+  id: string;
+  extractionClass: string;
+  extractionText: string;
+}
+
+export interface Relationship {
+  sourceId: string;
+  targetId: string;
+  relationshipType: string;
+}
+
+export interface StructuredOutputResult extends BaseBenchmarkResult {
+  type: "structured-output";
+  entityTypesTimeMs: number;
+  extractionTimeMs: number;
+  entityTypes: string[];
+  extractionCount: number;
+  relationshipCount: number;
+  extractions: Extraction[];
+  relationships: Relationship[];
+}
+
+export interface StructuredOutputStats extends BaseStats {
+  type: "structured-output";
+  totalExtractions: number;
+  totalRelationships: number;
+  averageExtractionsPerDoc: number;
+  averageEntityTypesPerDoc: number;
+}
+
+// ============================================================================
+// Union Types
+// ============================================================================
+
+export type BenchmarkResult = SummarizationResult | StructuredOutputResult;
+export type BenchmarkStats = SummarizationStats | StructuredOutputStats;
+
+// ============================================================================
+// Benchmark Run
+// ============================================================================
+
+export interface BenchmarkRunResults {
+  summarization?: SummarizationResult[];
+  structuredOutput?: StructuredOutputResult[];
+}
+
+export interface BenchmarkRunStats {
+  summarization?: SummarizationStats;
+  structuredOutput?: StructuredOutputStats;
+}
+
+export interface BenchmarkRun {
+  id: string;
+  timestamp: string;
+  models: string[];
+  documents: string[];
+  categories: BenchmarkCategory[];
+  results: BenchmarkRunResults;
+  stats: BenchmarkRunStats;
+}
+
 declare global {
   interface Window {
-    BENCHMARK_DATA: BenchmarkRun;
+    BENCHMARK_DATA: BenchmarkRun[];
   }
 }

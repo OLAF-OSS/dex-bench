@@ -1,25 +1,44 @@
-import { generateText } from "ai";
-import { llmModel, models } from "@/lib/llm";
-import { PROMPTS } from "@/lib/prompts";
+import pLimit from "p-limit";
+import pRetry from "p-retry";
+import { models } from "@/lib/models";
 import {
   saveBenchmarkRun,
   loadLatestBenchmarkRun,
   loadBenchmarkRun,
+  loadIncompleteRun,
 } from "@/lib/storage";
-import { countTokens } from "@/lib/utils";
+import {
+  getBenchmark,
+  getRegisteredCategories,
+  summarizationBenchmark,
+  structuredOutputBenchmark,
+} from "@/lib/benchmarks";
 import type {
-  BenchmarkResult,
+  BenchmarkCategory,
   BenchmarkRun,
-  BenchmarkStats,
+  BenchmarkRunResults,
+  Document,
+  ProgressCallback,
+  SummarizationResult,
+  StructuredOutputResult,
 } from "@/lib/types";
 
-export { saveBenchmarkRun, loadLatestBenchmarkRun, loadBenchmarkRun };
+export {
+  saveBenchmarkRun,
+  loadLatestBenchmarkRun,
+  loadBenchmarkRun,
+  loadIncompleteRun,
+};
 
 const DOCS_DIR = "./docs";
 
-async function getDocuments(): Promise<{ name: string; content: string }[]> {
+// ============================================================================
+// Document Loading
+// ============================================================================
+
+export async function getDocuments(): Promise<Document[]> {
   const glob = new Bun.Glob("*.md");
-  const documents: { name: string; content: string }[] = [];
+  const documents: Document[] = [];
 
   for await (const path of glob.scan(DOCS_DIR)) {
     const filePath = `${DOCS_DIR}/${path}`;
@@ -30,138 +49,248 @@ async function getDocuments(): Promise<{ name: string; content: string }[]> {
   return documents;
 }
 
-async function runSingleBenchmark(
+// ============================================================================
+// Helper: Check if a result already exists
+// ============================================================================
+
+function isResultCompleted(
+  results: BenchmarkRunResults,
+  category: BenchmarkCategory,
   model: string,
-  document: { name: string; content: string },
-): Promise<BenchmarkResult> {
-  const prompt = PROMPTS["analyze-document"](document.content);
-  const inputTokens = countTokens(prompt);
+  documentName: string,
+): boolean {
+  if (category === "summarization" && results.summarization) {
+    return results.summarization.some(
+      (r) => r.model === model && r.document === documentName,
+    );
+  }
+  if (category === "structured-output" && results.structuredOutput) {
+    return results.structuredOutput.some(
+      (r) => r.model === model && r.document === documentName,
+    );
+  }
+  return false;
+}
 
-  const startTime = performance.now();
+// ============================================================================
+// Helper: Add result to run
+// ============================================================================
 
-  try {
-    const result = await generateText({
-      model: llmModel(model) as Parameters<typeof generateText>[0]["model"],
-      prompt,
-    });
-
-    const endTime = performance.now();
-    const durationMs = endTime - startTime;
-    const outputTokens = result.usage?.outputTokens ?? countTokens(result.text);
-    const totalTokens = inputTokens + outputTokens;
-    const tokensPerSecond = (outputTokens / durationMs) * 1000;
-
-    return {
-      model,
-      document: document.name,
-      inputTokens,
-      outputTokens,
-      totalTokens,
-      durationMs,
-      tokensPerSecond,
-      summary: result.text,
-      success: true,
-    };
-  } catch (error) {
-    const endTime = performance.now();
-    const durationMs = endTime - startTime;
-
-    return {
-      model,
-      document: document.name,
-      inputTokens,
-      outputTokens: 0,
-      totalTokens: inputTokens,
-      durationMs,
-      tokensPerSecond: 0,
-      summary: "",
-      success: false,
-      error: error instanceof Error ? error.message : String(error),
-    };
+function addResultToRun(
+  run: BenchmarkRun,
+  category: BenchmarkCategory,
+  result: SummarizationResult | StructuredOutputResult,
+): void {
+  if (category === "summarization") {
+    if (!run.results.summarization) {
+      run.results.summarization = [];
+    }
+    run.results.summarization.push(result as SummarizationResult);
+  } else if (category === "structured-output") {
+    if (!run.results.structuredOutput) {
+      run.results.structuredOutput = [];
+    }
+    run.results.structuredOutput.push(result as StructuredOutputResult);
   }
 }
 
-function calculateStats(results: BenchmarkResult[]): BenchmarkStats {
-  const successfulResults = results.filter((r) => r.success);
+// ============================================================================
+// Helper: Calculate and update stats
+// ============================================================================
 
-  const totalDurationMs = results.reduce((sum, r) => sum + r.durationMs, 0);
-  const averageDurationMs =
-    successfulResults.length > 0
-      ? successfulResults.reduce((sum, r) => sum + r.durationMs, 0) /
-        successfulResults.length
-      : 0;
-
-  const sortedByDuration = [...successfulResults].sort(
-    (a, b) => a.durationMs - b.durationMs,
-  );
-  const fastest = sortedByDuration[0];
-  const slowest = sortedByDuration[sortedByDuration.length - 1];
-
-  const modelAverages: Record<string, number> = {};
-  for (const model of models) {
-    const modelResults = successfulResults.filter((r) => r.model === model);
-    if (modelResults.length > 0) {
-      modelAverages[model] =
-        modelResults.reduce((sum, r) => sum + r.durationMs, 0) /
-        modelResults.length;
-    }
+function updateStats(run: BenchmarkRun): void {
+  if (run.results.summarization && run.results.summarization.length > 0) {
+    run.stats.summarization = summarizationBenchmark.calculateStats(
+      run.results.summarization,
+      run.models,
+    );
   }
+  if (run.results.structuredOutput && run.results.structuredOutput.length > 0) {
+    run.stats.structuredOutput = structuredOutputBenchmark.calculateStats(
+      run.results.structuredOutput,
+      run.models,
+    );
+  }
+}
 
-  return {
-    totalDurationMs,
-    averageDurationMs,
-    fastestResult: fastest
-      ? {
-          model: fastest.model,
-          document: fastest.document,
-          durationMs: fastest.durationMs,
-        }
-      : { model: "", document: "", durationMs: 0 },
-    slowestResult: slowest
-      ? {
-          model: slowest.model,
-          document: slowest.document,
-          durationMs: slowest.durationMs,
-        }
-      : { model: "", document: "", durationMs: 0 },
-    modelAverages,
-  };
+// ============================================================================
+// Main Benchmark Runner
+// ============================================================================
+
+export interface RunBenchmarkOptions {
+  categories?: BenchmarkCategory[];
+  onProgress?: ProgressCallback;
+  resumeFrom?: BenchmarkRun;
+  concurrency?: number;
+  retries?: number;
 }
 
 export async function runBenchmark(
-  onProgress?: (
-    model: string,
-    document: string,
-    index: number,
-    total: number,
-  ) => void,
+  options: RunBenchmarkOptions = {},
 ): Promise<BenchmarkRun> {
+  const {
+    categories = getRegisteredCategories(),
+    onProgress,
+    resumeFrom,
+    concurrency = 1,
+    retries = 3,
+  } = options;
+
   const documents = await getDocuments();
-  const results: BenchmarkResult[] = [];
-  const totalRuns = models.length * documents.length;
-  let currentRun = 0;
+  const modelList = [...models];
 
-  for (const model of models) {
-    for (const document of documents) {
-      currentRun++;
-      onProgress?.(model, document.name, currentRun, totalRuns);
+  // Create or resume run
+  let run: BenchmarkRun;
 
-      const result = await runSingleBenchmark(model, document);
-      results.push(result);
+  if (resumeFrom) {
+    // Resume from existing run
+    run = {
+      ...resumeFrom,
+      // Ensure categories match what we want to run
+      categories: [...new Set([...resumeFrom.categories, ...categories])],
+    };
+  } else {
+    // Create new run
+    const timestamp = new Date().toISOString();
+    const id = `benchmark-${timestamp.replace(/[:.]/g, "-")}`;
+
+    run = {
+      id,
+      timestamp,
+      status: "in-progress",
+      models: modelList,
+      documents: documents.map((d) => d.name),
+      categories,
+      results: {},
+      stats: {},
+    };
+
+    // Save initial run state
+    await saveBenchmarkRun(run);
+  }
+
+  // Build task queue for all (category, model, document) combinations
+  interface Task {
+    category: BenchmarkCategory;
+    model: string;
+    document: Document;
+  }
+
+  const tasks: Task[] = [];
+  for (const category of categories) {
+    const benchmark = getBenchmark(category);
+    if (!benchmark) {
+      console.warn(`Skipping unknown category: ${category}`);
+      continue;
+    }
+    for (const model of modelList) {
+      for (const document of documents) {
+        tasks.push({ category, model, document });
+      }
     }
   }
 
-  const stats = calculateStats(results);
-  const timestamp = new Date().toISOString();
-  const id = `benchmark-${timestamp.replace(/[:.]/g, "-")}`;
+  // Calculate totals for progress
+  const totalRuns = tasks.length;
+  let completedRuns = tasks.filter((t) =>
+    isResultCompleted(run.results, t.category, t.model, t.document.name),
+  ).length;
 
-  return {
-    id,
-    timestamp,
-    models: [...models],
-    documents: documents.map((d) => d.name),
-    results,
-    stats,
-  };
+  // Create concurrency limiter
+  const limit = pLimit(concurrency);
+
+  // Execute tasks with concurrency limit and retry
+  await Promise.all(
+    tasks.map((task) =>
+      limit(async () => {
+        // Skip if already completed
+        if (
+          isResultCompleted(
+            run.results,
+            task.category,
+            task.model,
+            task.document.name,
+          )
+        ) {
+          return;
+        }
+
+        const benchmark = getBenchmark(task.category);
+        if (!benchmark) return;
+
+        const shortModel = task.model.split("/").pop() || task.model;
+
+        // Run benchmark with retry
+        const result = await pRetry(
+          () => benchmark.run(task.model, task.document),
+          {
+            retries,
+            onFailedAttempt: (context) => {
+              console.warn(
+                `  ↳ Retry ${context.attemptNumber}/${retries} for ${shortModel} on ${task.document.name}: ${context.error.message}`,
+              );
+            },
+          },
+        );
+
+        // Add result to run
+        addResultToRun(
+          run,
+          task.category,
+          result as SummarizationResult | StructuredOutputResult,
+        );
+
+        // Save incrementally after each result
+        await saveBenchmarkRun(run);
+
+        // Update progress
+        completedRuns++;
+        onProgress?.(
+          task.category,
+          task.model,
+          task.document.name,
+          completedRuns,
+          totalRuns,
+        );
+      }),
+    ),
+  );
+
+  // Calculate final stats
+  updateStats(run);
+
+  // Mark as complete
+  run.status = "complete";
+  await saveBenchmarkRun(run);
+
+  return run;
 }
 
+// ============================================================================
+// Utility: Count total runs for progress tracking
+// ============================================================================
+
+export function countTotalRuns(
+  categories: BenchmarkCategory[],
+  modelCount: number,
+  documentCount: number,
+): number {
+  return categories.length * modelCount * documentCount;
+}
+
+// ============================================================================
+// Utility: Count completed runs in an existing run
+// ============================================================================
+
+export function countCompletedRuns(run: BenchmarkRun): number {
+  let count = 0;
+
+  if (run.results.summarization) {
+    count += run.results.summarization.length;
+  }
+  if (run.results.structuredOutput) {
+    count += run.results.structuredOutput.length;
+  }
+
+  return count;
+}

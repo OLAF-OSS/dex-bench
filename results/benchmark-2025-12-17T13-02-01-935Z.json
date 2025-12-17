@@ -1,0 +1,2441 @@
+{
+  "id": "benchmark-2025-12-17T13-02-01-935Z",
+  "timestamp": "2025-12-17T13:02:01.935Z",
+  "status": "complete",
+  "models": [
+    "google/gemma-3-12b-it",
+    "google/gemma-3-27b-it",
+    "qwen/qwen3-vl-30b-a3b-instruct"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": ["structured-output"],
+  "results": {
+    "structuredOutput": [
+      {
+        "type": "structured-output",
+        "model": "google/gemma-3-12b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 51511.838375,
+        "success": true,
+        "entityTypesTimeMs": 24223,
+        "extractionTimeMs": 27289,
+        "entityTypes": [
+          "CRYPTO_CURRENCY",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "EVENT",
+          "TIME",
+          "DATE",
+          "JOB_TITLE",
+          "COMPANY",
+          "LOCATION",
+          "COUNTRY",
+          "CITY",
+          "DIGITAL_SIGNATURE",
+          "HASH",
+          "BLOCKCHAIN",
+          "NETWORK",
+          "ALGORITHM"
+        ],
+        "extractionCount": 20,
+        "relationshipCount": 6,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "CRYPTO_CURRENCY",
+            "extractionText": "Bitcoin"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "peer-to-peer"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "DIGITAL_SIGNATURE",
+            "extractionText": "Digital signatures"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "NETWORK",
+            "extractionText": "network"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "HASH",
+            "extractionText": "hash"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "BLOCKCHAIN",
+            "extractionText": "chain"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "miner"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "COMPANY",
+            "extractionText": "Adam Back"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "LOCATION",
+            "extractionText": "Internet"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "TIME",
+            "extractionText": "10 minutes"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "DATE",
+            "extractionText": "2008"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "CITY",
+            "extractionText": "Benelux"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "COUNTRY",
+            "extractionText": "USA"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e1",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e9",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e1",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e11",
+            "targetId": "e1",
+            "relationshipType": "IS_A"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e1",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e6",
+            "relationshipType": "IS_USED_IN"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "google/gemma-3-27b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 55851.058583000005,
+        "success": true,
+        "entityTypesTimeMs": 6952,
+        "extractionTimeMs": 48899,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "EMAIL_ADDRESS",
+          "URL",
+          "EVENT",
+          "PRODUCT",
+          "COMPANY",
+          "PUBLICATION",
+          "LEGAL_TERM",
+          "TIME",
+          "DATE",
+          "PERCENTAGE",
+          "MONEY",
+          "MEASUREMENT",
+          "COORDINATE",
+          "JOB_TITLE",
+          "HASHTAG",
+          "SERIAL_NUMBER"
+        ],
+        "extractionCount": 20,
+        "relationshipCount": 2,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "Digital signatures"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PRODUCT",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Usenet post"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Newspaper"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "TIME",
+            "extractionText": "10 minutes"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "DATE",
+            "extractionText": "2008"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "PERCENTAGE",
+            "extractionText": "a certain percentage"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "COMPANY",
+            "extractionText": "mint"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "peer-to-peer network"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EVENT",
+            "extractionText": "20th Symposium on Information Theory in the Benelux"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "EVENT",
+            "extractionText": "4th ACM Conference on Computer and Communications Security"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Journal of Cryptology"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "b-money"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e1",
+            "targetId": "e3",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e2",
+            "relationshipType": "HAS_EMAIL"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "google/gemma-3-12b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 77499.97725,
+        "success": true,
+        "entityTypesTimeMs": 24570,
+        "extractionTimeMs": 52930,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "MODEL_ARCHITECTURE",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "LANGUAGE",
+          "COUNTRY",
+          "CITY",
+          "MACHINE_TRANSLATION_TASK",
+          "DATASET",
+          "GPU",
+          "DATE",
+          "TIME",
+          "MEASUREMENT",
+          "PERCENTAGE",
+          "JOB_TITLE",
+          "PUBLICATION",
+          "EVENT"
+        ],
+        "extractionCount": 49,
+        "relationshipCount": 25,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "MACHINE_TRANSLATION_TASK",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "EVENT",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English-to-German"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "BLEU"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "PERCENTAGE",
+            "extractionText": "28.4"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "EVENT",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English-to-French"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "PERCENTAGE",
+            "extractionText": "41.8"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "GPU",
+            "extractionText": "eight GPUs"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "MACHINE_TRANSLATION_TASK",
+            "extractionText": "English constituency parsing"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "DATASET",
+            "extractionText": "Penn Treebank"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "DATASET",
+            "extractionText": "WSJ"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "recurrent neural networks"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "convolutional neural networks"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "Extended Neural GPU"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "ByteNet"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "ConvS2S"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "self-attention"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "ReLU"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Adam"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "GPU",
+            "extractionText": "P100 GPUs"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e3",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e5",
+            "targetId": "e6",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e9",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e11",
+            "targetId": "e12",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e15",
+            "relationshipType": "MEMBER_OF"
+          },
+          {
+            "sourceId": "e17",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e20",
+            "targetId": "e21",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e23",
+            "targetId": "e24",
+            "relationshipType": "HAS_EMAIL"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e26",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e27",
+            "relationshipType": "USED_IN"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e28",
+            "relationshipType": "APPLIES_TO"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e28",
+            "relationshipType": "APPLIES_TO"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e34",
+            "relationshipType": "TRAINED_FOR"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e35",
+            "relationshipType": "TRAINED_ON"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e36",
+            "relationshipType": "APPLIES_TO"
+          },
+          {
+            "sourceId": "e25",
+            "targetId": "e37",
+            "relationshipType": "TRAINED_ON"
+          },
+          {
+            "sourceId": "e39",
+            "targetId": "e40",
+            "relationshipType": "USED_IN"
+          },
+          {
+            "sourceId": "e41",
+            "targetId": "e39",
+            "relationshipType": "USED_WITH"
+          },
+          {
+            "sourceId": "e42",
+            "targetId": "e41",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e43",
+            "targetId": "e41",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e44",
+            "targetId": "e41",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e45",
+            "targetId": "e39",
+            "relationshipType": "REPLACES"
+          },
+          {
+            "sourceId": "e45",
+            "targetId": "e40",
+            "relationshipType": "REPLACES"
+          },
+          {
+            "sourceId": "e46",
+            "targetId": "e39",
+            "relationshipType": "USED_IN"
+          },
+          {
+            "sourceId": "e46",
+            "targetId": "e45",
+            "relationshipType": "USED_IN"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 49829.56458399999,
+        "success": true,
+        "entityTypesTimeMs": 7794,
+        "extractionTimeMs": 42036,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "COMPANY",
+          "EMAIL_ADDRESS",
+          "URL",
+          "EVENT",
+          "PRODUCT",
+          "PUBLICATION",
+          "PERSON",
+          "JOB_TITLE",
+          "LANGUAGE",
+          "COORDINATE",
+          "HASHTAG",
+          "BANK_ACCOUNT",
+          "SERIAL_NUMBER",
+          "LEGAL_TERM",
+          "MEASUREMENT",
+          "TIME"
+        ],
+        "extractionCount": 14,
+        "relationshipCount": 5,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Bitcoin"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "PRODUCT",
+            "extractionText": "electronic cash"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "digital signatures"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "PRODUCT",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Journal of Cryptology"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Usenet"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "newspaper"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "PRODUCT",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "C code"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e4",
+            "targetId": "e1",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e3",
+            "relationshipType": "REPLACES"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e7",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e1",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e9",
+            "targetId": "e1",
+            "relationshipType": "USES"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "google/gemma-3-27b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 92743.682875,
+        "success": false,
+        "error": "undefined is not an object (evaluating 'extractions.length')",
+        "entityTypesTimeMs": 0,
+        "extractionTimeMs": 0,
+        "entityTypes": [],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 153882.12483299998,
+        "success": true,
+        "entityTypesTimeMs": 9671,
+        "extractionTimeMs": 144211,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "LOCATION",
+          "DATE",
+          "SOFTWARE",
+          "TECHNOLOGY",
+          "MODEL_ARCHITECTURE",
+          "JOB_TITLE",
+          "LANGUAGE",
+          "MACHINE_TRANSLATION_TASK",
+          "DATASET",
+          "GPU",
+          "NETWORK_TYPE",
+          "ALGORITHM",
+          "MEASUREMENT",
+          "PUBLICATION",
+          "CODEBASE",
+          "FILE_FORMAT",
+          "UNIVERSITY"
+        ],
+        "extractionCount": 59,
+        "relationshipCount": 20,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Attention Is All You Need"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "German"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "MACHINE_TRANSLATION_TASK",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "GPU",
+            "extractionText": "GPUs"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "UNIVERSITY",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "self-attention"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "dot-product attention"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "encoder-decoder"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[13]"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[7]"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[35]"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[38]"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[2]"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[19]"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[27]"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[22]"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[34]"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[16]"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[18]"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[9]"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[12]"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[4]"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[28]"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[30]"
+          },
+          {
+            "id": "e50",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[33]"
+          },
+          {
+            "id": "e51",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[36]"
+          },
+          {
+            "id": "e52",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[29]"
+          },
+          {
+            "id": "e53",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[37]"
+          },
+          {
+            "id": "e54",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[40]"
+          },
+          {
+            "id": "e55",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[20]"
+          },
+          {
+            "id": "e56",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[21]"
+          },
+          {
+            "id": "e57",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[32]"
+          },
+          {
+            "id": "e58",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[6]"
+          },
+          {
+            "id": "e59",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "[39]"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e27",
+            "relationshipType": "MEMBER_OF"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e2",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e18",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e19",
+            "targetId": "e18",
+            "relationshipType": "DESCRIBED_IN"
+          },
+          {
+            "sourceId": "e19",
+            "targetId": "e20",
+            "relationshipType": "TRANSLATES"
+          },
+          {
+            "sourceId": "e19",
+            "targetId": "e21",
+            "relationshipType": "TRANSLATES"
+          },
+          {
+            "sourceId": "e19",
+            "targetId": "e22",
+            "relationshipType": "TRANSLATES"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 281113.823541,
+        "success": true,
+        "entityTypesTimeMs": 29446,
+        "extractionTimeMs": 251668,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "DATE",
+          "LOCATION",
+          "LEGAL_TERM",
+          "EVENT",
+          "JOB_TITLE",
+          "COUNTRY",
+          "CITY",
+          "TECHNOLOGY",
+          "PRODUCT",
+          "MONEY",
+          "PERCENTAGE",
+          "EMAIL_ADDRESS",
+          "URL",
+          "LAW",
+          "REGULATION",
+          "AGENCY",
+          "COURT",
+          "ADDRESS"
+        ],
+        "extractionCount": 204,
+        "relationshipCount": 0,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Directorate A"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Unit A1"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "LOCATION",
+            "extractionText": "Brussels"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "Olaf.03(2021)21088"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "OLAF"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "FINAL REPORT"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "CASE No OC/2021/0451/A1"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "Investigation"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "Article 4"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "Regulation (EU, Euratom) No 883/2013"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "Article 2"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "Commission Decision 1999/352"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "OLAF Staff"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "DATE",
+            "extractionText": "2021-09-24"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "DATE",
+            "extractionText": "30 April 2021"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "DATE",
+            "extractionText": "3 May 2021"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "DATE",
+            "extractionText": "11 November 2020"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "European Border and Coast Guard Agency (FRONTEX)"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "European Border and Coast Guard Agency"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "PERSON",
+            "extractionText": "Caridad Luz Pintor Rubio"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "PERSON",
+            "extractionText": "Lewis Newman"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "PERSON",
+            "extractionText": "Bautista Barrera Cabanillas"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "PERSON",
+            "extractionText": "Eileen Bien"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Fraud Notification System (FNS)"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "EU Decentralised Agencies"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "Director"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "EVENT",
+            "extractionText": "Inspection"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Digital Forensic Operations"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "PERSON",
+            "extractionText": "Karl-August Wagner"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "MONEY",
+            "extractionText": "Amounts"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "PERCENTAGE",
+            "extractionText": "No"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "EVENT",
+            "extractionText": "Judicial proceedings"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "OLAF"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "DATE",
+            "extractionText": "8 October 2020"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "PERSON",
+            "extractionText": "Arnfried Hethur"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "European Border and Coast Guard Agency (FRONTEX)"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "PERSON",
+            "extractionText": "Samantha Barnes"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "PERSON",
+            "extractionText": "Adriana Amigó Guijarro"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "PERSON",
+            "extractionText": "Antonia Garrido Andrés"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "PERSON",
+            "extractionText": "Macarena Gargallo Menendez"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "PERSON",
+            "extractionText": "Luciano LöfflerScheibe"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "PERSON",
+            "extractionText": "Leanne Smith-Andrews"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "PERSON",
+            "extractionText": "Craig Yates"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "PERSON",
+            "extractionText": "Helen Green"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "PERSON",
+            "extractionText": "Brandon Hancock"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "PERSON",
+            "extractionText": "Pastor Anglada Torrent"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "PERSON",
+            "extractionText": "Cheryl Richardson-Walsh"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "PERSON",
+            "extractionText": "Tecla Coloma"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "PERSON",
+            "extractionText": "Karl-August Wagner"
+          },
+          {
+            "id": "e50",
+            "extractionClass": "PERSON",
+            "extractionText": "Timo Carsten"
+          },
+          {
+            "id": "e51",
+            "extractionClass": "PERSON",
+            "extractionText": "Antonia Garrido Andrés"
+          },
+          {
+            "id": "e52",
+            "extractionClass": "PERSON",
+            "extractionText": "Macarena Gargallo Menendez"
+          },
+          {
+            "id": "e53",
+            "extractionClass": "PERSON",
+            "extractionText": "Armando Madrid"
+          },
+          {
+            "id": "e54",
+            "extractionClass": "PERSON",
+            "extractionText": "Trevor Jones"
+          },
+          {
+            "id": "e55",
+            "extractionClass": "PERSON",
+            "extractionText": "Aimee Evans"
+          },
+          {
+            "id": "e56",
+            "extractionClass": "PERSON",
+            "extractionText": "Stuart Knight"
+          },
+          {
+            "id": "e57",
+            "extractionClass": "PERSON",
+            "extractionText": "Léon Étienne"
+          },
+          {
+            "id": "e58",
+            "extractionClass": "PERSON",
+            "extractionText": "Hubert Jacob-Metz"
+          },
+          {
+            "id": "e59",
+            "extractionClass": "PERSON",
+            "extractionText": "Jemma Mason"
+          },
+          {
+            "id": "e60",
+            "extractionClass": "PERSON",
+            "extractionText": "Valentina Schuchhardt"
+          },
+          {
+            "id": "e61",
+            "extractionClass": "PERSON",
+            "extractionText": "Édouard Daniel de Lebreton"
+          },
+          {
+            "id": "e62",
+            "extractionClass": "PERSON",
+            "extractionText": "Reyes Ros Pou"
+          },
+          {
+            "id": "e63",
+            "extractionClass": "PERSON",
+            "extractionText": "Karl-August Wagner"
+          },
+          {
+            "id": "e64",
+            "extractionClass": "PERSON",
+            "extractionText": "Rouven Zobel"
+          },
+          {
+            "id": "e65",
+            "extractionClass": "PERSON",
+            "extractionText": "Marcelle Allard"
+          },
+          {
+            "id": "e66",
+            "extractionClass": "PERSON",
+            "extractionText": "Samantha Barnes"
+          },
+          {
+            "id": "e67",
+            "extractionClass": "PERSON",
+            "extractionText": "Alfonso Vara-Donoso"
+          },
+          {
+            "id": "e68",
+            "extractionClass": "PERSON",
+            "extractionText": "Christian Alexander"
+          },
+          {
+            "id": "e69",
+            "extractionClass": "PERSON",
+            "extractionText": "Sebastian Pergande"
+          },
+          {
+            "id": "e70",
+            "extractionClass": "PERSON",
+            "extractionText": "Toby Owen-Boyle"
+          },
+          {
+            "id": "e71",
+            "extractionClass": "PERSON",
+            "extractionText": "Luciano LöfflerScheibe"
+          },
+          {
+            "id": "e72",
+            "extractionClass": "PERSON",
+            "extractionText": "Leanne Smith-Andrews"
+          },
+          {
+            "id": "e73",
+            "extractionClass": "PERSON",
+            "extractionText": "Sören Rädel"
+          },
+          {
+            "id": "e74",
+            "extractionClass": "PERSON",
+            "extractionText": "José Mari Solana Crespo"
+          },
+          {
+            "id": "e75",
+            "extractionClass": "PERSON",
+            "extractionText": "Eusebia Gallardo Cabezas"
+          },
+          {
+            "id": "e76",
+            "extractionClass": "PERSON",
+            "extractionText": "Klaus-Michael Staude"
+          },
+          {
+            "id": "e77",
+            "extractionClass": "PERSON",
+            "extractionText": "Univ.Prof. Joachim Ring"
+          },
+          {
+            "id": "e78",
+            "extractionClass": "PERSON",
+            "extractionText": "Basilio Villena-Carbajo"
+          },
+          {
+            "id": "e79",
+            "extractionClass": "PERSON",
+            "extractionText": "Mohammed Webster-Reid"
+          },
+          {
+            "id": "e80",
+            "extractionClass": "PERSON",
+            "extractionText": "Karl-August Wagner"
+          },
+          {
+            "id": "e81",
+            "extractionClass": "PERSON",
+            "extractionText": "Reece Morgan"
+          },
+          {
+            "id": "e82",
+            "extractionClass": "PERSON",
+            "extractionText": "Günther Heser"
+          },
+          {
+            "id": "e83",
+            "extractionClass": "PERSON",
+            "extractionText": "Martine Collet"
+          },
+          {
+            "id": "e84",
+            "extractionClass": "PERSON",
+            "extractionText": "Arthur Allain"
+          },
+          {
+            "id": "e85",
+            "extractionClass": "PERSON",
+            "extractionText": "Ing. Andrey Wirth"
+          },
+          {
+            "id": "e86",
+            "extractionClass": "PERSON",
+            "extractionText": "Edwin Mentzel"
+          },
+          {
+            "id": "e87",
+            "extractionClass": "PERSON",
+            "extractionText": "Tamara Ullrich"
+          },
+          {
+            "id": "e88",
+            "extractionClass": "PERSON",
+            "extractionText": "Louise Walker"
+          },
+          {
+            "id": "e89",
+            "extractionClass": "PERSON",
+            "extractionText": "Valentina Schuchhardt"
+          },
+          {
+            "id": "e90",
+            "extractionClass": "PERSON",
+            "extractionText": "Ryan Ltd"
+          },
+          {
+            "id": "e91",
+            "extractionClass": "PERSON",
+            "extractionText": "Paul Barbier"
+          },
+          {
+            "id": "e92",
+            "extractionClass": "PERSON",
+            "extractionText": "Richard Labbé-Collet"
+          },
+          {
+            "id": "e93",
+            "extractionClass": "PERSON",
+            "extractionText": "Teófilo Orozco Molins"
+          },
+          {
+            "id": "e94",
+            "extractionClass": "PERSON",
+            "extractionText": "Heribert Wernecke"
+          },
+          {
+            "id": "e95",
+            "extractionClass": "PERSON",
+            "extractionText": "Maurice-Bertrand Rocher"
+          },
+          {
+            "id": "e96",
+            "extractionClass": "PERSON",
+            "extractionText": "Remigio Escrivá Amador"
+          },
+          {
+            "id": "e97",
+            "extractionClass": "PERSON",
+            "extractionText": "Kimberley"
+          },
+          {
+            "id": "e98",
+            "extractionClass": "PERSON",
+            "extractionText": "Marcelle Allard"
+          },
+          {
+            "id": "e99",
+            "extractionClass": "PERSON",
+            "extractionText": "Samantha Barnes"
+          },
+          {
+            "id": "e100",
+            "extractionClass": "PERSON",
+            "extractionText": "Sebastian Pergande"
+          },
+          {
+            "id": "e101",
+            "extractionClass": "PERSON",
+            "extractionText": "Toby Harper"
+          },
+          {
+            "id": "e102",
+            "extractionClass": "PERSON",
+            "extractionText": "Jay Ellis-Gregory"
+          },
+          {
+            "id": "e103",
+            "extractionClass": "PERSON",
+            "extractionText": "Gillian Hobbs-Wade"
+          },
+          {
+            "id": "e104",
+            "extractionClass": "PERSON",
+            "extractionText": "Nidia Seco Diez"
+          },
+          {
+            "id": "e105",
+            "extractionClass": "PERSON",
+            "extractionText": "Susanne Schmidtke-Wiek"
+          },
+          {
+            "id": "e106",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e107",
+            "extractionClass": "PERSON",
+            "extractionText": "Anne-Marie"
+          },
+          {
+            "id": "e108",
+            "extractionClass": "PERSON",
+            "extractionText": "Sylvie-Marguerite"
+          },
+          {
+            "id": "e109",
+            "extractionClass": "PERSON",
+            "extractionText": "Nathalie-Cécile"
+          },
+          {
+            "id": "e110",
+            "extractionClass": "PERSON",
+            "extractionText": "Philippe"
+          },
+          {
+            "id": "e111",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e112",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e113",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e114",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e115",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e116",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e117",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e118",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e119",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e120",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e121",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e122",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e123",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e124",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e125",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e126",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e127",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e128",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e129",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e130",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e131",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e132",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e133",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e134",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e135",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e136",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e137",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e138",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e139",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e140",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e141",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e142",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e143",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e144",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e145",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e146",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e147",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e148",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e149",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e150",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e151",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e152",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e153",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e154",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e155",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e156",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e157",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e158",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e159",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e160",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e161",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e162",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e163",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e164",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e165",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e166",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e167",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e168",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e169",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e170",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e171",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e172",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e173",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e174",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e175",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e176",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e177",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e178",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e179",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e180",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e181",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e182",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e183",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e184",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e185",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e186",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e187",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e188",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e189",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e190",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e191",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e192",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e193",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e194",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e195",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e196",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e197",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e198",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e199",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e200",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e201",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e202",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e203",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          },
+          {
+            "id": "e204",
+            "extractionClass": "PERSON",
+            "extractionText": "Marie-Louise"
+          }
+        ],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "google/gemma-3-12b-it",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 663839.9655409999,
+        "success": false,
+        "error": "undefined is not an object (evaluating 'extractions.length')",
+        "entityTypesTimeMs": 0,
+        "extractionTimeMs": 0,
+        "entityTypes": [],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "google/gemma-3-27b-it",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 1326083.933167,
+        "success": false,
+        "error": "undefined is not an object (evaluating 'extractions.length')",
+        "entityTypesTimeMs": 0,
+        "extractionTimeMs": 0,
+        "entityTypes": [],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      }
+    ]
+  },
+  "stats": {
+    "structuredOutput": {
+      "type": "structured-output",
+      "totalDurationMs": 2752355.9687489998,
+      "averageDurationMs": 111614.73119433333,
+      "fastestResult": {
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "bitcoin-paper.md",
+        "durationMs": 49829.56458399999
+      },
+      "slowestResult": {
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "durationMs": 281113.823541
+      },
+      "modelAverages": {
+        "google/gemma-3-12b-it": 64505.907812499994,
+        "google/gemma-3-27b-it": 55851.058583000005,
+        "qwen/qwen3-vl-30b-a3b-instruct": 161608.50431933333
+      },
+      "totalExtractions": 366,
+      "totalRelationships": 58,
+      "averageExtractionsPerDoc": 122,
+      "averageEntityTypesPerDoc": 20
+    }
+  }
+}

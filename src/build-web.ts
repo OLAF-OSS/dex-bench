@@ -1,33 +1,23 @@
-import { loadLatestBenchmarkRun, loadBenchmarkRun } from "@/lib/storage";
+import { loadAllBenchmarkRuns } from "@/lib/storage";
 import { displayError, displaySuccess, displayInfo } from "@/lib/display";
 
 const DIST_DIR = "./dist";
 const WEB_DIR = "./web";
 
-async function buildWeb(inputFile?: string): Promise<void> {
+async function buildWeb(): Promise<void> {
   displayInfo("Building benchmark dashboard...\n");
 
-  // Load benchmark data
-  let run: Awaited<ReturnType<typeof loadLatestBenchmarkRun>>;
+  // Load all benchmark data
+  const runs = await loadAllBenchmarkRuns();
 
-  if (inputFile) {
-    try {
-      run = await loadBenchmarkRun(inputFile);
-      displayInfo(`Using benchmark file: ${inputFile}`);
-    } catch {
-      displayError(`Could not load results from ${inputFile}`);
-      process.exit(1);
-    }
-  } else {
-    run = await loadLatestBenchmarkRun();
-    if (!run) {
-      displayError(
-        "No benchmark results found. Run 'bun src/bench.ts run' first.",
-      );
-      process.exit(1);
-    }
-    displayInfo(`Using latest benchmark: ${run.id}`);
+  if (runs.length === 0) {
+    displayError(
+      "No benchmark results found. Run 'bun src/bench.ts run' first.",
+    );
+    process.exit(1);
   }
+
+  displayInfo(`Found ${runs.length} benchmark run(s)`);
 
   // Create dist directory
   await Bun.$`rm -rf ${DIST_DIR}`.quiet();
@@ -89,7 +79,7 @@ async function buildWeb(inputFile?: string): Promise<void> {
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script>window.BENCHMARK_DATA = ${JSON.stringify(run)};</script>
+    <script>window.BENCHMARK_DATA = ${JSON.stringify(runs)};</script>
   </head>
   <body>
     <div id="root"></div>
@@ -151,8 +141,7 @@ async function main(): Promise<void> {
       await previewWeb();
       break;
     default:
-      // Build with optional input file
-      await buildWeb(command);
+      await buildWeb();
       break;
   }
 }

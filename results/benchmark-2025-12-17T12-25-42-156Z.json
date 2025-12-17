@@ -1,0 +1,203 @@
+{
+  "id": "benchmark-2025-12-17T12-25-42-156Z",
+  "timestamp": "2025-12-17T12:25:42.156Z",
+  "status": "complete",
+  "models": [
+    "openai/gpt-oss-20b",
+    "google/gemma-3-12b-it",
+    "google/gemma-3-27b-it",
+    "qwen/qwen3-vl-30b-a3b-instruct"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": ["summarization"],
+  "results": {
+    "summarization": [
+      {
+        "type": "summarization",
+        "model": "openai/gpt-oss-20b",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 550,
+        "totalTokens": 5272,
+        "durationMs": 5905.528333,
+        "tokensPerSecond": 93.1330727729488,
+        "summary": "The Bitcoin whitepaper presents a decentralized electronic cash system that eliminates the need for trusted third parties. It argues that while digital signatures can prove ownership, they cannot prevent double‑spending without a central authority. To solve this, the authors propose a peer‑to‑peer network that uses proof‑of‑work to create a tamper‑resistant, publicly verifiable chain of transactions. Each block contains a set of transactions, a hash of the previous block, and a computational puzzle (SHA‑256 hash with leading zero bits). The longest chain, which represents the greatest cumulative proof‑of‑work, is accepted as the canonical history, ensuring that honest nodes with majority CPU power will outpace any attacker.\n\nKey mechanisms include:  \n- Timestamping and chaining: Transactions are broadcast, grouped into blocks, and each block is timestamped by hashing it into the chain, creating an immutable ledger.  \n- Proof‑of‑work: Nodes expend CPU cycles to find a nonce that satisfies the difficulty target, making it computationally impractical to alter past blocks.  \n- Incentives: The first transaction in each block creates a new coin (mining reward), and transaction fees are added to the reward once the coin supply stabilizes, providing a self‑sustaining incentive for honest participation.  \n- Merkle trees: Transactions within a block are hashed into a Merkle root, allowing efficient pruning of spent transactions and reducing storage requirements.  \n- Simplified payment verification: Users can verify a transaction by downloading only block headers and a Merkle branch, reducing the need to run a full node while still relying on the longest chain for security.\n\nThe paper also discusses privacy (using new key pairs per transaction), transaction structure (multiple inputs/outputs for splitting and combining value), and the probability analysis of an attacker catching up with the honest chain. The analysis shows that the chance of a successful double‑spend drops exponentially with the number of blocks added after the transaction, providing a quantifiable security margin.\n\nIn conclusion, Bitcoin offers a robust, trustless electronic cash system that relies on cryptographic proof and distributed consensus. Its design is intentionally simple and unstructured, enabling nodes to join or leave freely while maintaining a secure, immutable ledger through proof‑of‑work and the longest‑chain rule.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "openai/gpt-oss-20b",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 686,
+        "totalTokens": 42454,
+        "durationMs": 13183.681417,
+        "tokensPerSecond": 52.034024359495035,
+        "summary": "The OLAF final report (Case OC/2021/0451/A1) investigates alleged misconduct and irregularities within the European Border and Coast Guard Agency (FRONTEX), focusing on possible illegal pushbacks of migrants, internal mismanagement, and violations of fundamental‑rights obligations. The investigation was opened on 3 May 2021 as a split of an earlier case (OC/2020/0866/A1) and aimed to assess the conduct of senior FRONTEX officials, the handling of serious incidents, and the agency’s compliance with its legal and ethical duties.\n\nKey findings show that several FRONTEX managers—most notably Klaus‑Michael Staude, Joachim Ring B.Eng., Basilio Villena‑Carbajo, Reece Morgan, Günther Heser, and others—failed to follow standard operating procedures for serious incident reporting, deliberately excluded the Fundamental Rights Officer (FRO) from investigations, and obstructed the reporting chain. Evidence also indicates intimidation and harassment of staff, micromanagement that stifled reporting lines, conflicts of interest in recruitment, and procurement irregularities. The report documents multiple instances where FRONTEX assets were allegedly involved in or covered up illegal pushbacks, particularly in the Aegean Sea, and where the agency’s response was delayed or inadequate.\n\nThe investigation concluded that the allegations are proven. The misconduct of the identified individuals hindered FRONTEX’s ability to monitor and protect fundamental rights, undermining the agency’s mandate under Regulation (EU) 2019/1896. OLAF found that serious incidents were misclassified (often as Category 2 instead of Category 4), that the FRO was excluded from critical information, and that follow‑up actions were insufficient or absent. The report also highlights the lack of timely communication with the FRO, the use of classification and public‑access‑to‑documents justifications to withhold evidence, and the overall failure to uphold the agency’s legal and ethical responsibilities. The findings underscore a systemic failure within FRONTEX to respect fundamental rights and to conduct its operations transparently and lawfully.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-12b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 828,
+        "totalTokens": 11125,
+        "durationMs": 21558.940792,
+        "tokensPerSecond": 38.40633953163648,
+        "summary": "The paper introduces the Transformer, a novel sequence‑to‑sequence architecture that replaces recurrent and convolutional layers with a stack of multi‑head self‑attention modules. The encoder and decoder each consist of six identical layers; each layer contains a multi‑head self‑attention sub‑layer followed by a position‑wise feed‑forward network, with residual connections and layer normalization. The model uses 512‑dimensional embeddings, 2048‑dimensional feed‑forward hidden layers, and eight attention heads (each with 64‑dimensional keys, values, and queries). Positional information is injected via fixed sinusoidal encodings, allowing the network to learn relative positions without learned embeddings.\n\nTraining on the WMT 2014 English‑to‑German and English‑to‑French corpora, the Transformer achieves state‑of‑the‑art BLEU scores while requiring far less compute. The base model (trained for 12 h on 8 P100 GPUs) attains 27.3 BLEU (German) and 38.1 BLEU (French), surpassing all previous single‑model results. The larger “big” model, trained for 3.5 days, reaches 28.4 BLEU on German and 41.8 BLEU on French, outperforming ensembles and reducing training FLOPs by an order of magnitude compared to prior work. Key training details include Adam optimization with a warm‑up schedule (4000 steps), dropout (0.1 on the base, 0.3 on the big model), and label smoothing (εₗₛ = 0.1).\n\nThe authors also demonstrate the Transformer’s versatility by applying it to English constituency parsing. A 4‑layer Transformer (d_model = 1024) trained on the Penn Treebank achieves 91.3 F1 on the WSJ 23 test set, and 92.7 F1 in a semi‑supervised setting, matching or surpassing the best RNN‑based parsers. The paper concludes that self‑attention yields highly parallelizable models with constant‑length dependency paths, enabling efficient training and strong generalization across tasks, and outlines future directions such as local attention mechanisms and multimodal extensions.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-27b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 783,
+        "totalTokens": 5505,
+        "durationMs": 23538.370084,
+        "tokensPerSecond": 33.26483512689086,
+        "summary": "Satoshi Nakamoto’s whitepaper proposes a decentralized electronic cash system that eliminates the need for a trusted third party. It builds on digital signatures to create a chain of ownership for each coin, but addresses the double‑spending problem by introducing a peer-to-peer “timestamp server” that records all transactions in a continuously growing, cryptographically linked chain of blocks. Each block contains a set of transactions and a proof-of-work (PoW) that requires a SHA-256 hash to begin with a specified number of leading zero bits. The PoW ties the block to the amount of computational effort expended, making it infeasible for an attacker to alter past blocks without re‑doing all subsequent work. The longest chain, i.e., the chain with the most cumulative PoW, is treated as the authoritative ledger; honest nodes will always extend this chain, while any divergent chain that fails to catch up is discarded.\n\nThe network operates with minimal coordination: new transactions are broadcast, nodes collect them into candidate blocks, and each node independently searches for a valid nonce. When a node finds a PoW, it broadcasts the block; other nodes accept it only if all contained transactions are valid and unspent. The first transaction in each block is a “coinbase” transaction that creates new coins, providing an incentive for miners and a mechanism for initial coin distribution. Transaction fees are also incorporated, allowing the system to transition to an inflation‑free model once a predetermined supply is reached. To conserve storage, transactions are hashed in a Merkle tree; only the root is stored in the block header (≈80 bytes), and spent transactions can be pruned once buried under enough subsequent blocks.\n\nPrivacy is maintained by keeping public keys anonymous and encouraging the use of a fresh key pair for each transaction, thereby preventing linkage of multiple payments to a single identity. The paper also introduces “simplified payment verification” (SPV), where a lightweight client can verify a transaction by downloading only block headers and the Merkle branch that links the transaction to a block, reducing bandwidth and storage requirements. The author provides a probabilistic analysis of an attacker’s chance to overtake the honest chain, showing that the probability of success drops exponentially with the number of blocks the attacker lags behind (e.g., a 10‑% attacker needs to be 5 blocks ahead to have a 0.1 % chance of success).\n\nIn conclusion, the whitepaper presents a robust, unstructured peer-to-peer protocol that uses PoW to achieve consensus, prevent double‑spending, and incentivize honest participation. The system’s simplicity—no need for node identification or complex routing—combined with its cryptographic guarantees, makes it a viable foundation for a global, trustless electronic cash network.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-12b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 457,
+        "totalTokens": 5179,
+        "durationMs": 76995.185958,
+        "tokensPerSecond": 5.93543601867899,
+        "summary": "The Bitcoin whitepaper proposes a decentralized electronic cash system eliminating the need for trusted third parties. It utilizes digital signatures to establish coin ownership and solves the double-spending problem through a peer-to-peer network recording transactions in a tamper-evident ledger, structured as a continuously growing chain of blocks secured by a proof-of-work (PoW) mechanism. This PoW requires a computationally intensive hash preimage, making chain modification infeasible without controlling the majority of network hash power.\n\nThe network operates with minimal coordination, with nodes broadcasting transactions, assembling blocks, and competing to solve the PoW. The longest chain is authoritative, and nodes automatically adopt it. This, combined with PoW, provides a robust consensus mechanism, incentivized by new coin minting and transaction fees. The paper also details technical contributions like Merkle trees for efficient data pruning, simplified payment verification, and strategies for managing coin values.\n\nPrivacy is maintained through anonymous public keys and the encouragement of fresh key pairs per transaction. Ultimately, the whitepaper concludes that Bitcoin offers a secure, trustless, and scalable solution for electronic payments, relying on computational work for consensus rather than centralized authorities.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-12b-it",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 1514,
+        "totalTokens": 43282,
+        "durationMs": 80280.482917,
+        "tokensPerSecond": 18.858880078801807,
+        "summary": "The OLAF final report (Case OC/2021/0451/A1) investigates alleged serious misconduct and irregularities within the European Border and Coast Guard Agency (FRONTEX), focusing on possible illegal pushbacks of migrants and internal management failures. The investigation, opened on 3 May 2021 as a split of the earlier case OC/2020/0866/A1, examined the conduct of several FRONTEX personnel, including top managers and operational staff, and assessed whether the agency complied with its legal obligations under EU regulations and the Charter of Fundamental Rights.\n\nKey findings show that multiple FRONTEX officials failed to follow standard operating procedures for serious incident reporting, excluded the Fundamental Rights Officer (FRO) from critical information, and engaged in intimidation, micromanagement, and possible conflicts of interest in recruitment and procurement. Digital forensic analysis, interviews with 20 witnesses, and open‑source intelligence revealed that FRONTEX assets were involved in incidents that likely constituted illegal pushbacks, such as towing overcrowded migrant boats into Turkish territorial waters and leaving them adrift without propulsion. The FRO was systematically denied access to incident data, undermining the agency’s duty to monitor and protect fundamental rights.\n\nThe report concludes that the allegations are proven: FRONTEX personnel’s actions hindered the agency’s ability to uphold its responsibilities, resulting in serious violations of fundamental rights and potential breaches of EU law. OLAF’s evidence indicates that the agency’s internal processes were compromised, that the FRO was excluded from decision‑making, and that the agency failed to initiate or follow up on Serious Incident Reports (SIRs) when required. The findings highlight the need for corrective measures, including stricter adherence to SOPs, improved transparency, and stronger enforcement of Article 46 of the FRONTEX Regulation to prevent future violations.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-27b-it",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 1343,
+        "totalTokens": 43111,
+        "durationMs": 21655.07875,
+        "tokensPerSecond": 62.01778416529656,
+        "summary": "The OLAF final report (Case OC/2021/0451/A1) investigates serious irregularities and possible illegal pushbacks involving the European Border and Coast Guard Agency (FRONTEX). The investigation examined allegations of misconduct, intimidation, conflict of interest, procurement irregularities, and deliberate exclusion of the Fundamental Rights Officer (FRO) from incident reporting. Evidence was gathered through digital forensics, interviews, and review of documents and Serious Incident Reports (SIRs). Key findings show failures to follow procedures, obstruction of the FRO’s access to information, misclassification of SIRs, and relocation of assets to avoid witnessing incidents. The report concludes that the allegations are proven, the misconduct undermined FRONTEX’s ability to protect fundamental rights, and recommends disciplinary action, review of procedures, and stronger oversight of the FRO’s role to ensure compliance with EU law and the protection of migrants’ rights.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 482,
+        "totalTokens": 5204,
+        "durationMs": 5731.9287919999915,
+        "tokensPerSecond": 84.09036774370325,
+        "summary": "The Bitcoin whitepaper introduces a decentralized electronic cash system that eliminates the need for trusted third parties. It proposes that transactions be recorded in a public, tamper-evident ledger built by a peer-to-peer network that uses proof-of-work (PoW) to timestamp and chain blocks of transactions. Each block contains a hash of the previous block, creating a longest-chain proof of the chronological order of events. Honest nodes, controlling the majority of CPU power, will naturally extend the longest chain, making it computationally infeasible for an attacker to rewrite history.\n\nTransactions are represented as chains of digital signatures, allowing any party to verify ownership. To prevent double-spending without a central mint, all transactions are broadcast publicly and must be included in a block that passes PoW. The network’s minimal structure—broadcasting messages on a best-effort basis—enables nodes to join or leave freely while still maintaining consensus by following the longest chain. The PoW mechanism also serves as a one-CPU-one-vote system, ensuring that the majority of computational power determines the accepted history.\n\nBitcoin’s incentive model rewards miners with newly minted coins (the “coinbase” transaction) and transaction fees. This dual incentive encourages honest participation and, once a predetermined supply is reached, the system can become fully fee-based and inflation-free. The paper also discusses practical concerns such as disk-space reclamation via Merkle trees, simplified payment verification for lightweight clients, and privacy through the use of new key pairs for each transaction.\n\nIn conclusion, the whitepaper presents a robust, unstructured peer-to-peer network that uses PoW to secure a public ledger of transactions, thereby enabling trustless, non-reversible electronic cash. The design relies on honest majority consensus, minimal coordination, and economic incentives to maintain integrity and prevent double-spending.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-27b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 444,
+        "totalTokens": 10741,
+        "durationMs": 49366.893166999995,
+        "tokensPerSecond": 8.993881759948348,
+        "summary": "The paper introduces the Transformer, a novel sequence-to-sequence architecture utilizing multi-head self-attention instead of recurrent or convolutional layers. This design enables greater parallelism, reducing training time and improving translation quality, achieving state-of-the-art BLEU scores of 28.4 (EN-DE) and 41.8 (EN-FR) on WMT 2014 benchmarks with significantly reduced computational cost (3.5 days on eight P100 GPUs). \n\nThe Transformer's architecture consists of stacked encoder and decoder layers with multi-head self-attention, position-wise feed-forward networks, residual connections, layer normalization, and scaled dot-product attention with a √dk scaling factor. Positional encodings are used to provide information about the relative positions of tokens. The paper details the impact of varying hyperparameters like the number of heads, dimensions, and dropout rates on performance.\n\nBeyond translation, the Transformer demonstrates versatility by achieving strong results on other tasks, such as parsing. A 4-layer model achieves 91.3 F1 on the Penn Treebank (WSJ section 23), surpassing RNN-based parsers, and 92.7 F1 in a semi-supervised setting. \n\nThe authors conclude that attention-only models are both efficient and adaptable, suggesting future work involving multimodal inputs and restricted attention mechanisms for large datasets. The code is available on GitHub.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "openai/gpt-oss-20b",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 1883,
+        "totalTokens": 12180,
+        "durationMs": 102278.480125,
+        "tokensPerSecond": 18.410519961762095,
+        "summary": "The paper “Attention Is All You Need” introduces the Transformer, a novel sequence‑to‑sequence architecture that replaces recurrent and convolutional layers with a stack of multi‑head self‑attention modules. The model consists of an encoder and a decoder, each built from identical layers that contain a multi‑head attention sub‑layer followed by a position‑wise feed‑forward network, with residual connections and layer normalization. Self‑attention is implemented as scaled dot‑product attention, and the multi‑head design allows the model to attend to information from multiple representation sub‑spaces simultaneously. Positional information is injected via sinusoidal encodings added to token embeddings, enabling the network to capture relative positions without recurrence.\n\nTraining on the WMT 2014 English‑to‑German and English‑to‑French datasets, the Transformer achieves state‑of‑the‑art BLEU scores while requiring far less training time. The base model (6 layers, 512‑dimensional embeddings, 8 attention heads) reaches 27.3 BLEU on EN‑DE and 38.1 BLEU on EN‑FR after 12 h on 8 P100 GPUs. The larger “big” model (6 layers, 1024‑dimensional embeddings, 16 heads, 4096‑dimensional feed‑forward) attains 28.4 BLEU on EN‑DE and 41.8 BLEU on EN‑FR after 3.5 days, surpassing all previous single‑model results and even outperforming ensembles at a fraction of their computational cost. The paper also demonstrates the Transformer’s generality by applying it to English constituency parsing, achieving 92.7 F1 on the WSJ test set—competitive with the best RNN‑based parsers—using only a 4‑layer model trained on 40 k sentences.\n\nKey contributions include: (1) a fully attention‑based architecture that eliminates sequential dependencies, enabling massive parallelism; (2) a scalable multi‑head attention mechanism that preserves expressive power while keeping computational cost comparable to single‑head attention; (3) a simple yet effective positional encoding scheme; and (4) empirical evidence that the Transformer outperforms recurrent and convolutional models on translation and parsing tasks with significantly reduced training time. The authors release the implementation in Tensor2Tensor, encouraging further research into attention‑only models for diverse modalities.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 464,
+        "totalTokens": 10761,
+        "durationMs": 6652.777958000006,
+        "tokensPerSecond": 69.74530082460323,
+        "summary": "The paper introduces the Transformer, a novel sequence-to-sequence architecture that replaces recurrent and convolutional layers with multi-head self-attention and position-wise feed-forward networks. By dispensing with recurrence, the model achieves far greater parallelism during training and inference, reducing training time while improving translation quality. The authors demonstrate that a single Transformer model can surpass previous state-of-the-art systems on both WMT 2014 English-to-German (28.4 BLEU) and English-to-French (41.8 BLEU) tasks, achieving these scores in only 12 hours and 3.5 days of training on eight P100 GPUs, respectively—substantially less computational cost than prior ensembles.\n\nKey architectural details include six identical encoder and decoder layers, each with residual connections and layer normalization, eight attention heads with 64-dimensional key/value vectors, and a 512-dimensional model size (doubling to 1024 for the \"big\" model). The Transformer uses sinusoidal positional encodings to inject order information, and applies dropout, label smoothing, and a warm-up learning-rate schedule to regularize training. Ablation studies show that the number of heads, key/value dimensions, and dropout rates significantly affect performance, while learned positional embeddings perform comparably to sinusoidal ones.\n\nBeyond machine translation, the authors validate the Transformer’s generality by applying it to English constituency parsing. A 4-layer Transformer trained on the Penn Treebank achieves 91.3 F1 on WSJ section 23, matching or exceeding many RNN-based parsers, and reaches 92.7 F1 in a semi-supervised setting with 17 M additional sentences. The paper concludes that attention-only models open new avenues for efficient, high-quality sequence transduction across modalities, and outlines future work on local attention mechanisms and multimodal extensions.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 705,
+        "totalTokens": 42473,
+        "durationMs": 13671.790374999997,
+        "tokensPerSecond": 51.56603346472829,
+        "summary": "The OLAF final report (Case OC/2021/0451/A1) investigates serious irregularities and alleged misconduct within the European Border and Coast Guard Agency (FRONTEX), focusing on possible illegal pushbacks of migrants and the agency’s internal management failures. The investigation, opened on 3 May 2021 as a split of an earlier case, examined allegations that FRONTEX staff and senior managers had ignored or concealed incidents involving potential violations of fundamental rights, failed to follow Standard Operating Procedures (SOPs) for Serious Incident Reporting (SIR), and obstructed the Fundamental Rights Officer (FRO) from accessing relevant information. Evidence was gathered through digital forensics, interviews with 20 witnesses, analysis of open-source material, and inspection of FRONTEX premises. Key findings include: (i) multiple SIRs were misclassified or not escalated to Category 4, thereby excluding the FRO from oversight; (ii) several senior officials deliberately withheld or distorted information, undermining the agency’s duty to protect fundamental rights; (iii) FRONTEX failed to initiate or follow up on SIRs that raised serious concerns about non-refoulement and other EU legal obligations; (iv) the agency’s internal reporting lines were manipulated to avoid political scrutiny and to protect certain personnel. The report concludes that the allegations are proven, that FRONTEX’s actions constitute serious misconduct and violations of EU regulations and the Charter of Fundamental Rights, and that the agency’s capacity to monitor and respect fundamental rights at the external borders has been significantly impaired.",
+        "success": true
+      }
+    ]
+  },
+  "stats": {
+    "summarization": {
+      "type": "summarization",
+      "totalDurationMs": 420819.13866799994,
+      "averageDurationMs": 35068.261555666664,
+      "fastestResult": {
+        "model": "qwen/qwen3-vl-30b-a3b-instruct",
+        "document": "bitcoin-paper.md",
+        "durationMs": 5731.9287919999915
+      },
+      "slowestResult": {
+        "model": "openai/gpt-oss-20b",
+        "document": "transformers-paper.md",
+        "durationMs": 102278.480125
+      },
+      "modelAverages": {
+        "openai/gpt-oss-20b": 40455.896625,
+        "google/gemma-3-12b-it": 59611.53655566667,
+        "google/gemma-3-27b-it": 31520.114000333328,
+        "qwen/qwen3-vl-30b-a3b-instruct": 8685.499041666664
+      },
+      "totalInputTokens": 227148,
+      "totalOutputTokens": 10139,
+      "averageTokensPerSecond": 44.70470631737448
+    }
+  }
+}

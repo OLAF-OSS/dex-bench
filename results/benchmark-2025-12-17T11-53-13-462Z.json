@@ -1,0 +1,89 @@
+{
+  "id": "benchmark-2025-12-17T11-53-13-462Z",
+  "timestamp": "2025-12-17T11:53:13.462Z",
+  "status": "complete",
+  "models": ["google/gemma-3-12b-it", "google/gemma-3-27b-it"],
+  "documents": ["bitcoin-paper.md", "transformers-paper.md"],
+  "categories": ["summarization"],
+  "results": {
+    "summarization": [
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-27b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 0,
+        "totalTokens": 4722,
+        "durationMs": 48341.437917,
+        "tokensPerSecond": 0,
+        "summary": "",
+        "success": false,
+        "error": "The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()"
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-27b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 0,
+        "totalTokens": 10297,
+        "durationMs": 48340.030417,
+        "tokensPerSecond": 0,
+        "summary": "",
+        "success": false,
+        "error": "The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()"
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-12b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 0,
+        "totalTokens": 10297,
+        "durationMs": 55479.893208999994,
+        "tokensPerSecond": 0,
+        "summary": "",
+        "success": false,
+        "error": "The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()"
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-12b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 0,
+        "totalTokens": 4722,
+        "durationMs": 58187.630750000004,
+        "tokensPerSecond": 0,
+        "summary": "",
+        "success": false,
+        "error": "The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()"
+      }
+    ]
+  },
+  "stats": {
+    "summarization": {
+      "type": "summarization",
+      "totalDurationMs": 210348.99229300002,
+      "averageDurationMs": 0,
+      "fastestResult": {
+        "model": "",
+        "document": "",
+        "durationMs": 0
+      },
+      "slowestResult": {
+        "model": "",
+        "document": "",
+        "durationMs": 0
+      },
+      "modelAverages": {},
+      "totalInputTokens": 0,
+      "totalOutputTokens": 0,
+      "averageTokensPerSecond": 0
+    }
+  }
+}

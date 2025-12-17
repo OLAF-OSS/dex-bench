@@ -1,0 +1,88 @@
+{
+  "id": "benchmark-2025-12-17T11-56-25-676Z",
+  "timestamp": "2025-12-17T11:56:25.676Z",
+  "status": "complete",
+  "models": ["google/gemma-3-12b-it", "google/gemma-3-27b-it"],
+  "documents": ["bitcoin-paper.md", "transformers-paper.md"],
+  "categories": ["summarization"],
+  "results": {
+    "summarization": [
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-12b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 271,
+        "totalTokens": 4993,
+        "durationMs": 7329.988874999999,
+        "tokensPerSecond": 36.97140672672577,
+        "summary": "This document introduces Bitcoin, a proposed peer-to-peer electronic cash system designed to enable direct online payments without the need for trusted financial institutions. The core problem Bitcoin addresses is the double-spending issue in digital currencies, traditionally solved by centralized authorities. Instead, Bitcoin proposes a decentralized solution leveraging a peer-to-peer network, digital signatures, and a novel \"proof-of-work\" system. This system involves nodes competing to solve computationally intensive cryptographic puzzles to add new blocks of transactions to a continuously growing chain – the blockchain. The longest chain, representing the most computational work, is accepted as the valid history of transactions, ensuring consensus among participants.\n\nThe paper details the system's mechanics, including transaction structure, timestamping, network operation (broadcasting, block creation, validation), and incentives for participation. Nodes are rewarded with newly created coins (akin to gold mining) and transaction fees, aligning their interests with the network's integrity. Crucially, Bitcoin incorporates mechanisms for simplified payment verification and privacy enhancement through the use of temporary public keys. The paper concludes by showcasing the security of the system, demonstrating how the attacker's probability of successfully altering past transactions diminishes exponentially with the number of subsequent blocks added to the chain, claiming that as long as the majority of computing power is honest, the system remains secure and resistant to manipulation.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-27b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 301,
+        "totalTokens": 10598,
+        "durationMs": 8202.57875,
+        "tokensPerSecond": 36.695776922592785,
+        "summary": "\n## Summary of \"Attention is All You Need\"\n\nThis paper introduces the Transformer, a novel neural network architecture for sequence transduction tasks—like machine translation—that *entirely* relies on attention mechanisms, dispensing with recurrent and convolutional layers traditionally used in encoder-decoder models. The authors demonstrate that the Transformer achieves state-of-the-art results on English-to-German and English-to-French translation tasks, surpassing existing models (including ensembles) by over 2 BLEU score on the former, and achieving a new single-model state-of-the-art on the latter, all while requiring significantly less training time. This speedup is attributed to the model's inherent parallelizability, enabled by the avoidance of sequential computation inherent in RNNs.\n\nThe Transformer utilizes stacked self-attention and point-wise feed-forward networks, incorporating multi-head attention to allow the model to attend to information from different representation subspaces. Key innovations include scaled dot-product attention, and positional encodings to account for the order of sequences without recurrence or convolution. The paper details the architecture thoroughly, justifying the design choices by comparing attention mechanisms to recurrent and convolutional layers in terms of computational complexity, parallelization, and path length for long-range dependencies. Further experiments demonstrated the Transformer's ability to generalize to other tasks, specifically English constituency parsing, achieving competitive results even with limited training data. The authors release their code, aiming to spur further research in attention-based models.\n\n\n\n",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-27b-it",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 350,
+        "totalTokens": 5072,
+        "durationMs": 10457.177875000001,
+        "tokensPerSecond": 33.46983327468741,
+        "summary": "## Bitcoin: A Peer-to-Peer Electronic Cash System – Summary\n\nThis paper proposes a solution to the problem of creating a purely peer-to-peer electronic cash system, eliminating the need for trusted third parties like banks. The core issue addressed is preventing “double-spending” – the risk that a digital currency can be spent more than once.  The proposed solution leverages a peer-to-peer network and a cryptographic “proof-of-work” system. Transactions are bundled into blocks, and nodes in the network expend computational effort to find a hash for each block meeting certain criteria. This process timestamps transactions and creates a continuously growing chain of blocks secured by the accumulated proof-of-work. The longest chain is considered the valid transaction history, and to alter it, an attacker would need to redo the proof-of-work for that block *and* all subsequent blocks, making it computationally infeasible if honest nodes control a majority of the network’s processing power.\n\nThe system relies on distributed consensus rather than centralized trust. New transactions are broadcast, nodes validate them, and the network operates on a \"best-effort\" basis, accepting the longest proof-of-work chain as the definitive record.  Incentives are provided through a block reward (newly created coins) and transaction fees, encouraging participation. The paper details mechanisms to manage disk space through Merkle Trees and simplified payment verification for users who don’t run full nodes.  Mathematical analysis demonstrates that the probability of an attacker successfully reversing transactions diminishes exponentially with each new block added to the chain. Ultimately, the paper argues this system achieves security through computational effort and distributed consensus, offering a viable framework for a decentralized and trustless digital currency.\n\n\n\n",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "google/gemma-3-12b-it",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 260,
+        "totalTokens": 10557,
+        "durationMs": 12794.42625,
+        "tokensPerSecond": 20.3213489155092,
+        "summary": ")\n\nThis paper introduces the \"Transformer,\" a novel neural network architecture for sequence transduction tasks like machine translation that eschews traditional recurrent and convolutional layers in favor of solely relying on attention mechanisms. The authors demonstrate that this approach leads to significantly improved translation quality, faster training times, and greater parallelization compared to existing models.  Experiments on English-to-German and English-to-French translation tasks achieved state-of-the-art results, with the Transformer surpassing previous models by over 2 BLEU points in the former and setting a new single-model record in the latter, all while requiring considerably less training time and computational resources. The Transformer's architecture is built on stacked self-attention and feed-forward networks, incorporating techniques like multi-head attention, scaled dot-product attention, and positional encoding to effectively capture dependencies within sequences.\n\nBeyond translation, the authors also show the Transformer's generalizability by applying it successfully to English constituency parsing, both with and without substantial training data. The paper highlights the Transformer’s computational efficiency, interpretability through attention visualizations revealing syntactic and semantic understanding, and potential for broader application across various sequence modeling tasks.  The code for the Transformer architecture is publicly available, paving the way for further research and development in attention-based models.",
+        "success": true
+      }
+    ]
+  },
+  "stats": {
+    "summarization": {
+      "type": "summarization",
+      "totalDurationMs": 38784.17175,
+      "averageDurationMs": 9696.0429375,
+      "fastestResult": {
+        "model": "google/gemma-3-12b-it",
+        "document": "bitcoin-paper.md",
+        "durationMs": 7329.988874999999
+      },
+      "slowestResult": {
+        "model": "google/gemma-3-12b-it",
+        "document": "transformers-paper.md",
+        "durationMs": 12794.42625
+      },
+      "modelAverages": {
+        "google/gemma-3-12b-it": 10062.2075625,
+        "google/gemma-3-27b-it": 9329.8783125
+      },
+      "totalInputTokens": 30038,
+      "totalOutputTokens": 1182,
+      "averageTokensPerSecond": 31.864591459878792
+    }
+  }
+}

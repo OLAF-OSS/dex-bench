@@ -6,6 +6,7 @@ This document provides comprehensive technical details for developers and LLMs w
 
 - [Architecture Overview](#architecture-overview)
 - [Project Structure](#project-structure)
+- [Benchmark System](#benchmark-system)
 - [Core Components](#core-components)
 - [Data Flow](#data-flow)
 - [Configuration](#configuration)
@@ -13,15 +14,17 @@ This document provides comprehensive technical details for developers and LLMs w
 - [Build System](#build-system)
 - [Code Style](#code-style)
 - [Scripts Reference](#scripts-reference)
+- [Extending the Tool](#extending-the-tool)
 
 ---
 
 ## Architecture Overview
 
-dex-bench is a CLI benchmarking tool that measures LLM summarization performance. It consists of two main parts:
+dex-bench is an extensible CLI benchmarking tool that measures LLM performance across multiple benchmark categories. It consists of three main parts:
 
-1. **CLI Benchmark Runner** (`src/`) - Executes benchmarks against LLM APIs and generates results
-2. **Web Dashboard** (`web/`) - React-based visualization of benchmark results
+1. **Benchmark Registry** (`src/lib/benchmarks/`) - Extensible system for registering different benchmark types
+2. **CLI Benchmark Runner** (`src/`) - Executes benchmarks against LLM APIs and generates results
+3. **Web Dashboard** (`web/`) - React-based visualization of benchmark results
 
 ### Technology Choices
 
@@ -29,6 +32,7 @@ dex-bench is a CLI benchmarking tool that measures LLM summarization performance
 |-----------|------------|-----------|
 | Runtime | Bun | Fast startup, built-in TypeScript, native file APIs |
 | LLM Integration | AI SDK v6 | Unified API for multiple LLM providers |
+| Structured Output | Mastra Agent | Schema-validated JSON generation |
 | Token Counting | gpt-tokenizer | Accurate cl100k_base tokenization |
 | Frontend | React 19 | Declarative UI, ecosystem |
 | Charts | Recharts | React-native, composable charts |
@@ -47,13 +51,20 @@ dex-bench/
 │   ├── build-web.ts       # Web dashboard build script
 │   ├── index.ts           # Dev entry point
 │   └── lib/               # Core library modules
+│       ├── benchmarks/    # Benchmark type registry
+│       │   ├── index.ts           # Registry and exports
+│       │   ├── types.ts           # BenchmarkType interface
+│       │   ├── summarization.ts   # Summarization benchmark
+│       │   └── structured-output.ts # Entity extraction benchmark
+│       ├── agent.ts       # Mastra agent configuration
 │       ├── display.ts     # Terminal output formatting
+│       ├── entity-extraction.ts   # Entity extraction functions
 │       ├── env.ts         # Environment validation (Zod)
 │       ├── llm.ts         # LLM provider configuration
 │       ├── markdown.ts    # Markdown report generation
 │       ├── models.ts      # Model definitions
 │       ├── prompts.ts     # Prompt templates
-│       ├── runner.ts      # Benchmark execution logic
+│       ├── runner.ts      # Benchmark orchestration
 │       ├── storage.ts     # File I/O for results
 │       ├── types.ts       # TypeScript interfaces
 │       └── utils.ts       # Token counting utilities
@@ -65,9 +76,9 @@ dex-bench/
 │   ├── types.ts           # Shared types + Window augmentation
 │   └── components/        # React components
 │       ├── charts.tsx     # Recharts visualizations
-│       ├── results-table.tsx  # TanStack Table
+│       ├── results-table.tsx  # TanStack Tables (per category)
 │       ├── stats-cards.tsx    # Summary stat cards
-│       └── summaries.tsx      # Collapsible summaries
+│       └── summaries.tsx      # Summaries + Extractions sections
 │
 ├── docs/                   # Benchmark input documents
 ├── results/                # Benchmark output (JSON/MD)
@@ -79,66 +90,219 @@ dex-bench/
 
 ---
 
+## Benchmark System
+
+### Registry Pattern
+
+The benchmark system uses a registry pattern that allows easy addition of new benchmark types:
+
+```typescript
+// src/lib/benchmarks/types.ts
+export interface BenchmarkType<TResult, TStats> {
+  id: BenchmarkCategory;
+  name: string;
+  description: string;
+  run: (model: string, document: Document) => Promise<TResult>;
+  calculateStats: (results: TResult[], models: string[]) => TStats;
+}
+```
+
+### Available Categories
+
+| Category | ID | Description |
+|----------|-----|-------------|
+| Summarization | `summarization` | Tests document summarization |
+| Structured Output | `structured-output` | Tests JSON entity extraction |
+
+### Category Type System
+
+Results use discriminated unions for type safety:
+
+```typescript
+// Base types
+interface BaseBenchmarkResult {
+  model: string;
+  document: string;
+  durationMs: number;
+  success: boolean;
+  error?: string;
+}
+
+// Category-specific types
+interface SummarizationResult extends BaseBenchmarkResult {
+  type: "summarization";
+  inputTokens: number;
+  outputTokens: number;
+  totalTokens: number;
+  tokensPerSecond: number;
+  summary: string;
+}
+
+interface StructuredOutputResult extends BaseBenchmarkResult {
+  type: "structured-output";
+  entityTypesTimeMs: number;
+  extractionTimeMs: number;
+  entityTypes: string[];
+  extractionCount: number;
+  relationshipCount: number;
+  extractions: Extraction[];
+  relationships: Relationship[];
+}
+
+// Union type
+type BenchmarkResult = SummarizationResult | StructuredOutputResult;
+```
+
+---
+
 ## Core Components
 
 ### 1. CLI Entry Point (`src/bench.ts`)
 
-The CLI uses a simple command pattern:
+The CLI uses a simple command pattern with category selection:
 
 ```typescript
 // Command routing
 switch (command) {
-  case "run":      // Execute benchmark
+  case "run":      // Execute benchmark with optional --category flags
   case "results":  // Display latest/specific results
   case "markdown": // Export to markdown
   case "help":     // Show usage
 }
+
+// Category parsing
+function parseCategories(args: string[]): BenchmarkCategory[] | undefined {
+  // Parses --category <name> flags
+  // Returns undefined for "all categories"
+}
 ```
 
 **Commands:**
-- `run` - Executes benchmark against all models × documents
+- `run [--category <name>]` - Executes benchmark (default: all categories)
 - `results [file]` - Displays results table in terminal
 - `markdown [file]` - Exports results to GitHub-flavored markdown
 - `help` - Shows usage information
 
-### 2. Benchmark Runner (`src/lib/runner.ts`)
+### 2. Benchmark Registry (`src/lib/benchmarks/index.ts`)
 
-The runner orchestrates benchmark execution:
+Central registry for all benchmark types:
 
 ```typescript
+const registry: BenchmarkRegistry = new Map();
+
+// Register built-in benchmarks
+registry.set("summarization", summarizationBenchmark);
+registry.set("structured-output", structuredOutputBenchmark);
+
+// API functions
+export function registerBenchmark(benchmark: BenchmarkType): void;
+export function getBenchmark(category: BenchmarkCategory): BenchmarkType | undefined;
+export function getAllBenchmarks(): BenchmarkType[];
+export function getRegisteredCategories(): BenchmarkCategory[];
+```
+
+### 3. Benchmark Runner (`src/lib/runner.ts`)
+
+Orchestrates benchmark execution across categories:
+
+```typescript
+export interface RunBenchmarkOptions {
+  categories?: BenchmarkCategory[];
+  onProgress?: ProgressCallback;
+}
+
 export async function runBenchmark(
-  onProgress?: (model, document, index, total) => void
+  options: RunBenchmarkOptions = {}
 ): Promise<BenchmarkRun>
 ```
 
 **Execution Flow:**
 1. Load documents from `docs/` using `Bun.Glob`
-2. For each model × document combination:
-   - Count input tokens using `gpt-tokenizer`
-   - Call LLM with `generateText()` from AI SDK
-   - Measure duration with `performance.now()`
-   - Calculate tokens/second
-3. Compute aggregate statistics
-4. Return `BenchmarkRun` object
+2. For each selected category:
+   - For each model × document combination:
+     - Execute category-specific benchmark
+     - Collect results
+   - Calculate category-specific statistics
+3. Return combined `BenchmarkRun` object
 
-**Single Benchmark Function:**
+### 4. Summarization Benchmark (`src/lib/benchmarks/summarization.ts`)
+
+Tests LLM summarization capabilities:
 
 ```typescript
-async function runSingleBenchmark(
+async function runSummarizationBenchmark(
   model: string,
-  document: { name: string; content: string }
-): Promise<BenchmarkResult>
+  document: Document
+): Promise<SummarizationResult>
 ```
 
-Returns metrics including:
-- `inputTokens` - Pre-counted with gpt-tokenizer
-- `outputTokens` - From API response or fallback counting
-- `durationMs` - Wall clock time
-- `tokensPerSecond` - Output tokens / duration
-- `summary` - Generated text
-- `success` / `error` - Status
+**Process:**
+1. Count input tokens using `gpt-tokenizer`
+2. Call LLM with `generateText()` from AI SDK
+3. Measure duration with `performance.now()`
+4. Calculate tokens/second
 
-### 3. LLM Configuration (`src/lib/llm.ts`)
+### 5. Structured Output Benchmark (`src/lib/benchmarks/structured-output.ts`)
+
+Tests LLM JSON structured output with entity extraction:
+
+```typescript
+async function runStructuredOutputBenchmark(
+  model: string,
+  document: Document
+): Promise<StructuredOutputResult>
+```
+
+**Process:**
+1. Call `generateEntityTypes()` to identify entity types in document
+2. Call `extractEntities()` with identified types
+3. Track timing for both steps separately
+4. Return combined results with extractions and relationships
+
+### 6. Entity Extraction (`src/lib/entity-extraction.ts`)
+
+Uses Mastra Agent for structured JSON output:
+
+```typescript
+export async function generateEntityTypes({
+  model,
+  document,
+}: {
+  model: string;
+  document: string;
+}): Promise<{ entityTypes: string[]; _executionTimeMs: number } | { error: string; _executionTimeMs: number }>
+
+export async function extractEntities({
+  model,
+  document,
+  entityTypes,
+}: {
+  model: string;
+  document: string;
+  entityTypes: string[];
+}): Promise<ExtractionResult>
+```
+
+Uses Zod schemas for validation:
+
+```typescript
+const extractionSchema = z.object({
+  extractions: z.array(z.object({
+    id: z.string(),
+    extractionClass: z.string(),
+    extractionText: z.string(),
+    attributes: z.record(z.string(), z.string()).optional(),
+  })),
+  relationships: z.array(z.object({
+    sourceId: z.string(),
+    targetId: z.string(),
+    relationshipType: z.string(),
+    description: z.string().optional(),
+  })).optional(),
+});
+```
+
+### 7. LLM Configuration (`src/lib/llm.ts`)
 
 Uses AI SDK's OpenAI-compatible provider:
 
@@ -158,74 +322,56 @@ export const llmModel = (model: string) => llmProvider(model);
 
 This allows connecting to any OpenAI-compatible API (LiteLLM, vLLM, Ollama, etc.).
 
-### 4. Environment Validation (`src/lib/env.ts`)
+### 8. Mastra Agent (`src/lib/agent.ts`)
 
-Uses `@t3-oss/env-nextjs` with Zod for type-safe environment variables:
+Configured for structured output extraction:
 
 ```typescript
-export const env = createEnv({
-  server: {
-    LLM_BASE_URL: z.url(),
-    LLM_API_KEY: z.string().min(1),
+import { Agent } from "@mastra/core/agent";
+
+export const extractionAgent = new Agent({
+  id: "extraction-agent",
+  name: "Extraction Agent",
+  instructions: {
+    role: "system",
+    content: "You are a precise entity extraction assistant...",
+    providerOptions: {
+      openai: { reasoningEffort: "high" },
+    },
   },
-  runtimeEnv: {
-    LLM_BASE_URL: process.env.LLM_BASE_URL,
-    LLM_API_KEY: process.env.LLM_API_KEY,
-  },
+  model: llmModel(models[0]),
 });
 ```
 
-Bun automatically loads `.env` files - no dotenv required.
+### 9. Type Definitions (`src/lib/types.ts`)
 
-### 5. Prompt Templates (`src/lib/prompts.ts`)
-
-Centralized prompt definitions:
+Core interfaces with categorized results:
 
 ```typescript
-export const PROMPTS = {
-  "analyze-document": (document: string) => `Generate a comprehensive...`,
-};
-```
+// Categories
+type BenchmarkCategory = "summarization" | "structured-output";
 
-The summarization prompt instructs models to:
-- Capture main purpose, arguments, conclusions
-- Preserve tone and intent
-- Include critical details
-- Scale length based on document size
-
-### 6. Type Definitions (`src/lib/types.ts`)
-
-Core interfaces:
-
-```typescript
-interface BenchmarkResult {
-  model: string;
-  document: string;
-  inputTokens: number;
-  outputTokens: number;
-  totalTokens: number;
-  durationMs: number;
-  tokensPerSecond: number;
-  summary: string;
-  success: boolean;
-  error?: string;
+// Results container
+interface BenchmarkRunResults {
+  summarization?: SummarizationResult[];
+  structuredOutput?: StructuredOutputResult[];
 }
 
+// Stats container
+interface BenchmarkRunStats {
+  summarization?: SummarizationStats;
+  structuredOutput?: StructuredOutputStats;
+}
+
+// Main run structure
 interface BenchmarkRun {
-  id: string;              // "benchmark-{ISO timestamp}"
-  timestamp: string;       // ISO 8601
+  id: string;
+  timestamp: string;
   models: string[];
   documents: string[];
-  results: BenchmarkResult[];
-  stats: BenchmarkStats;
-}
-
-interface BenchmarkStats {
-  totalDurationMs: number;
-  averageDurationMs: number;
-  fastestResult: { model, document, durationMs };
-  slowestResult: { model, document, durationMs };
-  modelAverages: Record<string, number>;
+  categories: BenchmarkCategory[];
+  results: BenchmarkRunResults;
+  stats: BenchmarkRunStats;
 }
 ```
 
@@ -238,26 +384,34 @@ interface BenchmarkStats {
 │                              BENCHMARK RUN                                  │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│  1. Load Documents                                                          │
-│     docs/*.md ──────────────────────► Array<{name, content}>               │
+│  1. Parse CLI Options                                                       │
+│     --category flags ──────────────────► BenchmarkCategory[]               │
 │                                                                             │
-│  2. For each model × document:                                              │
+│  2. Load Documents                                                          │
+│     docs/*.md ──────────────────────────► Array<{name, content}>           │
+│                                                                             │
+│  3. For each category:                                                      │
 │     ┌───────────────────────────────────────────────────────────────────┐  │
-│     │  Input Text  ──► gpt-tokenizer ──► inputTokens                    │  │
-│     │       ↓                                                            │  │
-│     │  PROMPTS["analyze-document"](content)                             │  │
-│     │       ↓                                                            │  │
-│     │  llmModel(model) ──► generateText() ──► {text, usage}             │  │
-│     │       ↓                                                            │  │
-│     │  Calculate metrics: duration, tokensPerSecond                      │  │
-│     │       ↓                                                            │  │
-│     │  BenchmarkResult                                                   │  │
+│     │  SUMMARIZATION:                                                   │  │
+│     │    Input Text ──► gpt-tokenizer ──► inputTokens                  │  │
+│     │         ↓                                                         │  │
+│     │    generateText(prompt) ──► {text, usage}                        │  │
+│     │         ↓                                                         │  │
+│     │    SummarizationResult                                           │  │
+│     └───────────────────────────────────────────────────────────────────┘  │
+│     ┌───────────────────────────────────────────────────────────────────┐  │
+│     │  STRUCTURED OUTPUT:                                               │  │
+│     │    generateEntityTypes(doc) ──► string[]                         │  │
+│     │         ↓                                                         │  │
+│     │    extractEntities(doc, types) ──► {extractions, relationships}  │  │
+│     │         ↓                                                         │  │
+│     │    StructuredOutputResult                                        │  │
 │     └───────────────────────────────────────────────────────────────────┘  │
 │                                                                             │
-│  3. Calculate Stats                                                         │
-│     results[] ──► calculateStats() ──► BenchmarkStats                      │
+│  4. Calculate Stats (per category)                                          │
+│     results[] ──► calculateStats() ──► CategoryStats                       │
 │                                                                             │
-│  4. Save Results                                                            │
+│  5. Save Results                                                            │
 │     BenchmarkRun ──► results/{id}.json                                     │
 │                  ──► results/{id}.md                                       │
 │                                                                             │
@@ -350,14 +504,20 @@ const data: BenchmarkRun = window.BENCHMARK_DATA;
 ```
 App
 ├── Header (sticky, glassmorphism)
-├── StatsCards (4 metric cards)
-├── Tab Navigation (table | charts)
-├── Content
-│   ├── ResultsTable (TanStack Table)
-│   └── Charts Grid
-│       ├── ModelComparisonChart (horizontal bar)
-│       └── TokensPerSecondChart (horizontal bar)
-├── SummariesSection (collapsible accordions)
+├── StatsCards (per-category stats)
+│   ├── SummarizationStatsCards
+│   └── StructuredOutputStatsCards
+├── Category Tab Navigation (if multiple categories)
+├── View Tab Navigation (table | charts | details)
+├── Content (per active category)
+│   ├── Summarization
+│   │   ├── SummarizationTable
+│   │   ├── Charts (Duration, Tokens/s)
+│   │   └── SummariesSection
+│   └── Structured Output
+│       ├── StructuredOutputTable
+│       ├── Charts (Duration, Extractions)
+│       └── ExtractionsSection
 └── Footer
 ```
 
@@ -408,9 +568,12 @@ Uses Recharts with custom theming:
 
 ### Table Implementation
 
-Uses TanStack Table (headless):
+Uses TanStack Table (headless) with separate tables per category:
 
 ```tsx
+// SummarizationTable - columns: Model, Document, Duration, Input, Output, Tok/s, Status
+// StructuredOutputTable - columns: Model, Document, Duration, Types, Extractions, Relations, Status
+
 const table = useReactTable({
   data: results,
   columns,
@@ -420,11 +583,6 @@ const table = useReactTable({
   getFilteredRowModel: getFilteredRowModel(),
 });
 ```
-
-Features:
-- Click column headers to sort
-- Global search across all columns
-- Dropdown filters for model/document
 
 ---
 
@@ -513,8 +671,8 @@ console.info(`${cyan}Message${reset}`);
 ```
 
 Display functions in `src/lib/display.ts`:
-- `displayProgress()` - Show [n/total] progress
-- `displayResults()` - Formatted results table
+- `displayProgress()` - Show [n/total] progress with category label
+- `displayResults()` - Formatted results tables (per category)
 - `displayError()` - Red error message
 - `displaySuccess()` - Green success with checkmark
 - `displayInfo()` - Cyan info with icon
@@ -525,7 +683,7 @@ Display functions in `src/lib/display.ts`:
 
 | Script | Command | Description |
 |--------|---------|-------------|
-| `bun bench` | `bun src/bench.ts run` | Execute full benchmark |
+| `bun bench` | `bun src/bench.ts run` | Execute full benchmark (all categories) |
 | `bun bench:results` | `bun src/bench.ts results` | Show latest results |
 | `bun bench:md` | `bun src/bench.ts markdown` | Export to markdown |
 | `bun bench:html` | `bun src/build-web.ts` | Build web dashboard |
@@ -537,6 +695,88 @@ Display functions in `src/lib/display.ts`:
 ---
 
 ## Extending the Tool
+
+### Adding a New Benchmark Category
+
+1. **Define types** in `src/lib/types.ts`:
+   ```typescript
+   // Add to BenchmarkCategory union
+   export type BenchmarkCategory = "summarization" | "structured-output" | "translation";
+
+   // Define result type
+   export interface TranslationResult extends BaseBenchmarkResult {
+     type: "translation";
+     sourceLanguage: string;
+     targetLanguage: string;
+     translatedText: string;
+     bleuScore?: number;
+   }
+
+   // Define stats type
+   export interface TranslationStats extends BaseStats {
+     type: "translation";
+     averageBleuScore: number;
+   }
+
+   // Add to union types
+   export type BenchmarkResult = SummarizationResult | StructuredOutputResult | TranslationResult;
+   export type BenchmarkStats = SummarizationStats | StructuredOutputStats | TranslationStats;
+
+   // Add to results/stats containers
+   export interface BenchmarkRunResults {
+     summarization?: SummarizationResult[];
+     structuredOutput?: StructuredOutputResult[];
+     translation?: TranslationResult[];
+   }
+   ```
+
+2. **Create benchmark file** `src/lib/benchmarks/translation.ts`:
+   ```typescript
+   import type { Document, TranslationResult, TranslationStats } from "@/lib/types";
+   import type { BenchmarkType } from "./types";
+
+   async function runTranslationBenchmark(
+     model: string,
+     document: Document
+   ): Promise<TranslationResult> {
+     // Implementation
+   }
+
+   function calculateTranslationStats(
+     results: TranslationResult[],
+     models: string[]
+   ): TranslationStats {
+     // Implementation
+   }
+
+   export const translationBenchmark: BenchmarkType<TranslationResult, TranslationStats> = {
+     id: "translation",
+     name: "Translation",
+     description: "Tests LLM translation capabilities",
+     run: runTranslationBenchmark,
+     calculateStats: calculateTranslationStats,
+   };
+   ```
+
+3. **Register in index** `src/lib/benchmarks/index.ts`:
+   ```typescript
+   import { translationBenchmark } from "./translation";
+
+   registry.set("translation", translationBenchmark);
+
+   export { translationBenchmark } from "./translation";
+   ```
+
+4. **Update runner** `src/lib/runner.ts`:
+   ```typescript
+   } else if (category === "translation") {
+     const categoryResults = await runCategoryBenchmark<TranslationResult>(...);
+     results.translation = categoryResults;
+     stats.translation = translationBenchmark.calculateStats(categoryResults, modelList);
+   }
+   ```
+
+5. **Update display, markdown, and web components** to handle the new category.
 
 ### Adding a New Output Format
 
@@ -555,21 +795,16 @@ Display functions in `src/lib/display.ts`:
      break;
    ```
 
-### Adding New Metrics
-
-1. Extend `BenchmarkResult` interface in `src/lib/types.ts`
-2. Calculate in `runSingleBenchmark()` in `src/lib/runner.ts`
-3. Display in `displayResults()` in `src/lib/display.ts`
-4. Add column in `web/components/results-table.tsx`
-
 ### Custom Prompts
 
 Add to `src/lib/prompts.ts`:
 
 ```typescript
 export const PROMPTS = {
-  "analyze-document": (doc) => `...`,
-  "extract-entities": (doc) => `Extract named entities from: ${doc}`,
+  "summarize-document": (doc) => `...`,
+  "extract-entities": (doc, types) => `...`,
+  "generate-entity-types": (doc) => `...`,
+  // Add new prompts here
   "translate": (doc, lang) => `Translate to ${lang}: ${doc}`,
 };
 ```
@@ -593,6 +828,10 @@ export const PROMPTS = {
 - Verify model names match your LLM proxy configuration
 - Check API key permissions and rate limits
 
+**Structured output failures**
+- Model may not support structured output well
+- Check Mastra agent configuration
+
 ### Debug Mode
 
 For verbose output, run directly:
@@ -615,4 +854,3 @@ bun src/bench.ts run 2>&1 | tee benchmark.log
 ## License
 
 See [LICENSE](./LICENSE) for details.
-

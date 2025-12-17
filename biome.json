@@ -28,8 +28,8 @@
       "suspicious": {
         "noUnknownAtRules": "off",
         "noConsole": {
-          "level": "warn",
-          "options": { "allow": ["info", "error"] }
+          "level": "info",
+          "options": { "allow": ["info", "error", "warn"] }
         }
       },
       "a11y": {
