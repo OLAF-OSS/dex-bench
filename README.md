@@ -169,6 +169,31 @@ Tests LLM ability to produce valid JSON structured output using entity extractio
 - Relationships found
 - Duration breakdown (entity types + extraction)
 
+## Self-Hosted Models with Modal
+
+Deploy your own vLLM servers on [Modal.com](https://modal.com) with on-demand GPU scaling:
+
+```bash
+cd modal
+uv sync
+uv run modal token new
+
+# Deploy a model
+uv run python deploy.py --model gemma-3-12b-l40s
+
+# Test it
+uv run python deploy.py --test gemma-3-12b-l40s
+```
+
+After deployment, update your `.env`:
+
+```env
+LLM_BASE_URL=https://your-workspace--vllm-gemma-3-12b-l40s-serve.modal.run/v1
+LLM_API_KEY=not-required
+```
+
+See [modal/README.md](./modal/README.md) for full documentation on available models, GPU options, and configuration.
+
 ## Models
 
 Models are configured in `src/lib/models.ts`. Current models:
