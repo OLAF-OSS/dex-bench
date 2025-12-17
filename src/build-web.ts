@@ -1,4 +1,4 @@
-import { loadLatestBenchmarkRun, loadBenchmarkRun } from "@/lib/runner";
+import { loadLatestBenchmarkRun, loadBenchmarkRun } from "@/lib/storage";
 import { displayError, displaySuccess, displayInfo } from "@/lib/display";
 
 const DIST_DIR = "./dist";
