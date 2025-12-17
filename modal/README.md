@@ -2,6 +2,37 @@
 
 Deploy OpenAI-compatible vLLM servers on Modal.com with on-demand GPU scaling.
 
+## Architecture
+
+Two deployment modes are available:
+
+### GPU-Based (Recommended)
+
+Deploy **5 apps** (one per GPU type), each serving **all models**:
+
+```
+vllm-l40s   → gemma-3-12b, gemma-3-27b, qwen3-vl-30b
+vllm-a100   → gemma-3-12b, gemma-3-27b, qwen3-vl-30b
+vllm-h100   → gemma-3-12b, gemma-3-27b, qwen3-vl-30b
+vllm-h200   → gemma-3-12b, gemma-3-27b, qwen3-vl-30b
+vllm-b200   → gemma-3-12b, gemma-3-27b, qwen3-vl-30b
+```
+
+- Uses only **5 endpoints** (stays under Modal's 8 endpoint limit)
+- Single endpoint per GPU serves any model
+- Model specified in request body
+
+### Legacy: Model-Based
+
+Deploy **15 apps** (one per model × GPU combination):
+
+```
+vllm-gemma-3-12b-l40s, vllm-gemma-3-12b-a100, ...
+```
+
+- Uses **15 endpoints** (exceeds 8 endpoint limit on free tier)
+- Each endpoint serves one model only
+
 ## Prerequisites
 
 1. **Modal Account**: Sign up at [modal.com](https://modal.com)
@@ -25,8 +56,6 @@ Deploy OpenAI-compatible vLLM servers on Modal.com with on-demand GPU scaling.
 
 ## Available Models
 
-Each model can be deployed on any GPU, using the format `{model}-{gpu}`:
-
 | Base Model | HuggingFace ID |
 |------------|----------------|
 | `gemma-3-12b` | google/gemma-3-12b-it |
@@ -41,54 +70,53 @@ Each model can be deployed on any GPU, using the format `{model}-{gpu}`:
 | H200 | `h200` | 141GB |
 | B200 | `b200` | 192GB |
 
-**Example config keys:** `gemma-3-12b-l40s`, `gemma-3-27b-h100`, `qwen3-vl-30b-b200`
-
-**Total configurations:** 15 (3 models × 5 GPUs)
-
 ## Deployment
 
-### List Available Models
+### List Configurations
 
 ```bash
 uv run python deploy.py --list
 ```
 
-### Deploy a Single Model
+### GPU-Based Deployment (Recommended)
 
 ```bash
-uv run python deploy.py --model gemma-3-12b-l40s
-uv run python deploy.py --model gemma-3-27b-h100
-```
+# Deploy a single GPU app (serves all models)
+uv run python deploy.py --gpu h100
+uv run python deploy.py --gpu l40s
 
-### Deploy All Models
-
-```bash
+# Deploy all 5 GPU apps
 uv run python deploy.py --all
+
+# Test a GPU endpoint
+uv run python deploy.py --test-gpu h100
+uv run python deploy.py --test-gpu h100 --test-model gemma-3-27b
+
+# Get endpoint URL
+uv run python deploy.py --url h100
 ```
 
-### Test a Deployed Model
+### Legacy: Model-Based Deployment
 
 ```bash
+# Deploy a single model+GPU combination
+uv run python deploy.py --model gemma-3-12b-l40s
+
+# Test a deployed model
 uv run python deploy.py --test gemma-3-12b-l40s
-```
-
-### Get Endpoint URL
-
-```bash
-uv run python deploy.py --url gemma-3-12b-l40s
 ```
 
 ## Using with dex-bench
 
 After deployment, Modal will provide you with an endpoint URL like:
 ```
-https://your-workspace--vllm-gemma-3-12b-l40s-serve.modal.run
+https://your-workspace--vllm-h100-serve.modal.run
 ```
 
 Update your `.env` file in the dex-bench root:
 
 ```env
-LLM_BASE_URL=https://your-workspace--vllm-gemma-3-12b-l40s-serve.modal.run/v1
+LLM_BASE_URL=https://your-workspace--vllm-h100-serve.modal.run/v1
 LLM_API_KEY=not-required
 ```
 
@@ -101,39 +129,62 @@ Each deployment exposes an OpenAI-compatible API:
 - `POST /v1/chat/completions` - Chat completions
 - `POST /v1/completions` - Text completions
 
-### Example Request
+### Example Request (GPU-Based)
 
 ```bash
-curl https://your-workspace--vllm-gemma-3-12b-serve.modal.run/v1/chat/completions \
+# Specify model in request body
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "google/gemma-3-12b-it",
     "messages": [{"role": "user", "content": "Hello!"}],
     "max_tokens": 100
   }'
+
+# Also accepts short model names
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "messages": [{"role": "user", "content": "Hello!"}],
+    "max_tokens": 100
+  }'
 ```
+
+### List Available Models
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/models
+```
+
+## Cold Starts
+
+- **First request to a model**: ~2-5 minutes (model loading)
+- **Subsequent requests**: Fast (while container is warm)
+- **Container idle timeout**: 15 minutes (auto-shutdown)
+
+Each model runs in its own container pool, so using multiple models doesn't cause memory conflicts.
 
 ## Cost Optimization
 
 - **On-demand scaling**: Servers auto-shutdown after 15 minutes of inactivity
-- **Fast boot mode**: Uses `--enforce-eager` for faster cold starts (~2-3 min)
+- **Fast boot mode**: Uses `--enforce-eager` for faster cold starts
 - **Cached models**: Model weights are cached in Modal Volumes
+- **GPU-based deployment**: Use fewer endpoints, still serve all models
 
 ## Adding New Models
 
-Edit `config.py` to add new model configurations:
+Edit `config.py` to add new base models:
 
 ```python
-MODELS["my-model"] = ModelConfig(
-    name="org/model-name",           # Name used in API requests
-    huggingface_id="org/model-id",   # HuggingFace model ID
-    gpu="H100",                      # GPU type
-    n_gpu=1,                         # Number of GPUs
-    max_model_len=8192,              # Optional: max context length
-)
+BASE_MODELS["my-model"] = {
+    "name": "org/model-name",           # Name used in API requests
+    "huggingface_id": "org/model-id",   # HuggingFace model ID
+    "tool_parser": "hermes",            # Optional: tool call parser
+}
 ```
 
-Available GPU options: `L40S`, `A100-80GB`, `H100`, `H200`, `B200`
+The model will automatically be available on all GPU endpoints.
 
 ## Troubleshooting
 
@@ -142,14 +193,35 @@ Available GPU options: `L40S`, `A100-80GB`, `H100`, `H200`, `B200`
 - Check that the `huggingface` secret is properly set in Modal
 
 ### Out of Memory
-- Try a larger GPU (e.g., A100-80GB → H100)
-- Set `max_model_len` to limit context size
-- Use a quantized model variant (FP8, AWQ, GPTQ)
+- Try a larger GPU (e.g., L40S → A100)
+- The GPU-based deployment runs each model in separate containers, so memory is isolated
 
 ### Slow Cold Starts
 - First request takes 2-5 minutes to load the model
 - Subsequent requests are fast while the server is warm
 - Consider running periodic health checks to keep servers warm
+
+### Endpoint Limit Exceeded
+- Use GPU-based deployment (`--gpu`) instead of model-based (`--model`)
+- GPU-based uses only 5 endpoints vs 15 for model-based
+
+## Direct Modal Commands
+
+You can also use Modal CLI directly:
+
+```bash
+# GPU-based deployment
+GPU_KEY=h100 uv run modal deploy vllm_gpu_server.py
+
+# Run test
+GPU_KEY=h100 uv run modal run vllm_gpu_server.py --model gemma-3-12b
+
+# View logs
+uv run modal app logs vllm-h100
+
+# Legacy: model-based
+MODEL_KEY=gemma-3-12b-l40s uv run modal deploy vllm_server.py
+```
 
 ## LiteLLM Proxy
 
@@ -181,25 +253,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    curl http://localhost:4000/v1/chat/completions \
      -H "Content-Type: application/json" \
      -d '{
-       "model": "gemma-3-12b-l40s",
+       "model": "gemma-3-12b-h100",
        "messages": [{"role": "user", "content": "Hello!"}]
      }'
    ```
-
-The proxy configuration (`litellm_config.yaml`) includes all 15 model+GPU combinations. Requests to models that haven't been deployed will fail - deploy only the models you need.
-
-## Direct Modal Commands
-
-You can also use Modal CLI directly via `uv run`:
-
-```bash
-# Deploy with specific model+GPU config
-MODEL_KEY=gemma-3-12b-l40s uv run modal deploy vllm_server.py
-
-# Run test
-MODEL_KEY=gemma-3-12b-l40s uv run modal run vllm_server.py
-
-# View logs
-uv run modal app logs vllm-gemma-3-12b-l40s
-```
-

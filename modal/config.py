@@ -62,6 +62,30 @@ GPU_SHORT_NAMES = {
     "B200": "b200",
 }
 
+# Reverse mapping: short name to Modal GPU type
+GPU_SHORT_TO_MODAL = {v: k for k, v in GPU_SHORT_NAMES.items()}
+
+
+def get_gpu_type(gpu_short: str) -> str:
+    """Get Modal GPU type from short name."""
+    if gpu_short not in GPU_SHORT_TO_MODAL:
+        available = ", ".join(GPU_SHORT_TO_MODAL.keys())
+        raise ValueError(f"Unknown GPU: {gpu_short}. Available: {available}")
+    return GPU_SHORT_TO_MODAL[gpu_short]
+
+
+def list_gpu_options() -> list[str]:
+    """List all available GPU short names."""
+    return list(GPU_SHORT_NAMES.values())
+
+
+def get_base_model_info(model_key: str) -> dict:
+    """Get base model info by key (without GPU suffix)."""
+    if model_key not in BASE_MODELS:
+        available = ", ".join(BASE_MODELS.keys())
+        raise ValueError(f"Unknown base model: {model_key}. Available: {available}")
+    return BASE_MODELS[model_key]
+
 
 def _generate_all_configs() -> dict[str, ModelConfig]:
     """Generate all model+GPU combinations."""
