@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.2.0...dex-bench-v0.2.1) (2025-12-17)
+
+
+### Bug Fixes
+
+* pages deploy env vars dependency ([72b7b8d](https://github.com/OLAF-OSS/dex-bench/commit/72b7b8d76e41e0c3c8f1f6da1a427d4aeb461bb6))
+
 ## [0.2.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.1.0...dex-bench-v0.2.0) (2025-12-17)
 
 
