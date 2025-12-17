@@ -40,7 +40,7 @@ vllm_image = (
     modal.Image.from_registry("nvidia/cuda:12.8.1-devel-ubuntu22.04", add_python="3.12")
     .entrypoint([])
     .pip_install(
-        "vllm==0.11.0",
+        "vllm==0.12.0",
         "huggingface_hub[hf_transfer]==0.35.0",
         "flashinfer-python==0.3.1",
     )

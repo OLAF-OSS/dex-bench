@@ -43,9 +43,9 @@ vllm_image = (
     modal.Image.from_registry("nvidia/cuda:12.8.1-devel-ubuntu22.04", add_python="3.12")
     .entrypoint([])
     .pip_install(
-        "vllm==0.11.0",
+        "vllm==0.12.0",
         "huggingface_hub[hf_transfer]==0.35.0",
-        "flashinfer-python==0.3.1",
+        "flashinfer-python==0.5.3",
         "fastapi[standard]",
         "requests",
     )
@@ -101,7 +101,7 @@ class Gemma3_12B:
         self.llm = LLM(
             model=self.huggingface_id,
             enforce_eager=True,
-            max_model_len=8192,
+            max_model_len=65536,  # 64K context
             trust_remote_code=True,
         )
         
@@ -109,19 +109,40 @@ class Gemma3_12B:
         print(f"Model loaded in {elapsed:.1f}s: {self.model_name}")
     
     @modal.method()
-    def generate(
+    def chat(
         self,
         messages: list[dict],
         max_tokens: int = 1024,
         temperature: float = 0.7,
         top_p: float = 1.0,
         response_format: dict | None = None,
+        structured_outputs: dict | None = None,
         **kwargs,
     ) -> dict[str, Any]:
         """Generate a chat completion with optional structured output."""
-        return _generate_completion(
+        return _generate_chat_completion(
             self.llm, self.model_name, messages, max_tokens, temperature, top_p,
             response_format=response_format,
+            structured_outputs=structured_outputs,
+        )
+    
+    @modal.method()
+    def complete(
+        self,
+        prompt: str | list[str],
+        max_tokens: int = 1024,
+        temperature: float = 0.7,
+        top_p: float = 1.0,
+        echo: bool = False,
+        response_format: dict | None = None,
+        structured_outputs: dict | None = None,
+        **kwargs,
+    ) -> dict[str, Any]:
+        """Generate a text completion with optional structured output."""
+        return _generate_text_completion(
+            self.llm, self.model_name, prompt, max_tokens, temperature, top_p, echo,
+            response_format=response_format,
+            structured_outputs=structured_outputs,
         )
     
     @modal.method()
@@ -149,7 +170,7 @@ class Gemma3_27B:
         self.llm = LLM(
             model=self.huggingface_id,
             enforce_eager=True,
-            max_model_len=8192,
+            max_model_len=65536,  # 64K context
             trust_remote_code=True,
         )
         
@@ -157,19 +178,40 @@ class Gemma3_27B:
         print(f"Model loaded in {elapsed:.1f}s: {self.model_name}")
     
     @modal.method()
-    def generate(
+    def chat(
         self,
         messages: list[dict],
         max_tokens: int = 1024,
         temperature: float = 0.7,
         top_p: float = 1.0,
         response_format: dict | None = None,
+        structured_outputs: dict | None = None,
         **kwargs,
     ) -> dict[str, Any]:
         """Generate a chat completion with optional structured output."""
-        return _generate_completion(
+        return _generate_chat_completion(
             self.llm, self.model_name, messages, max_tokens, temperature, top_p,
             response_format=response_format,
+            structured_outputs=structured_outputs,
+        )
+    
+    @modal.method()
+    def complete(
+        self,
+        prompt: str | list[str],
+        max_tokens: int = 1024,
+        temperature: float = 0.7,
+        top_p: float = 1.0,
+        echo: bool = False,
+        response_format: dict | None = None,
+        structured_outputs: dict | None = None,
+        **kwargs,
+    ) -> dict[str, Any]:
+        """Generate a text completion with optional structured output."""
+        return _generate_text_completion(
+            self.llm, self.model_name, prompt, max_tokens, temperature, top_p, echo,
+            response_format=response_format,
+            structured_outputs=structured_outputs,
         )
     
     @modal.method()
@@ -197,7 +239,7 @@ class Qwen3_VL_30B:
         self.llm = LLM(
             model=self.huggingface_id,
             enforce_eager=True,
-            max_model_len=8192,
+            max_model_len=65536,  # 64K context
             trust_remote_code=True,
         )
         
@@ -205,19 +247,40 @@ class Qwen3_VL_30B:
         print(f"Model loaded in {elapsed:.1f}s: {self.model_name}")
     
     @modal.method()
-    def generate(
+    def chat(
         self,
         messages: list[dict],
         max_tokens: int = 1024,
         temperature: float = 0.7,
         top_p: float = 1.0,
         response_format: dict | None = None,
+        structured_outputs: dict | None = None,
         **kwargs,
     ) -> dict[str, Any]:
         """Generate a chat completion with optional structured output."""
-        return _generate_completion(
+        return _generate_chat_completion(
             self.llm, self.model_name, messages, max_tokens, temperature, top_p,
             response_format=response_format,
+            structured_outputs=structured_outputs,
+        )
+    
+    @modal.method()
+    def complete(
+        self,
+        prompt: str | list[str],
+        max_tokens: int = 1024,
+        temperature: float = 0.7,
+        top_p: float = 1.0,
+        echo: bool = False,
+        response_format: dict | None = None,
+        structured_outputs: dict | None = None,
+        **kwargs,
+    ) -> dict[str, Any]:
+        """Generate a text completion with optional structured output."""
+        return _generate_text_completion(
+            self.llm, self.model_name, prompt, max_tokens, temperature, top_p, echo,
+            response_format=response_format,
+            structured_outputs=structured_outputs,
         )
     
     @modal.method()
@@ -234,7 +297,70 @@ MODEL_CLASSES = {
 }
 
 
-def _generate_completion(
+def _build_structured_outputs_params(
+    response_format: dict | None = None,
+    structured_outputs: dict | None = None,
+):
+    """Build vLLM StructuredOutputsParams from OpenAI-compatible request.
+    
+    Supports vLLM v0.12.0 structured outputs API:
+    https://docs.vllm.ai/en/v0.12.0/features/structured_outputs/
+    
+    Via response_format:
+    - {"type": "json_object"} - Force valid JSON output
+    - {"type": "json_schema", "json_schema": {"name": "...", "schema": {...}}}
+    
+    Via structured_outputs (extra_body):
+    - {"json": <schema>} - JSON schema as string or dict
+    - {"regex": "<pattern>"} - Regex pattern
+    - {"choice": ["a", "b"]} - Force one of choices
+    - {"grammar": "<ebnf>"} - EBNF grammar
+    """
+    import json as json_module
+    from vllm.sampling_params import StructuredOutputsParams
+    
+    # Handle response_format (OpenAI-compatible)
+    if response_format:
+        format_type = response_format.get("type")
+        
+        if format_type == "json_object":
+            # Force valid JSON output
+            return StructuredOutputsParams(json_object=True)
+        
+        elif format_type == "json_schema":
+            # Force specific JSON schema
+            json_schema = response_format.get("json_schema", {})
+            schema = json_schema.get("schema")
+            if schema:
+                if isinstance(schema, dict):
+                    schema = json_module.dumps(schema)
+                return StructuredOutputsParams(json=schema)
+    
+    # Handle structured_outputs (vLLM extra_body)
+    if structured_outputs:
+        # JSON schema
+        if "json" in structured_outputs:
+            schema = structured_outputs["json"]
+            if isinstance(schema, dict):
+                schema = json_module.dumps(schema)
+            return StructuredOutputsParams(json=schema)
+        
+        # Regex pattern
+        if "regex" in structured_outputs:
+            return StructuredOutputsParams(regex=structured_outputs["regex"])
+        
+        # Choice - one of options
+        if "choice" in structured_outputs:
+            return StructuredOutputsParams(choice=structured_outputs["choice"])
+        
+        # EBNF Grammar
+        if "grammar" in structured_outputs:
+            return StructuredOutputsParams(grammar=structured_outputs["grammar"])
+    
+    return None
+
+
+def _generate_chat_completion(
     llm,
     model_name: str,
     messages: list[dict],
@@ -242,16 +368,13 @@ def _generate_completion(
     temperature: float,
     top_p: float,
     response_format: dict | None = None,
+    structured_outputs: dict | None = None,
 ) -> dict[str, Any]:
-    """Shared generation logic for all model classes.
+    """Generate a chat completion with optional structured output.
     
-    Supports structured output via response_format parameter:
-    - {"type": "json_object"} - Force JSON output
-    - {"type": "json_schema", "json_schema": {"schema": {...}}} - Force specific JSON schema
+    Supports vLLM v0.12.0 structured outputs API.
     """
-    import json as json_module
     from vllm import SamplingParams
-    from vllm.sampling_params import GuidedDecodingParams
     
     # Build prompt from messages using chat template
     tokenizer = llm.get_tokenizer()
@@ -261,30 +384,14 @@ def _generate_completion(
         add_generation_prompt=True,
     )
     
-    # Build guided decoding params for structured output
-    guided_decoding = None
-    if response_format:
-        format_type = response_format.get("type")
-        
-        if format_type == "json_object":
-            # Force valid JSON output
-            guided_decoding = GuidedDecodingParams(json_object=True)
-        
-        elif format_type == "json_schema":
-            # Force specific JSON schema
-            json_schema = response_format.get("json_schema", {})
-            schema = json_schema.get("schema")
-            if schema:
-                # vLLM expects schema as JSON string or dict
-                if isinstance(schema, dict):
-                    schema = json_module.dumps(schema)
-                guided_decoding = GuidedDecodingParams(json=schema)
+    # Build structured outputs params
+    so_params = _build_structured_outputs_params(response_format, structured_outputs)
     
     sampling_params = SamplingParams(
         max_tokens=max_tokens,
         temperature=temperature,
         top_p=top_p,
-        guided_decoding=guided_decoding,
+        structured_outputs=so_params,
     )
     
     # Generate
@@ -312,6 +419,77 @@ def _generate_completion(
             "prompt_tokens": prompt_tokens,
             "completion_tokens": completion_tokens,
             "total_tokens": prompt_tokens + completion_tokens,
+        },
+    }
+
+
+def _generate_text_completion(
+    llm,
+    model_name: str,
+    prompt: str | list[str],
+    max_tokens: int,
+    temperature: float,
+    top_p: float,
+    echo: bool = False,
+    response_format: dict | None = None,
+    structured_outputs: dict | None = None,
+) -> dict[str, Any]:
+    """Generate a text completion (OpenAI /v1/completions API).
+    
+    Supports vLLM v0.12.0 structured outputs API.
+    """
+    from vllm import SamplingParams
+    
+    # Handle single or multiple prompts
+    prompts = [prompt] if isinstance(prompt, str) else prompt
+    
+    # Build structured outputs params
+    so_params = _build_structured_outputs_params(response_format, structured_outputs)
+    
+    sampling_params = SamplingParams(
+        max_tokens=max_tokens,
+        temperature=temperature,
+        top_p=top_p,
+        structured_outputs=so_params,
+    )
+    
+    # Generate
+    outputs = llm.generate(prompts, sampling_params)
+    
+    choices = []
+    total_prompt_tokens = 0
+    total_completion_tokens = 0
+    
+    for i, output in enumerate(outputs):
+        text = output.outputs[0].text if output.outputs else ""
+        prompt_tokens = len(output.prompt_token_ids) if output.prompt_token_ids else 0
+        completion_tokens = len(output.outputs[0].token_ids) if output.outputs and output.outputs[0].token_ids else 0
+        
+        total_prompt_tokens += prompt_tokens
+        total_completion_tokens += completion_tokens
+        
+        # If echo is True, prepend the prompt
+        if echo:
+            original_prompt = prompts[i] if i < len(prompts) else ""
+            text = original_prompt + text
+        
+        choices.append({
+            "index": i,
+            "text": text,
+            "finish_reason": "stop",
+            "logprobs": None,
+        })
+    
+    return {
+        "id": f"cmpl-{time.time_ns()}",
+        "object": "text_completion",
+        "created": int(time.time()),
+        "model": model_name,
+        "choices": choices,
+        "usage": {
+            "prompt_tokens": total_prompt_tokens,
+            "completion_tokens": total_completion_tokens,
+            "total_tokens": total_prompt_tokens + total_completion_tokens,
         },
     }
 
@@ -395,9 +573,11 @@ def serve():
     async def chat_completions(request: Request):
         """Chat completions with structured output support (requires auth).
         
-        Supports response_format for structured output:
-        - {"type": "json_object"} - Force valid JSON
-        - {"type": "json_schema", "json_schema": {"name": "...", "schema": {...}}}
+        Supports structured output via:
+        - response_format: {"type": "json_object"} or {"type": "json_schema", ...}
+        - extra_body.structured_outputs: {"json": ...}, {"regex": ...}, {"choice": ...}, {"grammar": ...}
+        
+        See: https://docs.vllm.ai/en/v0.12.0/features/structured_outputs/
         """
         body = await request.json()
         model_name = body.get("model")
@@ -418,14 +598,62 @@ def serve():
         temperature = body.get("temperature", 0.7)
         top_p = body.get("top_p", 1.0)
         response_format = body.get("response_format")
+        structured_outputs = body.get("structured_outputs")  # vLLM extra_body
         
         try:
-            result = model.generate.remote(
+            result = model.chat.remote(
                 messages=messages,
                 max_tokens=max_tokens,
                 temperature=temperature,
                 top_p=top_p,
                 response_format=response_format,
+                structured_outputs=structured_outputs,
+            )
+            return JSONResponse(result)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+    
+    @api.post("/v1/completions", dependencies=[Depends(verify_token)])
+    async def text_completions(request: Request):
+        """Text completions endpoint (OpenAI /v1/completions API).
+        
+        Supports structured output via:
+        - response_format: {"type": "json_object"} or {"type": "json_schema", ...}
+        - structured_outputs: {"json": ...}, {"regex": ...}, {"choice": ...}, {"grammar": ...}
+        
+        See: https://docs.vllm.ai/en/v0.12.0/features/structured_outputs/
+        """
+        body = await request.json()
+        model_name = body.get("model")
+        
+        if not model_name:
+            raise HTTPException(status_code=400, detail="model field is required")
+        
+        model = get_model_instance(model_name)
+        if not model:
+            available = list(BASE_MODELS.keys())
+            raise HTTPException(
+                status_code=404,
+                detail=f"Model '{model_name}' not found. Available: {available}"
+            )
+        
+        prompt = body.get("prompt", "")
+        max_tokens = body.get("max_tokens", 1024)
+        temperature = body.get("temperature", 0.7)
+        top_p = body.get("top_p", 1.0)
+        echo = body.get("echo", False)
+        response_format = body.get("response_format")
+        structured_outputs = body.get("structured_outputs")  # vLLM extra_body
+        
+        try:
+            result = model.complete.remote(
+                prompt=prompt,
+                max_tokens=max_tokens,
+                temperature=temperature,
+                top_p=top_p,
+                echo=echo,
+                response_format=response_format,
+                structured_outputs=structured_outputs,
             )
             return JSONResponse(result)
         except Exception as e:

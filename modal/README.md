@@ -134,6 +134,7 @@ Each deployment exposes an OpenAI-compatible API:
 - `GET /health` - Health check (no auth required)
 - `GET /v1/models` - List available models (requires auth)
 - `POST /v1/chat/completions` - Chat completions (requires auth)
+- `POST /v1/completions` - Text completions (requires auth)
 
 ### Authentication
 
@@ -144,7 +145,7 @@ curl https://your-workspace--vllm-h100-serve.modal.run/v1/models \
   -H "Authorization: Bearer your-secret-key"
 ```
 
-### Example Request (GPU-Based)
+### Chat Completions
 
 ```bash
 # Specify model in request body
@@ -168,9 +169,39 @@ curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
   }'
 ```
 
+### Text Completions
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "prompt": "The capital of France is",
+    "max_tokens": 50
+  }'
+
+# With echo (include prompt in response)
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "prompt": "Once upon a time",
+    "max_tokens": 100,
+    "echo": true
+  }'
+```
+
 ### Structured Output
 
-The GPU-based endpoints support structured output via vLLM's guided decoding. This forces the model to generate valid JSON conforming to your schema.
+The GPU-based endpoints support vLLM v0.12.0 structured outputs API.
+See: https://docs.vllm.ai/en/v0.12.0/features/structured_outputs/
+
+Two methods are supported:
+
+1. **`response_format`** (OpenAI-compatible)
+2. **`structured_outputs`** (vLLM extra_body)
 
 #### JSON Object Mode
 
@@ -216,15 +247,73 @@ curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
   }'
 ```
 
-Response:
-```json
-{
-  "choices": [{
-    "message": {
-      "content": "{\"name\": \"John\", \"age\": 30, \"city\": \"NYC\"}"
+#### Regex Pattern
+
+Constrain output to match a regex pattern:
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "messages": [{"role": "user", "content": "Generate an email for Alan Turing at Enigma"}],
+    "structured_outputs": {"regex": "\\w+@\\w+\\.com"}
+  }'
+```
+
+#### Choice Mode
+
+Force output to be one of the given choices:
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "messages": [{"role": "user", "content": "Classify: vLLM is wonderful!"}],
+    "structured_outputs": {"choice": ["Positive", "Negative", "Neutral"]}
+  }'
+```
+
+#### EBNF Grammar
+
+Use an EBNF grammar for complex structured output:
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/chat/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "messages": [{"role": "user", "content": "Generate a SQL query"}],
+    "structured_outputs": {"grammar": "root ::= \"SELECT \" column \" FROM \" table\ncolumn ::= \"id\" | \"name\"\ntable ::= \"users\" | \"orders\""}
+  }'
+```
+
+#### Structured Output with Text Completions
+
+Structured outputs also work with the `/v1/completions` endpoint:
+
+```bash
+curl https://your-workspace--vllm-h100-serve.modal.run/v1/completions \
+  -H "Authorization: Bearer your-secret-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma-3-12b",
+    "prompt": "Generate a person object:",
+    "structured_outputs": {
+      "json": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "age": {"type": "integer"}
+        },
+        "required": ["name", "age"]
+      }
     }
-  }]
-}
+  }'
 ```
 
 ### List Available Models
@@ -340,7 +429,16 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
        "messages": [{"role": "user", "content": "Hello!"}]
      }'
    
-   # With structured output
+   # Text completion
+   curl http://localhost:4000/v1/completions \
+     -H "Content-Type: application/json" \
+     -d '{
+       "model": "gemma-3-12b-h100",
+       "prompt": "The capital of France is",
+       "max_tokens": 50
+     }'
+   
+   # With structured output (JSON schema)
    curl http://localhost:4000/v1/chat/completions \
      -H "Content-Type: application/json" \
      -d '{
@@ -360,6 +458,15 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
            }
          }
        }
+     }'
+   
+   # With structured output (choice)
+   curl http://localhost:4000/v1/chat/completions \
+     -H "Content-Type: application/json" \
+     -d '{
+       "model": "gemma-3-12b-h100",
+       "messages": [{"role": "user", "content": "Classify: This is great!"}],
+       "structured_outputs": {"choice": ["Positive", "Negative"]}
      }'
    ```
 
