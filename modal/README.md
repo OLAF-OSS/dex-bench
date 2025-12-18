@@ -421,11 +421,11 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    # List available models
    curl http://localhost:4000/v1/models
 
-   # Chat completion (model name includes GPU suffix)
+   # Chat completion (model name format: gpu/model)
    curl http://localhost:4000/v1/chat/completions \
      -H "Content-Type: application/json" \
      -d '{
-       "model": "gemma-3-12b-h100",
+       "model": "h100/gemma-3-12b",
        "messages": [{"role": "user", "content": "Hello!"}]
      }'
    
@@ -433,7 +433,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    curl http://localhost:4000/v1/completions \
      -H "Content-Type: application/json" \
      -d '{
-       "model": "gemma-3-12b-h100",
+       "model": "h100/gemma-3-12b",
        "prompt": "The capital of France is",
        "max_tokens": 50
      }'
@@ -442,7 +442,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    curl http://localhost:4000/v1/chat/completions \
      -H "Content-Type: application/json" \
      -d '{
-       "model": "gemma-3-12b-h100",
+       "model": "h100/gemma-3-12b",
        "messages": [{"role": "user", "content": "Extract: Alice is 25"}],
        "response_format": {
          "type": "json_schema",
@@ -464,7 +464,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    curl http://localhost:4000/v1/chat/completions \
      -H "Content-Type: application/json" \
      -d '{
-       "model": "gemma-3-12b-h100",
+       "model": "h100/gemma-3-12b",
        "messages": [{"role": "user", "content": "Classify: This is great!"}],
        "structured_outputs": {"choice": ["Positive", "Negative"]}
      }'
@@ -476,8 +476,8 @@ LiteLLM routes model requests to the correct GPU endpoint:
 
 | LiteLLM Model | Routes To | Backend Model |
 |---------------|-----------|---------------|
-| `gemma-3-12b-h100` | `vllm-h100` endpoint | `google/gemma-3-12b-it` |
-| `gemma-3-27b-h100` | `vllm-h100` endpoint | `google/gemma-3-27b-it` |
-| `qwen3-vl-30b-h100` | `vllm-h100` endpoint | `qwen/qwen3-vl-30b-a3b-instruct` |
+| `h100/gemma-3-12b` | `vllm-h100` endpoint | `google/gemma-3-12b-it` |
+| `h100/gemma-3-27b` | `vllm-h100` endpoint | `google/gemma-3-27b-it` |
+| `h100/qwen3-vl-30b` | `vllm-h100` endpoint | `qwen/qwen3-vl-30b-a3b-instruct` |
 
 All models on the same GPU share one Modal endpoint, reducing from 15 to 5 endpoints.
