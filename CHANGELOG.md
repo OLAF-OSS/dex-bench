@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.5.0...dex-bench-v0.6.0) (2025-12-18)
+
+
+### Features
+
+* enhance GPU configuration and model parameters in vllm_gpu_server.py ([8825550](https://github.com/OLAF-OSS/dex-bench/commit/8825550de10e506d6cf1a926995f9b0f59970edc))
+
 ## [0.5.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.4.0...dex-bench-v0.5.0) (2025-12-17)
 
 
