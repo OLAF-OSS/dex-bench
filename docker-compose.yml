@@ -7,7 +7,13 @@ services:
     volumes:
       - ./litellm_config.yaml:/app/config.yaml
     environment:
-      - MODAL_WORKSPACE=${MODAL_WORKSPACE}
+      - LITELLM_API_KEY=${LITELLM_API_KEY}
+      - VLLM_API_KEY=${VLLM_API_KEY}
+      - VLLM_L40S_API_BASE=https://${MODAL_WORKSPACE}--vllm-l40s-serve.modal.run/v1
+      - VLLM_A100_API_BASE=https://${MODAL_WORKSPACE}--vllm-a100-serve.modal.run/v1
+      - VLLM_H100_API_BASE=https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
+      - VLLM_H200_API_BASE=https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
+      - VLLM_B200_API_BASE=https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
     command:
       - "--config"
       - "/app/config.yaml"
@@ -21,4 +27,3 @@ services:
       retries: 3
       start_period: 40s
     restart: unless-stopped
-

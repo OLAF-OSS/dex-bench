@@ -408,7 +408,8 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
 2. **Create `.env` file** in the project root:
    ```env
    MODAL_WORKSPACE=your-workspace-name
-   VLLM_API_KEY=your-secret-key
+   VLLM_API_KEY=your-vllm-secret-key
+   LITELLM_API_KEY=your-litellm-api-key
    ```
 
 3. **Start the proxy**:
@@ -419,10 +420,12 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
 4. **Use the proxy** (port 4000):
    ```bash
    # List available models
-   curl http://localhost:4000/v1/models
+   curl http://localhost:4000/v1/models \
+     -H "Authorization: Bearer your-litellm-api-key"
 
    # Chat completion (model name format: gpu/model)
    curl http://localhost:4000/v1/chat/completions \
+     -H "Authorization: Bearer your-litellm-api-key" \
      -H "Content-Type: application/json" \
      -d '{
        "model": "h100/gemma-3-12b",
@@ -431,6 +434,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    
    # Text completion
    curl http://localhost:4000/v1/completions \
+     -H "Authorization: Bearer your-litellm-api-key" \
      -H "Content-Type: application/json" \
      -d '{
        "model": "h100/gemma-3-12b",
@@ -440,6 +444,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    
    # With structured output (JSON schema)
    curl http://localhost:4000/v1/chat/completions \
+     -H "Authorization: Bearer your-litellm-api-key" \
      -H "Content-Type: application/json" \
      -d '{
        "model": "h100/gemma-3-12b",
@@ -462,6 +467,7 @@ A Docker Compose setup is available in the project root to proxy all Modal endpo
    
    # With structured output (choice)
    curl http://localhost:4000/v1/chat/completions \
+     -H "Authorization: Bearer your-litellm-api-key" \
      -H "Content-Type: application/json" \
      -d '{
        "model": "h100/gemma-3-12b",

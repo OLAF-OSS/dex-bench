@@ -21,31 +21,31 @@ model_list:
   - model_name: l40s/gemma-3-12b
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-l40s-serve.modal.run/v1
+      api_base: os.environ/VLLM_L40S_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: a100/gemma-3-12b
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-a100-serve.modal.run/v1
+      api_base: os.environ/VLLM_A100_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: h100/gemma-3-12b
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
+      api_base: os.environ/VLLM_H100_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: h200/gemma-3-12b
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
+      api_base: os.environ/VLLM_H200_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: b200/gemma-3-12b
     litellm_params:
       model: openai/google/gemma-3-12b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
+      api_base: os.environ/VLLM_B200_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   # ============================================
@@ -54,31 +54,31 @@ model_list:
   - model_name: l40s/gemma-3-27b
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-l40s-serve.modal.run/v1
+      api_base: os.environ/VLLM_L40S_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: a100/gemma-3-27b
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-a100-serve.modal.run/v1
+      api_base: os.environ/VLLM_A100_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: h100/gemma-3-27b
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
+      api_base: os.environ/VLLM_H100_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: h200/gemma-3-27b
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
+      api_base: os.environ/VLLM_H200_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: b200/gemma-3-27b
     litellm_params:
       model: openai/google/gemma-3-27b-it
-      api_base: https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
+      api_base: os.environ/VLLM_B200_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   # ============================================
@@ -87,37 +87,44 @@ model_list:
   - model_name: l40s/qwen3-vl-30b
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://${MODAL_WORKSPACE}--vllm-l40s-serve.modal.run/v1
+      api_base: os.environ/VLLM_L40S_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: a100/qwen3-vl-30b
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://${MODAL_WORKSPACE}--vllm-a100-serve.modal.run/v1
+      api_base: os.environ/VLLM_A100_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: h100/qwen3-vl-30b
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
+      api_base: os.environ/VLLM_H100_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: h200/qwen3-vl-30b
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
+      api_base: os.environ/VLLM_H200_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
   - model_name: b200/qwen3-vl-30b
     litellm_params:
       model: openai/qwen/qwen3-vl-30b-a3b-instruct
-      api_base: https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
+      api_base: os.environ/VLLM_B200_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
 # General settings
 general_settings:
-  master_key: null  # No authentication required by default
+  master_key: os.environ/LITELLM_API_KEY
+  telemetry: false
+  disable_spend_logs: true
+  disable_spend_updates: true
   
 litellm_settings:
   drop_params: true  # Drop unsupported params instead of erroring
   request_timeout: 600  # 10 minute timeout for cold starts
+  set_verbose: false
+  turn_off_message_logging: true
+  disable_end_user_cost_tracking: true
+  disable_spend_logs: true
