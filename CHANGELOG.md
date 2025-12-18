@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.7.0...dex-bench-v0.8.0) (2025-12-18)
+
+
+### Features
+
+* expand model configurations and benchmark results ([2683593](https://github.com/OLAF-OSS/dex-bench/commit/26835933d39b15925a968acb8570d2e34a085100))
+
 ## [0.7.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.6.0...dex-bench-v0.7.0) (2025-12-18)
 
 
