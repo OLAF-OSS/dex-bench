@@ -365,6 +365,88 @@ def _build_structured_outputs_params(
     return None
 
 
+def _strip_thinking_tokens(text: str) -> str:
+    """Strip thinking tokens from model output.
+    
+    Some models (like Gemma, Qwen) may include <think>...</think> blocks
+    before the actual response. This function removes them.
+    """
+    import re
+    
+    # Remove <think>...</think> blocks (including multiline)
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+    
+    # Remove other common thinking patterns
+    text = re.sub(r"<thinking>.*?</thinking>", "", text, flags=re.DOTALL)
+    
+    return text.strip()
+
+
+def _extract_json_from_text(text: str) -> str:
+    """Extract JSON from text that may contain non-JSON content.
+    
+    Handles cases where the model outputs thinking tokens or other
+    content before/after the JSON.
+    """
+    import json as json_module
+    
+    # First try to parse as-is (fastest path)
+    text = text.strip()
+    try:
+        json_module.loads(text)
+        return text
+    except json_module.JSONDecodeError:
+        pass
+    
+    # Strip thinking tokens
+    text = _strip_thinking_tokens(text)
+    try:
+        json_module.loads(text)
+        return text
+    except json_module.JSONDecodeError:
+        pass
+    
+    # Try to find JSON object in text
+    # Look for outermost { } pair
+    start_idx = text.find("{")
+    if start_idx != -1:
+        depth = 0
+        in_string = False
+        escape_next = False
+        
+        for i, char in enumerate(text[start_idx:], start_idx):
+            if escape_next:
+                escape_next = False
+                continue
+            
+            if char == "\\":
+                escape_next = True
+                continue
+            
+            if char == '"' and not escape_next:
+                in_string = not in_string
+                continue
+            
+            if in_string:
+                continue
+            
+            if char == "{":
+                depth += 1
+            elif char == "}":
+                depth -= 1
+                if depth == 0:
+                    candidate = text[start_idx : i + 1]
+                    try:
+                        json_module.loads(candidate)
+                        return candidate
+                    except json_module.JSONDecodeError:
+                        pass
+                    break
+    
+    # Return original stripped text as fallback
+    return text
+
+
 def _generate_chat_completion(
     llm,
     model_name: str,
@@ -406,6 +488,10 @@ def _generate_chat_completion(
     text = output.outputs[0].text if output.outputs else ""
     prompt_tokens = len(output.prompt_token_ids) if output.prompt_token_ids else 0
     completion_tokens = len(output.outputs[0].token_ids) if output.outputs and output.outputs[0].token_ids else 0
+    
+    # If structured output was requested, clean up the response
+    if so_params is not None:
+        text = _extract_json_from_text(text)
     
     return {
         "id": f"chatcmpl-{time.time_ns()}",
@@ -472,6 +558,10 @@ def _generate_text_completion(
         
         total_prompt_tokens += prompt_tokens
         total_completion_tokens += completion_tokens
+        
+        # If structured output was requested, clean up the response
+        if so_params is not None:
+            text = _extract_json_from_text(text)
         
         # If echo is True, prepend the prompt
         if echo:

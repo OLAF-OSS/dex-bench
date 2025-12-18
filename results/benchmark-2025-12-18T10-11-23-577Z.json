@@ -1,0 +1,164 @@
+{
+  "id": "benchmark-2025-12-18T10-11-23-577Z",
+  "timestamp": "2025-12-18T10:11:23.577Z",
+  "status": "complete",
+  "models": [
+    "a100/gemma-3-12b",
+    "a100/gemma-3-27b",
+    "a100/qwen3-vl-30b"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": [
+    "summarization"
+  ],
+  "results": {
+    "summarization": [
+      {
+        "type": "summarization",
+        "model": "a100/gemma-3-12b",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 265,
+        "totalTokens": 4987,
+        "durationMs": 37654.967375,
+        "tokensPerSecond": 7.037584108383522,
+        "summary": "This document introduces Bitcoin, a proposed peer-to-peer electronic cash system designed to enable online payments directly between parties without the need for trusted third parties like financial institutions. The core problem addressed is the double-spending issue in digital currencies, traditionally solved by centralized authorities. Bitcoin proposes a decentralized solution using a peer-to-peer network that timestamps transactions by creating a chain of \"proof-of-work,\" requiring computational effort to add new blocks to the chain. The longest chain, representing the most computational work, is considered the valid history of transactions.\n\nThe system functions by broadcasting new transactions, collecting them into blocks, and requiring nodes to solve a computationally difficult proof-of-work problem for each block. This proof-of-work secures the network, making it computationally impractical for attackers to alter past transactions. Incentives are built in through the creation of new coins awarded to nodes that create blocks, and transaction fees. The document details the network's operation, including simplified payment verification and addresses privacy concerns by suggesting the use of new key pairs for each transaction. Finally, it analyzes the probability of an attacker successfully manipulating the chain, demonstrating that the odds diminish exponentially as the honest network grows. The paper concludes that Bitcoin offers a robust and decentralized system for electronic transactions, relying on cryptographic proof rather than trust.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/gemma-3-12b",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 247,
+        "totalTokens": 10544,
+        "durationMs": 47901.756125,
+        "tokensPerSecond": 5.156387155315384,
+        "summary": "This document introduces the Transformer, a novel neural network architecture for sequence transduction tasks like machine translation, that eschews recurrence and convolutions entirely, relying solely on attention mechanisms. The authors demonstrate that the Transformer achieves state-of-the-art results on English-to-German and English-to-French translation tasks, surpassing previous models while requiring significantly less training time and computational resources. The model's architecture consists of stacked self-attention and feed-forward layers in both the encoder and decoder, enabling greater parallelization and efficient learning of long-range dependencies.\n\nExperiments show the Transformer generalizes well to other tasks, successfully applied to English constituency parsing. The paper details the model's architecture, including scaled dot-product attention and multi-head attention, and provides a comparison of its computational complexity and path lengths to recurrent and convolutional networks. Results indicate that the Transformer achieves superior performance with reduced training costs, establishing a new state-of-the-art in machine translation and demonstrating the potential of attention-based models for various sequence transduction problems. Visualizations of the attention mechanism reveal that different attention heads learn to perform distinct tasks, including capturing long-distance dependencies and resolving anaphora, suggesting the model learns meaningful linguistic structures.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/gemma-3-27b",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 254,
+        "totalTokens": 4976,
+        "durationMs": 35955.58212499999,
+        "tokensPerSecond": 7.06427166488269,
+        "summary": "This document introduces Bitcoin, a proposed peer-to-peer electronic cash system designed to enable online payments directly between parties without the need for trusted third parties like financial institutions. The core problem addressed is the double-spending issue in digital currencies, traditionally solved by centralized authorities. Bitcoin proposes a decentralized solution using a peer-to-peer network that timestamps transactions by creating a chain of \"proof-of-work,\" requiring computational effort to add new blocks to the chain. The longest chain, representing the most computational work, is considered the valid history of transactions.\n\nThe system functions through a network where nodes collect transactions into blocks, solve a computationally intensive proof-of-work problem for each block, and broadcast the block to the network. Nodes accept blocks containing valid, unspent transactions and continue building upon the longest chain. Incentives are provided through newly created coins awarded to nodes that create blocks, and transaction fees. The document details mechanisms for simplified payment verification, privacy considerations (using new key pairs per transaction), and analyzes the probability of an attacker successfully altering the transaction history, demonstrating that it diminishes exponentially with the number of blocks added. Ultimately, the paper argues that this system can establish a secure and trustless electronic payment system relying on cryptographic proof and distributed consensus.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/gemma-3-12b",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 359,
+        "totalTokens": 42127,
+        "durationMs": 89055.40433399999,
+        "tokensPerSecond": 4.03119836111888,
+        "summary": "This document is a final report from OLAF (European Anti-Fraud Office) detailing an investigation initiated in September 2021, stemming from allegations of irregularities and potential misconduct within the European Border and Coast Guard Agency (FRONTEX). The investigation, initially opened in November 2020 concerning potential involvement in illegal pushbacks, was split to broaden the scope and expedite matters. The core of the report focuses on the actions and decisions of several FRONTEX personnel regarding the handling of serious incidents, particularly those involving potential violations of fundamental rights, specifically concerning alleged pushbacks of migrants. The investigation revealed a pattern of failures, including the exclusion of the Fundamental Rights Officer (FRO) from assessments and handling of incidents, a lack of initiation of Serious Incident Reports, and decisions to relocate assets to avoid witnessing potential violations. The report highlights instances where information was withheld from the FRO, classifications of incidents were manipulated, and a general reluctance to address concerns regarding the Greek authorities' actions.\n\nThe report concludes that the actions of multiple individuals within FRONTEX hindered the agency's ability to fully comply with its responsibilities regarding fundamental rights, citing failures in following procedures, a lack of loyalty to the Union, and inadequate managerial oversight. Specific failings included the mishandling of SIRs related to incidents involving the Hellenic Coast Guard, the relocation of FSA assets to avoid witnessing potential pushbacks, and a general lack of transparency and cooperation with the FRO. The report details numerous instances of internal communication and decision-making processes that contributed to these failures, ultimately concluding that the individuals involved committed serious misconduct and other irregularities. The report meticulously outlines the sequence of events, communications, and decisions made throughout the investigation, providing a detailed account of the shortcomings within FRONTEX's operational and management practices.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/gemma-3-27b",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 257,
+        "totalTokens": 10554,
+        "durationMs": 47950.78391600001,
+        "tokensPerSecond": 5.3596621162692895,
+        "summary": "This document introduces the Transformer, a novel neural network architecture for sequence transduction tasks like machine translation, that eschews recurrence and convolutions entirely, relying solely on attention mechanisms. The authors demonstrate that the Transformer achieves state-of-the-art results on English-to-German and English-to-French translation tasks, surpassing previous models while requiring significantly less training time and computational resources. The model's architecture consists of stacked self-attention and feed-forward layers in both the encoder and decoder, enabling greater parallelization and efficient learning of long-range dependencies.\n\nExperiments show the Transformer generalizes well to other tasks, successfully applied to English constituency parsing. The paper details the model's architecture, including scaled dot-product attention and multi-head attention, and provides a comparison of its computational complexity and path lengths to recurrent and convolutional networks. Results indicate that the Transformer's parallelizability and ability to model long-range dependencies effectively contribute to its superior performance, achieving BLEU scores of 28.4 on English-to-German and 41.8 on English-to-French translation, with significantly reduced training costs compared to existing models. The authors also present visualizations of the attention mechanism, revealing insights into how the model learns syntactic and semantic relationships within sentences.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/gemma-3-27b",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 323,
+        "totalTokens": 42091,
+        "durationMs": 51579.24204200001,
+        "tokensPerSecond": 6.26220912158785,
+        "summary": "This document is a final report from OLAF (European Anti-Fraud Office) detailing an investigation initiated in September 2021, stemming from a fraud notification system report concerning the European Border and Coast Guard Agency (FRONTEX). The investigation, initially opened in November 2020, focused on potential misconduct and irregularities related to FRONTEX's operations, including allegations of involvement in and cover-up of illegal pushbacks. The investigation was split to broaden its scope and expedite matters. The report outlines investigative activities, including information collection, interviews with 20 witnesses, digital forensic operations, and analysis of evidence.\n\nThe report details numerous instances of failures by FRONTEX personnel, including a failure to follow procedures, a lack of loyalty, and deficiencies in managerial responsibilities. Specific issues highlighted include the mishandling of Serious Incident Reports (SIRs), particularly concerning incidents involving potential pushbacks by Greek authorities, where information was suppressed, classifications were manipulated, and the Fundamental Rights Officer (FRO) was excluded from investigations. The report also addresses concerns about the relocation of FSA assets to avoid witnessing potential human rights violations, and instances of staff disclosing sensitive information and providing misleading information to stakeholders. Ultimately, OLAF concludes that the actions of the individuals investigated hindered FRONTEX's ability to comply with its responsibilities, particularly regarding the protection of fundamental rights at the EU's external borders. The report details specific incidents, the actions taken (or not taken) by various individuals, and the justifications provided, revealing a pattern of attempts to avoid scrutiny and potentially conceal wrongdoing within the agency.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/qwen3-vl-30b",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 265,
+        "totalTokens": 4987,
+        "durationMs": 73494.62737500001,
+        "tokensPerSecond": 3.6057057429226806,
+        "summary": "This document introduces Bitcoin, a proposed peer-to-peer electronic cash system designed to enable online payments directly between parties without the need for trusted third parties like financial institutions. The core problem addressed is the double-spending issue in digital currencies, traditionally solved by centralized authorities. Bitcoin proposes a decentralized solution using a peer-to-peer network that timestamps transactions by creating a chain of \"proof-of-work,\" requiring computational effort to add new blocks to the chain. The longest chain, representing the most computational work, is considered the valid history of transactions.\n\nThe system functions by broadcasting new transactions, collecting them into blocks, and requiring nodes to solve a computationally difficult proof-of-work problem for each block. This proof-of-work secures the network, making it computationally impractical for attackers to alter past transactions. Incentives are built in through the creation of new coins awarded to nodes that create blocks, and transaction fees. The document details the network's operation, including simplified payment verification and addresses privacy concerns by suggesting the use of new key pairs for each transaction. Finally, it analyzes the probability of an attacker successfully manipulating the chain, demonstrating that the odds diminish exponentially as the honest network grows. The paper concludes that Bitcoin offers a robust and decentralized system for electronic transactions, relying on cryptographic proof rather than trust.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/qwen3-vl-30b",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 247,
+        "totalTokens": 10544,
+        "durationMs": 143740.005833,
+        "tokensPerSecond": 1.718380339339693,
+        "summary": "This document introduces the Transformer, a novel neural network architecture for sequence transduction tasks like machine translation, that eschews recurrence and convolutions entirely, relying solely on attention mechanisms. The authors demonstrate that the Transformer achieves state-of-the-art results on English-to-German and English-to-French translation tasks, surpassing previous models while requiring significantly less training time and computational resources. The model's architecture consists of stacked self-attention and feed-forward layers in both the encoder and decoder, enabling greater parallelization and efficient learning of long-range dependencies.\n\nExperiments show the Transformer generalizes well to other tasks, successfully applied to English constituency parsing. The paper details the model's architecture, including scaled dot-product attention and multi-head attention, and provides a comparison of its computational complexity and path lengths to recurrent and convolutional networks. Results indicate that the Transformer achieves superior performance with reduced training costs, establishing a new state-of-the-art in machine translation and demonstrating the potential of attention-based models for various sequence transduction problems. Visualizations of the attention mechanism reveal that different attention heads learn to perform distinct tasks, including capturing long-distance dependencies and resolving anaphora, suggesting the model learns meaningful linguistic structures.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "a100/qwen3-vl-30b",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 323,
+        "totalTokens": 42091,
+        "durationMs": 198025.308333,
+        "tokensPerSecond": 1.6311046437399919,
+        "summary": "This document is a final report from OLAF (European Anti-Fraud Office) detailing an investigation initiated in September 2021, stemming from a fraud notification system report concerning the European Border and Coast Guard Agency (FRONTEX). The investigation, initially opened in November 2020, focused on potential misconduct and irregularities related to FRONTEX's operations, including allegations of involvement in and cover-up of illegal pushbacks. The investigation was split to broaden its scope and expedite matters. The report outlines investigative activities, including information collection, interviews with 20 witnesses, digital forensic operations, and analysis of evidence.\n\nThe report details numerous instances of failures by FRONTEX personnel, including a failure to follow procedures, a lack of loyalty, and deficiencies in managerial responsibilities. Specific issues highlighted include the mishandling of Serious Incident Reports (SIRs), particularly concerning incidents involving potential pushbacks by Greek authorities, where information was suppressed, classifications were manipulated, and the Fundamental Rights Officer (FRO) was excluded from investigations. The report also addresses concerns about the relocation of FSA assets to avoid witnessing potential human rights violations, and instances of staff disclosing sensitive information and providing misleading information to stakeholders. Ultimately, OLAF concludes that the actions of the individuals investigated hindered FRONTEX's ability to comply with its responsibilities, particularly regarding the protection of fundamental rights at the EU's external borders. The report details specific incidents, the actions taken (or not taken) by various individuals, and the justifications provided, revealing a pattern of attempts to avoid scrutiny and potentially conceal wrongdoing within the agency.",
+        "success": true
+      }
+    ]
+  },
+  "stats": {
+    "summarization": {
+      "type": "summarization",
+      "totalDurationMs": 725357.6774579999,
+      "averageDurationMs": 80595.29749533332,
+      "fastestResult": {
+        "model": "a100/gemma-3-27b",
+        "document": "bitcoin-paper.md",
+        "durationMs": 35955.58212499999
+      },
+      "slowestResult": {
+        "model": "a100/qwen3-vl-30b",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "durationMs": 198025.308333
+      },
+      "modelAverages": {
+        "a100/gemma-3-12b": 58204.04261133333,
+        "a100/gemma-3-27b": 45161.869361,
+        "a100/qwen3-vl-30b": 138419.98051366667
+      },
+      "totalInputTokens": 170361,
+      "totalOutputTokens": 2540,
+      "averageTokensPerSecond": 4.651833694839999
+    }
+  }
+}

@@ -73,8 +73,19 @@ export async function generateEntityTypes({
     };
   }
 
+  const parsed = result.value.object as z.infer<typeof entityTypesSchema>;
+
+  // Validate the parsed result has the expected structure
+  if (!parsed || !Array.isArray(parsed.entityTypes)) {
+    console.error("Invalid entity types response:", JSON.stringify(parsed));
+    return {
+      error: `Invalid structured output: expected { entityTypes: string[] }, got ${JSON.stringify(parsed)}`,
+      _executionTimeMs: Math.round(performance.now() - startTime),
+    };
+  }
+
   return {
-    ...(result.value.object as z.infer<typeof entityTypesSchema>),
+    ...parsed,
     _executionTimeMs: Math.round(performance.now() - startTime),
   };
 }
@@ -110,8 +121,19 @@ export async function extractEntities({
     };
   }
 
+  const parsed = result.value.object as z.infer<typeof extractionSchema>;
+
+  // Validate the parsed result has the expected structure
+  if (!parsed || !Array.isArray(parsed.extractions) || !Array.isArray(parsed.relationships)) {
+    console.error("Invalid extraction response:", JSON.stringify(parsed));
+    return {
+      error: `Invalid structured output: expected { extractions: [], relationships: [] }, got ${JSON.stringify(parsed)}`,
+      _executionTimeMs: Math.round(performance.now() - startTime),
+    };
+  }
+
   return {
-    ...(result.value.object as z.infer<typeof extractionSchema>),
+    ...parsed,
     _executionTimeMs: Math.round(performance.now() - startTime),
   };
 }
