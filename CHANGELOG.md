@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.6.0...dex-bench-v0.7.0) (2025-12-18)
+
+
+### Features
+
+* add new benchmark results for summarization tasks ([f7007c9](https://github.com/OLAF-OSS/dex-bench/commit/f7007c9c8f45d8f6a2ed7f738f8b2d09e3eb4e31))
+
 ## [0.6.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.5.0...dex-bench-v0.6.0) (2025-12-18)
 
 
