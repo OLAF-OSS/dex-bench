@@ -40,10 +40,9 @@ export function displayProgress(
   total: number,
 ): void {
   const progress = `[${index}/${total}]`;
-  const shortModel = model.split("/").pop() || model;
   const categoryLabel = category === "summarization" ? "SUM" : "JSON";
   console.info(
-    `${cyan}${progress}${reset} ${magenta}[${categoryLabel}]${reset} Running ${yellow}${shortModel}${reset} on ${gray}${document}${reset}`,
+    `${cyan}${progress}${reset} ${magenta}[${categoryLabel}]${reset} Running ${yellow}${model}${reset} on ${gray}${document}${reset}`,
   );
 }
 
@@ -72,10 +71,7 @@ function displaySummarizationResults(
   );
 
   for (const result of results) {
-    const shortModel = truncate(
-      result.model.split("/").pop() || result.model,
-      modelWidth,
-    );
+    const shortModel = truncate(result.model, modelWidth);
     const shortDoc = truncate(result.document.replace(".md", ""), docWidth);
     const time = prettyMs(result.durationMs, { secondsDecimalDigits: 1 });
     const tokens = result.totalTokens.toString();
@@ -101,16 +97,14 @@ function displaySummarizationResults(
   );
 
   if (stats.fastestResult.model) {
-    const fastModel = stats.fastestResult.model.split("/").pop();
     console.info(
-      `${green}⚡ Fastest:${reset} ${fastModel} on ${stats.fastestResult.document} (${prettyMs(stats.fastestResult.durationMs)})`,
+      `${green}⚡ Fastest:${reset} ${stats.fastestResult.model} on ${stats.fastestResult.document} (${prettyMs(stats.fastestResult.durationMs)})`,
     );
   }
 
   if (stats.slowestResult.model) {
-    const slowModel = stats.slowestResult.model.split("/").pop();
     console.info(
-      `${red}🐢 Slowest:${reset} ${slowModel} on ${stats.slowestResult.document} (${prettyMs(stats.slowestResult.durationMs)})`,
+      `${red}🐢 Slowest:${reset} ${stats.slowestResult.model} on ${stats.slowestResult.document} (${prettyMs(stats.slowestResult.durationMs)})`,
     );
   }
 }
@@ -141,10 +135,7 @@ function displayStructuredOutputResults(
   );
 
   for (const result of results) {
-    const shortModel = truncate(
-      result.model.split("/").pop() || result.model,
-      modelWidth,
-    );
+    const shortModel = truncate(result.model, modelWidth);
     const shortDoc = truncate(result.document.replace(".md", ""), docWidth);
     const time = prettyMs(result.durationMs, { secondsDecimalDigits: 1 });
     const entities = result.extractionCount.toString();
@@ -175,16 +166,14 @@ function displayStructuredOutputResults(
   );
 
   if (stats.fastestResult.model) {
-    const fastModel = stats.fastestResult.model.split("/").pop();
     console.info(
-      `${green}⚡ Fastest:${reset} ${fastModel} on ${stats.fastestResult.document} (${prettyMs(stats.fastestResult.durationMs)})`,
+      `${green}⚡ Fastest:${reset} ${stats.fastestResult.model} on ${stats.fastestResult.document} (${prettyMs(stats.fastestResult.durationMs)})`,
     );
   }
 
   if (stats.slowestResult.model) {
-    const slowModel = stats.slowestResult.model.split("/").pop();
     console.info(
-      `${red}🐢 Slowest:${reset} ${slowModel} on ${stats.slowestResult.document} (${prettyMs(stats.slowestResult.durationMs)})`,
+      `${red}🐢 Slowest:${reset} ${stats.slowestResult.model} on ${stats.slowestResult.document} (${prettyMs(stats.slowestResult.durationMs)})`,
     );
   }
 }
@@ -206,10 +195,7 @@ function displayModelAverages(
   );
 
   for (const [model, avgMs] of sortedAverages) {
-    const shortModel = model.split("/").pop() || model;
-    console.info(
-      `  ${pad(shortModel, 30)} ${yellow}${prettyMs(avgMs)}${reset}`,
-    );
+    console.info(`  ${pad(model, 30)} ${yellow}${prettyMs(avgMs)}${reset}`);
   }
 }
 

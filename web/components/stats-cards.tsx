@@ -20,7 +20,7 @@ function formatDuration(ms: number): string {
 }
 
 function getShortModelName(model: string): string {
-  return model.split("/").pop() || model;
+  return model;
 }
 
 // ============================================================================

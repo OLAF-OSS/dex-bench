@@ -14,6 +14,26 @@ services:
       - VLLM_H100_API_BASE=https://${MODAL_WORKSPACE}--vllm-h100-serve.modal.run/v1
       - VLLM_H200_API_BASE=https://${MODAL_WORKSPACE}--vllm-h200-serve.modal.run/v1
       - VLLM_B200_API_BASE=https://${MODAL_WORKSPACE}--vllm-b200-serve.modal.run/v1
+      # l40s models
+      - VLLM_GEMMA_3_12B_L40S_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-12b-l40s-serve.modal.run/v1
+      - VLLM_GEMMA_3_27B_L40S_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-27b-l40s-serve.modal.run/v1
+      - VLLM_QWEN3_VL_30B_L40S_API_BASE=https://${MODAL_WORKSPACE}--vllm-qwen3-vl-30b-l40s-serve.modal.run/v1
+      # a100 models
+      - VLLM_GEMMA_3_12B_A100_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-12b-a100-serve.modal.run/v1
+      - VLLM_GEMMA_3_27B_A100_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-27b-a100-serve.modal.run/v1
+      - VLLM_QWEN3_VL_30B_A100_API_BASE=https://${MODAL_WORKSPACE}--vllm-qwen3-vl-30b-a100-serve.modal.run/v1
+      # h100 models
+      - VLLM_GEMMA_3_12B_H100_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-12b-h100-serve.modal.run/v1
+      - VLLM_GEMMA_3_27B_H100_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-27b-h100-serve.modal.run/v1
+      - VLLM_QWEN3_VL_30B_H100_API_BASE=https://${MODAL_WORKSPACE}--vllm-qwen3-vl-30b-h100-serve.modal.run/v1
+      # h200 models
+      - VLLM_GEMMA_3_12B_H200_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-12b-h200-serve.modal.run/v1
+      - VLLM_GEMMA_3_27B_H200_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-27b-h200-serve.modal.run/v1
+      - VLLM_QWEN3_VL_30B_H200_API_BASE=https://${MODAL_WORKSPACE}--vllm-qwen3-vl-30b-h200-serve.modal.run/v1
+      # b200 models
+      - VLLM_GEMMA_3_12B_B200_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-12b-b200-serve.modal.run/v1
+      - VLLM_GEMMA_3_27B_B200_API_BASE=https://${MODAL_WORKSPACE}--vllm-gemma-3-27b-b200-serve.modal.run/v1
+      - VLLM_QWEN3_VL_30B_B200_API_BASE=https://${MODAL_WORKSPACE}--vllm-qwen3-vl-30b-b200-serve.modal.run/v1
     command:
       - "--config"
       - "/app/config.yaml"

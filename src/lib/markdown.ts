@@ -33,7 +33,7 @@ function generateSummarizationSection(
   );
 
   for (const result of results) {
-    const shortModel = result.model.split("/").pop() || result.model;
+    const shortModel = result.model;
     const shortDoc = result.document.replace(".md", "");
     const time = prettyMs(result.durationMs, { secondsDecimalDigits: 1 });
     const speed = result.tokensPerSecond.toFixed(1);
@@ -62,14 +62,14 @@ function generateSummarizationSection(
   );
 
   if (stats.fastestResult.model) {
-    const fastModel = stats.fastestResult.model.split("/").pop();
+    const fastModel = stats.fastestResult.model;
     lines.push(
       `- **⚡ Fastest:** ${fastModel} on ${stats.fastestResult.document} (${prettyMs(stats.fastestResult.durationMs)})`,
     );
   }
 
   if (stats.slowestResult.model) {
-    const slowModel = stats.slowestResult.model.split("/").pop();
+    const slowModel = stats.slowestResult.model;
     lines.push(
       `- **🐢 Slowest:** ${slowModel} on ${stats.slowestResult.document} (${prettyMs(stats.slowestResult.durationMs)})`,
     );
@@ -88,7 +88,7 @@ function generateSummarizationSection(
   );
 
   for (const [model, avgMs] of sortedAverages) {
-    const shortModel = model.split("/").pop() || model;
+    const shortModel = model;
     lines.push(`| ${shortModel} | ${prettyMs(avgMs)} |`);
   }
 
@@ -100,7 +100,7 @@ function generateSummarizationSection(
 
   for (const result of results) {
     if (result.success && result.summary) {
-      const shortModel = result.model.split("/").pop() || result.model;
+      const shortModel = result.model;
       const shortDoc = result.document.replace(".md", "");
 
       lines.push(`<details>`);
@@ -146,7 +146,7 @@ function generateStructuredOutputSection(
   );
 
   for (const result of results) {
-    const shortModel = result.model.split("/").pop() || result.model;
+    const shortModel = result.model;
     const shortDoc = result.document.replace(".md", "");
     const time = prettyMs(result.durationMs, { secondsDecimalDigits: 1 });
     const status = result.success ? "✅" : "❌";
@@ -177,14 +177,14 @@ function generateStructuredOutputSection(
   );
 
   if (stats.fastestResult.model) {
-    const fastModel = stats.fastestResult.model.split("/").pop();
+    const fastModel = stats.fastestResult.model;
     lines.push(
       `- **⚡ Fastest:** ${fastModel} on ${stats.fastestResult.document} (${prettyMs(stats.fastestResult.durationMs)})`,
     );
   }
 
   if (stats.slowestResult.model) {
-    const slowModel = stats.slowestResult.model.split("/").pop();
+    const slowModel = stats.slowestResult.model;
     lines.push(
       `- **🐢 Slowest:** ${slowModel} on ${stats.slowestResult.document} (${prettyMs(stats.slowestResult.durationMs)})`,
     );
@@ -203,7 +203,7 @@ function generateStructuredOutputSection(
   );
 
   for (const [model, avgMs] of sortedAverages) {
-    const shortModel = model.split("/").pop() || model;
+    const shortModel = model;
     lines.push(`| ${shortModel} | ${prettyMs(avgMs)} |`);
   }
 
@@ -215,7 +215,7 @@ function generateStructuredOutputSection(
 
   for (const result of results) {
     if (result.success && result.entityTypes.length > 0) {
-      const shortModel = result.model.split("/").pop() || result.model;
+      const shortModel = result.model;
       const shortDoc = result.document.replace(".md", "");
 
       lines.push(`<details>`);

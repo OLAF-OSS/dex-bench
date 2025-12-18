@@ -1,0 +1,123 @@
+{
+  "id": "benchmark-2025-12-18T20-32-22-158Z",
+  "timestamp": "2025-12-18T20:32:22.158Z",
+  "status": "complete",
+  "models": [
+    "gemma-3-27b/b200",
+    "qwen3-vl-30b/b200"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": [
+    "summarization"
+  ],
+  "results": {
+    "summarization": [
+      {
+        "type": "summarization",
+        "model": "gemma-3-27b/b200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 283,
+        "totalTokens": 10580,
+        "durationMs": 33479.32,
+        "tokensPerSecond": 8.452979331718804,
+        "summary": "This paper introduces the Transformer, a novel neural network architecture for sequence transduction tasks like machine translation, based entirely on attention mechanisms. It achieves state-of-the-art results on English-to-German (BLEU score of 28.4) and English-to-French (BLEU score of 41.8) translation, surpassing previous models in quality and training efficiency. The Transformer's parallelizable nature reduces training time to 12 hours on eight P100 GPUs. Key innovations include scaled dot-product attention, multi-head attention, and positional encoding. The model also demonstrates generalizability to English constituency parsing and provides publicly available code with visualizations of attention mechanisms.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "gemma-3-27b/b200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 319,
+        "totalTokens": 5041,
+        "durationMs": 34558.589625,
+        "tokensPerSecond": 9.230700774004749,
+        "summary": "This document, titled “Bitcoin: A Peer-to-Peer Electronic Cash System” by Satoshi Nakamoto, proposes a solution to creating a peer-to-peer electronic cash system without trusted third parties, addressing the double-spending problem. It details a network that timestamps transactions using proof-of-work, forming a secure and unchangeable record maintained by a distributed network. The system uses digital signatures, distributed timestamp servers, and incentive mechanisms like coin distribution and transaction fees. It also discusses disk space management with Merkle Trees, simplified payment verification, privacy considerations, and mathematical analysis demonstrating the system's robustness against attacks.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "gemma-3-27b/b200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 325,
+        "totalTokens": 42093,
+        "durationMs": 38197.859124999995,
+        "tokensPerSecond": 8.508330242709643,
+        "summary": "This OLAF investigation report details findings regarding potential misconduct within the European Border and Coast Guard Agency (FRONTEX), specifically concerning allegations of involvement in, or cover-up of, illegal pushbacks of migrants. The investigation, initiated in late 2020, focused on the actions of numerous FRONTEX personnel and examined incidents in the Aegean Sea and elsewhere. The report reveals failures to follow procedures, a lack of loyalty to EU principles, and deficiencies in managerial responsibilities, hindering FRONTEX’s ability to uphold fundamental rights. Key findings include downplaying incident reports, avoiding witnessing illegal activities, and a lack of transparency with the Fundamental Rights Officer (FRO). While direct involvement in pushbacks was difficult to definitively prove, the report concludes that the actions compromised FRONTEX’s commitment to fundamental rights and its overall integrity, identifying a need for improved oversight and accountability.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen3-vl-30b/b200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 332,
+        "totalTokens": 5054,
+        "durationMs": 28667.139917,
+        "tokensPerSecond": 11.581204157835066,
+        "summary": "The document \"Bitcoin: A Peer-to-Peer Electronic Cash System\" by Satoshi Nakamoto proposes a decentralized electronic cash system that eliminates the need for trusted third parties. It addresses the double-spending problem by using a peer-to-peer network to timestamp transactions through a chain of proof-of-work, creating a secure and immutable ledger. Transactions are verified using digital signatures, and the system relies on a distributed network of nodes to maintain the longest valid chain, provided honest nodes control the majority of computational power. The proof-of-work mechanism, inspired by Hashcash, ensures that altering the blockchain is computationally expensive. The system includes mechanisms for transaction broadcasting, block creation, and validation, along with incentives for nodes through newly created coins and transaction fees. It also incorporates Merkle Trees for efficient storage and simplified payment verification for lightweight users. A mathematical analysis demonstrates the system's security, showing that the likelihood of a successful attack decreases exponentially with each additional block.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen3-vl-30b/b200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 271,
+        "totalTokens": 10568,
+        "durationMs": 29416.417084,
+        "tokensPerSecond": 9.212542752101536,
+        "summary": "This paper introduces the Transformer, a novel neural network architecture for sequence transduction tasks such as machine translation, which relies entirely on attention mechanisms, eliminating the need for recurrence and convolutions. The Transformer achieves state-of-the-art results on English-to-German and English-to-French translation tasks, with BLEU scores of 28.4 and 41.8 respectively, outperforming previous models in both quality and training efficiency. The model's architecture consists of stacked self-attention and point-wise feed-forward layers in both the encoder and decoder, enabling significant parallelization and faster training. Key innovations include scaled dot-product attention and multi-head attention, which allow the model to capture dependencies between input and output sequences without the sequential constraints of recurrent networks or the distance limitations of convolutional networks. The paper details components such as positional encoding to account for sequence order and provides a comparative analysis of self-attention versus recurrent and convolutional layers, highlighting advantages in computational complexity, parallelization, and handling long-range dependencies. The Transformer also demonstrates strong generalization, achieving competitive results on English constituency parsing with limited training data. The authors have made their code publicly available to support further research.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen3-vl-30b/b200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 326,
+        "totalTokens": 42094,
+        "durationMs": 27772.428624999993,
+        "tokensPerSecond": 11.73826043094206,
+        "summary": "This OLAF investigation report examines allegations of misconduct within the European Border and Coast Guard Agency (FRONTEX), focusing on potential involvement in or cover-up of illegal pushbacks of migrants. Initiated in late 2020, the investigation uncovered a pattern of procedural failures, lack of loyalty to EU principles, and managerial deficiencies, particularly in the Aegean Sea. Key findings include the deliberate downplaying of serious incident reports, decisions to avoid witnessing illegal activities, and a lack of transparency with the FRONTEX Fundamental Rights Officer. While several concerning incidents were confirmed, definitive proof of direct FRONTEX involvement was limited due to insufficient documentation and conflicting accounts. The report concludes that these actions compromised FRONTEX's commitment to fundamental rights and integrity, calling for improved oversight and accountability. The findings are based on interviews, document analysis, and digital forensics, providing a comprehensive account of the alleged misconduct and its implications.",
+        "success": true
+      }
+    ]
+  },
+  "stats": {
+    "summarization": {
+      "type": "summarization",
+      "totalDurationMs": 192091.75437599997,
+      "averageDurationMs": 32015.292395999993,
+      "fastestResult": {
+        "model": "qwen3-vl-30b/b200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "durationMs": 27772.428624999993
+      },
+      "slowestResult": {
+        "model": "gemma-3-27b/b200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "durationMs": 38197.859124999995
+      },
+      "modelAverages": {
+        "gemma-3-27b/b200": 35411.92291666666,
+        "qwen3-vl-30b/b200": 28618.66187533333
+      },
+      "totalInputTokens": 113574,
+      "totalOutputTokens": 1856,
+      "averageTokensPerSecond": 9.787336281551974
+    }
+  }
+}

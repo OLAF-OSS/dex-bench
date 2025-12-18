@@ -114,7 +114,118 @@ model_list:
       api_base: os.environ/VLLM_B200_API_BASE
       api_key: os.environ/VLLM_API_KEY
 
+
+  # using vllm_server.py for multi-model serving
+
+  # ============================================
+  # L40S models
+  # ============================================
+  - model_name: gemma-3-12b/l40s
+    litellm_params:
+      model: openai/google/gemma-3-12b-it
+      api_base: os.environ/VLLM_GEMMA_3_12B_L40S_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: gemma-3-27b/l40s
+    litellm_params:
+      model: openai/google/gemma-3-27b-it
+      api_base: os.environ/VLLM_GEMMA_3_27B_L40S_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: qwen3-vl-30b/l40s
+    litellm_params:
+      model: openai/qwen/qwen3-vl-30b-a3b-instruct
+      api_base: os.environ/VLLM_QWEN3_VL_30B_L40S_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  # ============================================
+  # A100 models
+  # ============================================
+  - model_name: gemma-3-12b/a100
+    litellm_params:
+      model: openai/google/gemma-3-12b-it
+      api_base: os.environ/VLLM_GEMMA_3_12B_A100_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: gemma-3-27b/a100
+    litellm_params:
+      model: openai/google/gemma-3-27b-it
+      api_base: os.environ/VLLM_GEMMA_3_27B_A100_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: qwen3-vl-30b/a100
+    litellm_params:
+      model: openai/qwen/qwen3-vl-30b-a3b-instruct
+      api_base: os.environ/VLLM_QWEN3_VL_30B_A100_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+# ============================================
+# H100 models
+# ============================================
+  - model_name: gemma-3-12b/h100
+    litellm_params:
+      model: openai/google/gemma-3-12b-it
+      api_base: os.environ/VLLM_GEMMA_3_12B_H100_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: gemma-3-27b/h100
+    litellm_params:
+      model: openai/google/gemma-3-27b-it
+      api_base: os.environ/VLLM_GEMMA_3_27B_H100_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: qwen3-vl-30b/h100
+    litellm_params:
+      model: openai/qwen/qwen3-vl-30b-a3b-instruct
+      api_base: os.environ/VLLM_QWEN3_VL_30B_H100_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  # ============================================
+  # H200 models
+  # ============================================
+  - model_name: gemma-3-12b/h200
+    litellm_params:
+      model: openai/google/gemma-3-12b-it
+      api_base: os.environ/VLLM_GEMMA_3_12B_H200_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: gemma-3-27b/h200
+    litellm_params:
+      model: openai/google/gemma-3-27b-it
+      api_base: os.environ/VLLM_GEMMA_3_27B_H200_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: qwen3-vl-30b/h200
+    litellm_params:
+      model: openai/qwen/qwen3-vl-30b-a3b-instruct
+      api_base: os.environ/VLLM_QWEN3_VL_30B_H200_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  # ============================================
+  # B200 models
+  # ============================================
+  - model_name: gemma-3-12b/b200
+    litellm_params:
+      model: openai/google/gemma-3-12b-it
+      api_base: os.environ/VLLM_GEMMA_3_12B_B200_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: gemma-3-27b/b200
+    litellm_params:
+      model: openai/google/gemma-3-27b-it
+      api_base: os.environ/VLLM_GEMMA_3_27B_B200_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+  - model_name: qwen3-vl-30b/b200
+    litellm_params:
+      model: openai/qwen/qwen3-vl-30b-a3b-instruct
+      api_base: os.environ/VLLM_QWEN3_VL_30B_B200_API_BASE
+      api_key: os.environ/VLLM_API_KEY
+
+
+# ============================================
 # General settings
+# ============================================
 general_settings:
   master_key: os.environ/LITELLM_API_KEY
   telemetry: false

@@ -25,7 +25,7 @@ interface ExtractionsChartProps {
 }
 
 function getShortModelName(model: string): string {
-  return model.split("/").pop() || model;
+  return model;
 }
 
 const CHART_COLORS = [

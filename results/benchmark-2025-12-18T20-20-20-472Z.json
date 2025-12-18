@@ -1,0 +1,164 @@
+{
+  "id": "benchmark-2025-12-18T20-20-20-472Z",
+  "timestamp": "2025-12-18T20:20:20.472Z",
+  "status": "complete",
+  "models": [
+    "gemma-3-12b/h200",
+    "gemma-3-27b/h200",
+    "qwen3-vl-30b/h200"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": [
+    "summarization"
+  ],
+  "results": {
+    "summarization": [
+      {
+        "type": "summarization",
+        "model": "gemma-3-12b/h200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 234,
+        "totalTokens": 10531,
+        "durationMs": 24077.469334,
+        "tokensPerSecond": 9.718629344055133,
+        "summary": "This document introduces the Transformer, a novel neural network architecture for sequence transduction tasks that utilizes attention mechanisms instead of recurrence or convolutions. It achieves state-of-the-art results in English-to-German and English-to-French translation, requiring less training time and computational resources. The architecture consists of stacked self-attention and feed-forward layers in both the encoder and decoder, enabling parallelization and efficient learning of long-range dependencies. The Transformer generalizes well to other tasks like English constituency parsing and offers advantages in computational complexity, path length, and interpretability. The paper details the model's architecture, training details, regularization techniques, and visualizations of the attention mechanism, demonstrating its ability to capture syntactic and semantic relationships.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "gemma-3-12b/h200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 283,
+        "totalTokens": 5005,
+        "durationMs": 29452.675,
+        "tokensPerSecond": 9.608634869328508,
+        "summary": "This document, \"Bitcoin: A Peer-to-Peer Electronic Cash System,\" proposes a solution to the double-spending problem in online payments by utilizing a peer-to-peer network where transactions are timestamped and added to a continuously growing chain of blocks secured by a \"proof-of-work\" system. Nodes expend computational effort to find a solution that produces a specific number of leading zero bits when hashed, making it computationally impractical to alter past transactions. The longest chain is considered the valid history. The paper details network operation, including transaction broadcasting, block creation, proof-of-work validation, and incentive mechanisms (newly created coins and transaction fees). It addresses privacy concerns by suggesting new key pairs for each transaction and outlines a simplified payment verification method. The system's security diminishes exponentially with the number of blocks added, making it secure as long as honest nodes control a majority of the network's computational power. The document emphasizes the system's robustness, decentralized nature, and potential to revolutionize electronic transactions by removing the reliance on trust.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "gemma-3-12b/h200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 310,
+        "totalTokens": 42078,
+        "durationMs": 35728.579542,
+        "tokensPerSecond": 8.676527417934034,
+        "summary": "This document is a final report of an OLAF investigation (Case No OC/2021/0451/A1) into potential misconduct and irregularities within the European Border and Coast Guard Agency (FRONTEX), stemming from allegations made in late 2020 regarding possible witnessing of illegal pushbacks, staff intimidation, and procurement irregularities. The investigation, initially opened in November 2020 as a split from a previous case, focused on individuals including Caridad Luz Pintor Rubio, Lewis Newman, and others, and involved extensive data collection, interviews with 20 witnesses, and digital forensic operations. The allegations originated from a fraud notification system and were amplified by media coverage. The report concludes that the allegations are proven, finding that several individuals, including Klaus-Michael Staude, Univ.Prof. Joachim Ring, and Bautista Barrera Cabanillas, committed serious misconduct and irregularities hindering FRONTEX's ability to comply with fundamental rights responsibilities. These failings included failures to follow procedures, breaches of duty of loyalty, and managerial shortcomings. The investigation detailed specific incidents, such as the mishandling of Serious Incident Reports (SIRs) related to potential pushbacks, the relocation of a surveillance aircraft to avoid witnessing incidents, and restrictions on access to information for the Fundamental Rights Officer (FRO). The report outlines a pattern of actions designed to obstruct scrutiny and avoid accountability, ultimately impacting FRONTEX's adherence to its legal obligations and the protection of fundamental rights at the EU's external borders.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "gemma-3-27b/h200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 280,
+        "totalTokens": 5002,
+        "durationMs": 25351.587832999998,
+        "tokensPerSecond": 11.044673092843748,
+        "summary": "This document, \"Bitcoin: A Peer-to-Peer Electronic Cash System,\" proposes a solution to the double-spending problem in online payments by utilizing a peer-to-peer network with timestamped transactions added to a continuously growing chain of blocks secured by a proof-of-work system. The system relies on computational effort to validate transactions and prevent manipulation, with the longest chain representing the valid history. It details network operation, privacy considerations, and incentive mechanisms, concluding that the system is robust, decentralized, and has the potential to revolutionize electronic transactions by removing the need for trusted third parties.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "gemma-3-27b/h200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 248,
+        "totalTokens": 10545,
+        "durationMs": 20790.083291,
+        "tokensPerSecond": 11.928764138590966,
+        "summary": "This document introduces the Transformer, a novel neural network architecture for sequence transduction tasks like machine translation, that relies solely on attention mechanisms. It achieves state-of-the-art results on English-to-German (BLEU score of 28.4) and English-to-French (BLEU score of 41.8) translation tasks, surpassing previous models with less training time and computational resources. The architecture consists of stacked self-attention and feed-forward layers with innovations like scaled dot-product and multi-head attention. The code is publicly available.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "gemma-3-27b/h200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 310,
+        "totalTokens": 42078,
+        "durationMs": 32211.482416,
+        "tokensPerSecond": 9.62389734183788,
+        "summary": "This document is a final report of an OLAF investigation (Case No OC/2021/0451/A1) into potential misconduct and irregularities within the European Border and Coast Guard Agency (FRONTEX). The investigation, opened in November 2020, stemmed from allegations of illegal pushbacks, staff intimidation, and procurement irregularities. It involved 20 witness interviews and focused on individuals including Caridad Luz Pintor Rubio, Lewis Newman, Klaus-Michael Staude, Univ.Prof. Joachim Ring, and Bautista Barrera Cabanillas. The report concludes that the allegations are proven, finding serious misconduct and irregularities hindering FRONTEX's compliance with fundamental rights responsibilities, including mishandling of Serious Incident Reports (SIRs), relocating surveillance aircraft, and restricting access to information for the Fundamental Rights Officer (FRO). These actions obstructed scrutiny and accountability, impacting FRONTEX's legal obligations and the protection of fundamental rights at the EU's external borders.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen3-vl-30b/h200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "inputTokens": 10297,
+        "outputTokens": 234,
+        "totalTokens": 10531,
+        "durationMs": 26547.854582999993,
+        "tokensPerSecond": 8.814271573938884,
+        "summary": "This document introduces the Transformer, a novel neural network architecture for sequence transduction tasks such as machine translation, which relies solely on attention mechanisms without using recurrence or convolutions. The Transformer achieves state-of-the-art results on English-to-German and English-to-French translation tasks, outperforming previous models while requiring less training time and computational resources. Its architecture consists of stacked self-attention and feed-forward layers in both the encoder and decoder, enabling greater parallelization and efficient learning of long-range dependencies. The model generalizes well to other tasks, as demonstrated by its successful application to English constituency parsing. The paper details the model's architecture, including scaled dot-product attention and multi-head attention, and compares it to other sequence transduction models, highlighting advantages in computational complexity, path length, and interpretability. Training details, regularization techniques, and attention mechanism visualizations are provided, revealing the model's ability to capture syntactic and semantic relationships. Overall, the Transformer represents a significant advancement in sequence modeling, offering improved performance and efficiency compared to existing approaches.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen3-vl-30b/h200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "inputTokens": 4722,
+        "outputTokens": 276,
+        "totalTokens": 4998,
+        "durationMs": 27482.805291999997,
+        "tokensPerSecond": 10.04264292045693,
+        "summary": "The document \"Bitcoin: A Peer-to-Peer Electronic Cash System\" proposes a decentralized solution to the double-spending problem in electronic payments by using a peer-to-peer network with a blockchain secured by a proof-of-work system. Transactions are timestamped and added to a chain of blocks, where each block is validated through computational effort to find a hash with leading zero bits, making it difficult to alter past transactions. The longest chain, representing the most computational work, is considered the valid transaction history. The system includes mechanisms for transaction broadcasting, block creation, proof-of-work validation, and incentives (new coins and fees) to encourage honest participation. Privacy is addressed by using new key pairs for each transaction, and a simplified payment verification method is proposed. The paper analyzes the security of the system, showing that the probability of an attacker successfully manipulating the chain decreases exponentially as more blocks are added, provided honest nodes control the majority of the network's computational power. The conclusion highlights the system's robustness, decentralization, and potential for secure, trustless electronic transactions.",
+        "success": true
+      },
+      {
+        "type": "summarization",
+        "model": "qwen3-vl-30b/h200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "inputTokens": 41768,
+        "outputTokens": 310,
+        "totalTokens": 42078,
+        "durationMs": 32260.556792000003,
+        "tokensPerSecond": 9.609257583454792,
+        "summary": "This document is a final report of an OLAF investigation (Case No OC/2021/0451/A1) into potential misconduct and irregularities within the European Border and Coast Guard Agency (FRONTEX), stemming from allegations made in late 2020 regarding possible witnessing of illegal pushbacks, staff intimidation, and procurement irregularities. The investigation, initially opened in November 2020 as a split from a previous case, focused on individuals including Caridad Luz Pintor Rubio, Lewis Newman, and others, and involved extensive data collection, interviews with 20 witnesses, and digital forensic operations. The allegations originated from a fraud notification system and were amplified by media coverage. The report concludes that the allegations are proven, finding that several individuals, including Klaus-Michael Staude, Univ.Prof. Joachim Ring, and Bautista Barrera Cabanillas, committed serious misconduct and irregularities hindering FRONTEX's ability to comply with fundamental rights responsibilities. These failings included failures to follow procedures, breaches of duty of loyalty, and managerial shortcomings. The investigation detailed specific incidents, such as the mishandling of Serious Incident Reports (SIRs) related to potential pushbacks, the relocation of a surveillance aircraft to avoid witnessing incidents, and restrictions on access to information for the Fundamental Rights Officer (FRO). The report outlines a pattern of actions designed to obstruct scrutiny and avoid accountability, ultimately impacting FRONTEX's adherence to its legal obligations and the protection of fundamental rights at the EU's external borders.",
+        "success": true
+      }
+    ]
+  },
+  "stats": {
+    "summarization": {
+      "type": "summarization",
+      "totalDurationMs": 253903.09408300003,
+      "averageDurationMs": 28211.454898111115,
+      "fastestResult": {
+        "model": "gemma-3-27b/h200",
+        "document": "transformers-paper.md",
+        "durationMs": 20790.083291
+      },
+      "slowestResult": {
+        "model": "gemma-3-12b/h200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "durationMs": 35728.579542
+      },
+      "modelAverages": {
+        "gemma-3-12b/h200": 29752.907958666667,
+        "gemma-3-27b/h200": 26117.717846666666,
+        "qwen3-vl-30b/h200": 28763.738889
+      },
+      "totalInputTokens": 170361,
+      "totalOutputTokens": 2485,
+      "averageTokensPerSecond": 9.896366475826763
+    }
+  }
+}

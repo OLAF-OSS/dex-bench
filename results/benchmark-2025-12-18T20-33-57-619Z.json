@@ -1,0 +1,640 @@
+{
+  "id": "benchmark-2025-12-18T20-33-57-619Z",
+  "timestamp": "2025-12-18T20:33:57.619Z",
+  "status": "complete",
+  "models": [
+    "gemma-3-27b/b200",
+    "qwen3-vl-30b/b200"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": [
+    "structured-output"
+  ],
+  "results": {
+    "structuredOutput": [
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/b200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 152954.219875,
+        "success": true,
+        "entityTypesTimeMs": 17483,
+        "extractionTimeMs": 135471,
+        "entityTypes": [
+          "CRYPTOGRAPHIC_PROOF",
+          "BLOCKCHAIN_CONCEPT",
+          "PEER_TO_PEER_NETWORK",
+          "DIGITAL_SIGNATURE",
+          "TRANSACTION",
+          "BLOCK",
+          "HASH_FUNCTION",
+          "PROOF_OF_WORK",
+          "CPU_POWER",
+          "ELECTRONIC_CASH",
+          "TIMESTAMP_SERVER",
+          "MERKLE_TREE",
+          "FINANCIAL_INSTITUTION",
+          "DOUBLE_SPENDING_PROBLEM",
+          "NETWORK_NODE",
+          "INCENTIVE",
+          "URL",
+          "EMAIL_ADDRESS",
+          "PUBLICATION",
+          "ALGORITHM"
+        ],
+        "extractionCount": 21,
+        "relationshipCount": 16,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "BLOCKCHAIN_CONCEPT",
+            "extractionText": "peer-to-peer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "ELECTRONIC_CASH",
+            "extractionText": "electronic cash"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "FINANCIAL_INSTITUTION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "DIGITAL_SIGNATURE",
+            "extractionText": "Digital signatures"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "DOUBLE_SPENDING_PROBLEM",
+            "extractionText": "double-spending"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "PEER_TO_PEER_NETWORK",
+            "extractionText": "peer-to-peer network"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "CRYPTOGRAPHIC_PROOF",
+            "extractionText": "hash-based proof-of-work"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "CPU_POWER",
+            "extractionText": "CPU power"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "TIMESTAMP_SERVER",
+            "extractionText": "timestamp server"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "TRANSACTION",
+            "extractionText": "transactions"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "BLOCK",
+            "extractionText": "block"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "HASH_FUNCTION",
+            "extractionText": "hash"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PROOF_OF_WORK",
+            "extractionText": "proof-of-work"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "MERKLE_TREE",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "b-money"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "PERSON",
+            "extractionText": "Adam Back"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e1",
+            "targetId": "e2",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e3",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e5",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e7",
+            "targetId": "e8",
+            "relationshipType": "MITIGATES"
+          },
+          {
+            "sourceId": "e9",
+            "targetId": "e8",
+            "relationshipType": "SOLVES"
+          },
+          {
+            "sourceId": "e9",
+            "targetId": "e13",
+            "relationshipType": "PROCESSES"
+          },
+          {
+            "sourceId": "e13",
+            "targetId": "e14",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e15",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e14",
+            "relationshipType": "FORMS"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e11",
+            "relationshipType": "REQUIRES"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e13",
+            "relationshipType": "TIMESTAMPS"
+          },
+          {
+            "sourceId": "e17",
+            "targetId": "e14",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e4",
+            "relationshipType": "RELATED_TO"
+          },
+          {
+            "sourceId": "e21",
+            "targetId": "e19",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e19",
+            "relationshipType": "IMPLEMENTED_WITH"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e20",
+            "relationshipType": "SIMILAR_TO"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/b200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 264654.526209,
+        "success": false,
+        "error": "Entity extraction failed: Invalid structured output: expected { extractions: [], relationships: [] }, got undefined",
+        "entityTypesTimeMs": 14760,
+        "extractionTimeMs": 249894,
+        "entityTypes": [
+          "PERSON",
+          "ORGANIZATION",
+          "TECHNOLOGY",
+          "MODEL",
+          "DATASET",
+          "PUBLICATION",
+          "SOFTWARE",
+          "ALGORITHM",
+          "METRIC",
+          "TASK",
+          "PROGRAMMING_LANGUAGE",
+          "ARCHITECTURE",
+          "LAYER",
+          "HYPERPARAMETER",
+          "MATHEMATICAL_FORMULA",
+          "COMPUTATIONAL_RESOURCE",
+          "RESEARCH_FIELD",
+          "NEURAL_NETWORK_TYPE",
+          "FILE_FORMAT",
+          "URL"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/b200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 106842.33520800003,
+        "success": true,
+        "entityTypesTimeMs": 15484,
+        "extractionTimeMs": 91358,
+        "entityTypes": [
+          "CRYPTOGRAPHIC_PROOF",
+          "BLOCKCHAIN_CONCEPT",
+          "PEER_TO_PEER_NETWORK",
+          "DIGITAL_SIGNATURE",
+          "TRANSACTION",
+          "BLOCK",
+          "HASH_FUNCTION",
+          "PROOF_OF_WORK",
+          "CPU_POWER",
+          "ELECTRONIC_CASH",
+          "TIMESTAMP_SERVER",
+          "MERKLE_TREE",
+          "FINANCIAL_INSTITUTION",
+          "DOUBLE_SPENDING_PROBLEM",
+          "NETWORK_NODE",
+          "INCENTIVE",
+          "URL",
+          "EMAIL_ADDRESS",
+          "PUBLICATION",
+          "ALGORITHM"
+        ],
+        "extractionCount": 21,
+        "relationshipCount": 16,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "BLOCKCHAIN_CONCEPT",
+            "extractionText": "peer-to-peer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "ELECTRONIC_CASH",
+            "extractionText": "electronic cash"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "FINANCIAL_INSTITUTION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "DIGITAL_SIGNATURE",
+            "extractionText": "Digital signatures"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "DOUBLE_SPENDING_PROBLEM",
+            "extractionText": "double-spending"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "PEER_TO_PEER_NETWORK",
+            "extractionText": "peer-to-peer network"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "CRYPTOGRAPHIC_PROOF",
+            "extractionText": "hash-based proof-of-work"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "CPU_POWER",
+            "extractionText": "CPU power"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "TIMESTAMP_SERVER",
+            "extractionText": "timestamp server"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "TRANSACTION",
+            "extractionText": "transactions"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "BLOCK",
+            "extractionText": "block"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "HASH_FUNCTION",
+            "extractionText": "hash"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PROOF_OF_WORK",
+            "extractionText": "proof-of-work"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "MERKLE_TREE",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "b-money"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "PERSON",
+            "extractionText": "Adam Back"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e1",
+            "targetId": "e2",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e3",
+            "relationshipType": "AUTHOR_OF"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e5",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e7",
+            "targetId": "e8",
+            "relationshipType": "MITIGATES"
+          },
+          {
+            "sourceId": "e9",
+            "targetId": "e8",
+            "relationshipType": "SOLVES"
+          },
+          {
+            "sourceId": "e9",
+            "targetId": "e13",
+            "relationshipType": "PROCESSES"
+          },
+          {
+            "sourceId": "e13",
+            "targetId": "e14",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e15",
+            "relationshipType": "USES"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e14",
+            "relationshipType": "FORMS"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e11",
+            "relationshipType": "REQUIRES"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e13",
+            "relationshipType": "TIMESTAMPS"
+          },
+          {
+            "sourceId": "e17",
+            "targetId": "e14",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e4",
+            "relationshipType": "RELATED_TO"
+          },
+          {
+            "sourceId": "e21",
+            "targetId": "e19",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e19",
+            "relationshipType": "IMPLEMENTED_WITH"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e20",
+            "relationshipType": "SIMILAR_TO"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/b200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 210900.952584,
+        "success": false,
+        "error": "Entity extraction failed: Invalid structured output: expected { extractions: [], relationships: [] }, got undefined",
+        "entityTypesTimeMs": 13765,
+        "extractionTimeMs": 197136,
+        "entityTypes": [
+          "PERSON",
+          "ORGANIZATION",
+          "TECHNOLOGY",
+          "MODEL",
+          "DATASET",
+          "PUBLICATION",
+          "SOFTWARE",
+          "ALGORITHM",
+          "METRIC",
+          "PROGRAMMING_LANGUAGE",
+          "TASK",
+          "ARCHITECTURE",
+          "LAYER",
+          "HYPERPARAMETER",
+          "MATHEMATICAL_FORMULA",
+          "COMPUTATIONAL_RESOURCE",
+          "RESEARCH_FIELD",
+          "NEURAL_NETWORK_TYPE",
+          "FILE_FORMAT",
+          "URL"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/b200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 867072.478375,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 12159,
+        "extractionTimeMs": 854913,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "LOCATION",
+          "DATE",
+          "REGULATION",
+          "JOINT_OPERATION",
+          "INCIDENT",
+          "FRONTEX_ASSET",
+          "GOVERNMENT_AGENCY",
+          "FINANCIAL_INSTRUMENT",
+          "REPORT",
+          "DOCUMENT",
+          "COMMUNICATION",
+          "POSITION",
+          "NATIONALITY",
+          "LAW",
+          "MEASUREMENT",
+          "DIGITAL_ARTIFACT",
+          "POLITICAL_ENTITY",
+          "FUNDING_SOURCE"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/b200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 855658.3812920001,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 9030,
+        "extractionTimeMs": 846629,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "LOCATION",
+          "DATE",
+          "REGULATION",
+          "JOINT_OPERATION",
+          "INCIDENT",
+          "FRONTEX_ASSET",
+          "GOVERNMENT_AGENCY",
+          "FINANCIAL_INSTRUMENT",
+          "REPORT",
+          "DOCUMENT",
+          "COMMUNICATION",
+          "POSITION",
+          "NATIONALITY",
+          "LAW",
+          "MEASUREMENT",
+          "DIGITAL_ARTIFACT",
+          "POLITICAL_ENTITY",
+          "FUNDING_SOURCE"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      }
+    ]
+  },
+  "stats": {
+    "structuredOutput": {
+      "type": "structured-output",
+      "totalDurationMs": 2458082.893543,
+      "averageDurationMs": 129898.27754150002,
+      "fastestResult": {
+        "model": "qwen3-vl-30b/b200",
+        "document": "bitcoin-paper.md",
+        "durationMs": 106842.33520800003
+      },
+      "slowestResult": {
+        "model": "gemma-3-27b/b200",
+        "document": "bitcoin-paper.md",
+        "durationMs": 152954.219875
+      },
+      "modelAverages": {
+        "gemma-3-27b/b200": 152954.219875,
+        "qwen3-vl-30b/b200": 106842.33520800003
+      },
+      "totalExtractions": 42,
+      "totalRelationships": 32,
+      "averageExtractionsPerDoc": 42,
+      "averageEntityTypesPerDoc": 20
+    }
+  }
+}

@@ -1,0 +1,2847 @@
+{
+  "id": "benchmark-2025-12-18T16-05-17-004Z",
+  "timestamp": "2025-12-18T16:05:17.004Z",
+  "status": "complete",
+  "models": [
+    "gemma-3-12b/h200",
+    "gemma-3-27b/h200",
+    "qwen3-vl-30b/h200"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": [
+    "structured-output"
+  ],
+  "results": {
+    "structuredOutput": [
+      {
+        "type": "structured-output",
+        "model": "gemma-3-12b/h200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 107051.86175000001,
+        "success": true,
+        "entityTypesTimeMs": 17626,
+        "extractionTimeMs": 89426,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "EVENT",
+          "PUBLICATION",
+          "EMAIL_ADDRESS",
+          "URL",
+          "DATE",
+          "COMPANY",
+          "PERSON",
+          "JOB_TITLE",
+          "COMPUTER_SYSTEM",
+          "HARDWARE",
+          "MEASUREMENT",
+          "COORDINATE",
+          "SERIAL_NUMBER",
+          "BANK_ACCOUNT",
+          "DIGITAL_SIGNATURE",
+          "FINANCIAL_TERM"
+        ],
+        "extractionCount": 18,
+        "relationshipCount": 2,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EVENT",
+            "extractionText": "double-spending"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Usenet post"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "newspaper"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "HARDWARE",
+            "extractionText": "CPU"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "HARDWARE",
+            "extractionText": "computer systems"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "2GB"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "1.2GB"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "DATE",
+            "extractionText": "2008"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "miner"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "b-money"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Hashcash"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e1",
+            "targetId": "e3",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e4",
+            "relationshipType": "USED_BY"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/h200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 123789.839167,
+        "success": true,
+        "entityTypesTimeMs": 16278,
+        "extractionTimeMs": 107512,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "EVENT",
+          "PUBLICATION",
+          "EMAIL_ADDRESS",
+          "URL",
+          "DATE",
+          "COMPANY",
+          "PERSON",
+          "JOB_TITLE",
+          "COMPUTER_SYSTEM",
+          "HARDWARE",
+          "MEASUREMENT",
+          "COORDINATE",
+          "BANK_ACCOUNT",
+          "SERIAL_NUMBER",
+          "DIGITAL_SIGNATURE",
+          "FINANCIAL_TERM"
+        ],
+        "extractionCount": 18,
+        "relationshipCount": 2,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EVENT",
+            "extractionText": "double-spending"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Usenet post"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "newspaper"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "HARDWARE",
+            "extractionText": "CPU"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "HARDWARE",
+            "extractionText": "computer systems"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "2GB"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "1.2GB"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "DATE",
+            "extractionText": "2008"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Adam Back"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "gambler"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "EVENT",
+            "extractionText": "stock exchanges"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e1",
+            "targetId": "e3",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e2",
+            "relationshipType": "HAS_EMAIL"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-12b/h200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 461207.81612499995,
+        "success": true,
+        "entityTypesTimeMs": 16870,
+        "extractionTimeMs": 444337,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "MODEL_ARCHITECTURE",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "LANGUAGE",
+          "COUNTRY",
+          "CITY",
+          "MACHINE_TRANSLATION",
+          "DATASET",
+          "TASK",
+          "EVENT",
+          "JOB_TITLE",
+          "GPU",
+          "DATE",
+          "MEASUREMENT",
+          "CODE",
+          "PUBLICATION"
+        ],
+        "extractionCount": 51,
+        "relationshipCount": 23,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "MACHINE_TRANSLATION",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "German"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "28.4 BLEU"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "41.8"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "GPU",
+            "extractionText": "eight GPUs"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "DATASET",
+            "extractionText": "WMT 2014 English-to-German"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "DATASET",
+            "extractionText": "WMT 2014 English-to-French"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "TASK",
+            "extractionText": "English constituency parsing"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "encoder-decoder"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "recurrent neural networks"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "convolutional neural networks"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "self-attention"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Extended Neural GPU"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ByteNet"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ConvS2S"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-Head Attention"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "GPU",
+            "extractionText": "P100 GPUs"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Adam optimizer"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "DATE",
+            "extractionText": "12 hours"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "DATE",
+            "extractionText": "100,000 steps"
+          },
+          {
+            "id": "e50",
+            "extractionClass": "DATE",
+            "extractionText": "300,000 steps"
+          },
+          {
+            "id": "e51",
+            "extractionClass": "CITY",
+            "extractionText": "Toronto"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e3",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e5",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e7",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e9",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e51",
+            "relationshipType": "LOCATED_IN"
+          },
+          {
+            "sourceId": "e11",
+            "targetId": "e10",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e13",
+            "targetId": "e28",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e15",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e29",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e17",
+            "targetId": "e16",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e35",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e19",
+            "targetId": "e35",
+            "relationshipType": "TASK"
+          },
+          {
+            "sourceId": "e20",
+            "targetId": "e21",
+            "relationshipType": "TRANSLATION_TASK"
+          },
+          {
+            "sourceId": "e20",
+            "targetId": "e22",
+            "relationshipType": "TRANSLATION_TASK"
+          },
+          {
+            "sourceId": "e23",
+            "targetId": "e20",
+            "relationshipType": "TRANSLATION_YEAR"
+          },
+          {
+            "sourceId": "e23",
+            "targetId": "e21",
+            "relationshipType": "TRANSLATION_YEAR"
+          },
+          {
+            "sourceId": "e23",
+            "targetId": "e22",
+            "relationshipType": "TRANSLATION_YEAR"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/h200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 400393.83504200005,
+        "success": true,
+        "entityTypesTimeMs": 12136,
+        "extractionTimeMs": 388257,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "MODEL_ARCHITECTURE",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "LANGUAGE",
+          "COUNTRY",
+          "CITY",
+          "MACHINE_TRANSLATION",
+          "DATASET",
+          "TASK",
+          "EVENT",
+          "JOB_TITLE",
+          "GPU",
+          "DATE",
+          "MEASUREMENT",
+          "CODE",
+          "PUBLICATION"
+        ],
+        "extractionCount": 81,
+        "relationshipCount": 63,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "MACHINE_TRANSLATION",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "German"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "GPU",
+            "extractionText": "GPUs"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "28.4 BLEU"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "41.8"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "GPU",
+            "extractionText": "eight GPUs"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "DATASET",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "TASK",
+            "extractionText": "English constituency parsing"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "paper"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "recurrent neural networks"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "convolutional neural networks"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "self-attention"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Extended Neural GPU"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ByteNet"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ConvS2S"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-Head Attention"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "dot-product attention"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "additive attention"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "positional encodings"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "sine and cosine functions"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Adam optimizer"
+          },
+          {
+            "id": "e50",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "dropout"
+          },
+          {
+            "id": "e51",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "label smoothing"
+          },
+          {
+            "id": "e52",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e53",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "word-piece"
+          },
+          {
+            "id": "e54",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "beam search"
+          },
+          {
+            "id": "e55",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "RNN"
+          },
+          {
+            "id": "e56",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "LSTM"
+          },
+          {
+            "id": "e57",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "gated recurrent neural networks"
+          },
+          {
+            "id": "e58",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "language modeling"
+          },
+          {
+            "id": "e59",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "encoder-decoder architectures"
+          },
+          {
+            "id": "e60",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "feed-forward network"
+          },
+          {
+            "id": "e61",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ReLU activation"
+          },
+          {
+            "id": "e62",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "layer normalization"
+          },
+          {
+            "id": "e63",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "positional embeddings"
+          },
+          {
+            "id": "e64",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "softmax function"
+          },
+          {
+            "id": "e65",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "linear transformation"
+          },
+          {
+            "id": "e66",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "residual connection"
+          },
+          {
+            "id": "e67",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-task sequence to sequence learning"
+          },
+          {
+            "id": "e68",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ByteNet"
+          },
+          {
+            "id": "e69",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ConvS2S"
+          },
+          {
+            "id": "e70",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "MoE"
+          },
+          {
+            "id": "e71",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Deep-Att + PosUnk"
+          },
+          {
+            "id": "e72",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "GNMT + RL"
+          },
+          {
+            "id": "e73",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Deep-Att + PosUnk Ensemble"
+          },
+          {
+            "id": "e74",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "GNMT + RL Ensemble"
+          },
+          {
+            "id": "e75",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ConvS2S Ensemble"
+          },
+          {
+            "id": "e76",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Recurrent Neural Network Grammar"
+          },
+          {
+            "id": "e77",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "BerkeleyParser"
+          },
+          {
+            "id": "e78",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Penn Treebank"
+          },
+          {
+            "id": "e79",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "WSJ"
+          },
+          {
+            "id": "e80",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "high-confidence"
+          },
+          {
+            "id": "e81",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "BerkleyParser"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e3",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e5",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e7",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e9",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e11",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e13",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e15",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e17",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e33",
+            "relationshipType": "LOCATED_IN"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e34",
+            "relationshipType": "LOCATED_IN"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e35",
+            "relationshipType": "MEMBER_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e36",
+            "relationshipType": "CREATED_BY"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e37",
+            "relationshipType": "CREATED_BY"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e38",
+            "relationshipType": "CREATED_BY"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e19",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e20",
+            "targetId": "e19",
+            "relationshipType": "TRANSLATION_LANGUAGE"
+          },
+          {
+            "sourceId": "e21",
+            "targetId": "e19",
+            "relationshipType": "TRANSLATION_LANGUAGE"
+          },
+          {
+            "sourceId": "e22",
+            "targetId": "e19",
+            "relationshipType": "TRANSLATION_LANGUAGE"
+          },
+          {
+            "sourceId": "e31",
+            "targetId": "e20",
+            "relationshipType": "INPUT_LANGUAGE"
+          },
+          {
+            "sourceId": "e31",
+            "targetId": "e21",
+            "relationshipType": "INPUT_LANGUAGE"
+          },
+          {
+            "sourceId": "e31",
+            "targetId": "e22",
+            "relationshipType": "INPUT_LANGUAGE"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e39",
+            "relationshipType": "DEVELOPED_BY"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e41",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e42",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e43",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e44",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e45",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e46",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e47",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e48",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e49",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e50",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e51",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e52",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e53",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e54",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e55",
+            "relationshipType": "REPLACES"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e56",
+            "relationshipType": "REPLACES"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e57",
+            "relationshipType": "REPLACES"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e58",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e59",
+            "relationshipType": "REPLACES"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e60",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e61",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e62",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e63",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e64",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e65",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e66",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e67",
+            "relationshipType": "USED_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e68",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e69",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e70",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e71",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e72",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e73",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e74",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e75",
+            "relationshipType": "PART_OF"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e76",
+            "relationshipType": "COMPARED_TO"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e77",
+            "relationshipType": "COMPARED_TO"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e78",
+            "relationshipType": "USED_ON"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e79",
+            "relationshipType": "USED_ON"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e80",
+            "relationshipType": "USED_ON"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e81",
+            "relationshipType": "USED_ON"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-12b/h200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 900037.000417,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 15346,
+        "extractionTimeMs": 884691,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "DATE",
+          "TIME",
+          "LOCATION",
+          "EVENT",
+          "LEGAL_TERM",
+          "TECHNOLOGY",
+          "PRODUCT",
+          "COMPANY",
+          "ADDRESS",
+          "COUNTRY",
+          "CITY",
+          "LANGUAGE",
+          "JOB_TITLE",
+          "MONEY",
+          "PERCENTAGE",
+          "EMAIL_ADDRESS",
+          "URL",
+          "LAW"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/h200",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 282347.104375,
+        "success": true,
+        "entityTypesTimeMs": 195840,
+        "extractionTimeMs": 86507,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "EVENT",
+          "PUBLICATION",
+          "EMAIL_ADDRESS",
+          "URL",
+          "DATE",
+          "COMPANY",
+          "PERSON",
+          "JOB_TITLE",
+          "COMPUTER_SYSTEM",
+          "HARDWARE",
+          "MEASUREMENT",
+          "COORDINATE",
+          "BANK_ACCOUNT",
+          "SERIAL_NUMBER",
+          "DIGITAL_SIGNATURE",
+          "FINANCIAL_TERM"
+        ],
+        "extractionCount": 20,
+        "relationshipCount": 2,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Bitcoin: A Peer-to-Peer Electronic Cash System"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "Digital signatures"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EVENT",
+            "extractionText": "20th Symposium on Information Theory in the Benelux"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Journal of Cryptology"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EVENT",
+            "extractionText": "4th ACM Conference on Computer and Communications Security"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "b-money"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "DATE",
+            "extractionText": "1998"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "DATE",
+            "extractionText": "May 1999"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "DATE",
+            "extractionText": "1991"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "DATE",
+            "extractionText": "April 1997"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "DATE",
+            "extractionText": "2002"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "DATE",
+            "extractionText": "1980"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "DATE",
+            "extractionText": "2008"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e3",
+            "relationshipType": "HAS_EMAIL"
+          },
+          {
+            "sourceId": "e2",
+            "targetId": "e4",
+            "relationshipType": "CREATED"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/h200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 858827.163084,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 11073,
+        "extractionTimeMs": 847755,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "DATE",
+          "TIME",
+          "LOCATION",
+          "EVENT",
+          "LEGAL_TERM",
+          "TECHNOLOGY",
+          "PRODUCT",
+          "COMPANY",
+          "ADDRESS",
+          "COUNTRY",
+          "CITY",
+          "LANGUAGE",
+          "JOB_TITLE",
+          "MONEY",
+          "PERCENTAGE",
+          "EMAIL_ADDRESS",
+          "URL",
+          "VEHICLE"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/h200",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 538031.206042,
+        "success": true,
+        "entityTypesTimeMs": 13646,
+        "extractionTimeMs": 524385,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "MODEL_ARCHITECTURE",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "LANGUAGE",
+          "COUNTRY",
+          "CITY",
+          "MACHINE_TRANSLATION",
+          "DATASET",
+          "TASK",
+          "EVENT",
+          "JOB_TITLE",
+          "GPU",
+          "DATE",
+          "MEASUREMENT",
+          "CODE",
+          "PUBLICATION"
+        ],
+        "extractionCount": 200,
+        "relationshipCount": 12,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "MACHINE_TRANSLATION",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "German"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "GPU",
+            "extractionText": "GPUs"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "28.4 BLEU"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "41.8"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "GPU",
+            "extractionText": "eight GPUs"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "DATASET",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "TASK",
+            "extractionText": "English constituency parsing"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "paper"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "recurrent neural networks"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "convolutional neural networks"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "self-attention"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Extended Neural GPU"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ByteNet"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ConvS2S"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-Head Attention"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "dot-product attention"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "additive attention"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "positional encodings"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "sine and cosine functions"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Adam optimizer"
+          },
+          {
+            "id": "e50",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "dropout"
+          },
+          {
+            "id": "e51",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "label smoothing"
+          },
+          {
+            "id": "e52",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e53",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "word-piece"
+          },
+          {
+            "id": "e54",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "beam search"
+          },
+          {
+            "id": "e55",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "RNN"
+          },
+          {
+            "id": "e56",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "LSTM"
+          },
+          {
+            "id": "e57",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "gated recurrent neural networks"
+          },
+          {
+            "id": "e58",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "language modeling"
+          },
+          {
+            "id": "e59",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "encoder-decoder architectures"
+          },
+          {
+            "id": "e60",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "feed-forward network"
+          },
+          {
+            "id": "e61",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "ReLU activation"
+          },
+          {
+            "id": "e62",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "layer normalization"
+          },
+          {
+            "id": "e63",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "positional embeddings"
+          },
+          {
+            "id": "e64",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "softmax function"
+          },
+          {
+            "id": "e65",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "linear transformation"
+          },
+          {
+            "id": "e66",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "residual connection"
+          },
+          {
+            "id": "e67",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-task sequence to sequence learning"
+          },
+          {
+            "id": "e68",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "deep reinforcement learning"
+          },
+          {
+            "id": "e69",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "separable convolutions"
+          },
+          {
+            "id": "e70",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "dilated convolutions"
+          },
+          {
+            "id": "e71",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "reading comprehension"
+          },
+          {
+            "id": "e72",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "abstractive summarization"
+          },
+          {
+            "id": "e73",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "textual entailment"
+          },
+          {
+            "id": "e74",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "learning task-independent sentence representations"
+          },
+          {
+            "id": "e75",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "memory networks"
+          },
+          {
+            "id": "e76",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "recurrent attention mechanism"
+          },
+          {
+            "id": "e77",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "sequence-aligned recurrence"
+          },
+          {
+            "id": "e78",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "self-attention"
+          },
+          {
+            "id": "e79",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "intra-attention"
+          },
+          {
+            "id": "e80",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "scaled dot-product attention"
+          },
+          {
+            "id": "e81",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "additive attention"
+          },
+          {
+            "id": "e82",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "dot-product attention"
+          },
+          {
+            "id": "e83",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-Head Attention"
+          },
+          {
+            "id": "e84",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "positional encoding"
+          },
+          {
+            "id": "e85",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e86",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "word-piece"
+          },
+          {
+            "id": "e87",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e88",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e89",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e90",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e91",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e92",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e93",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e94",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e95",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e96",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e97",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e98",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e99",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e100",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e101",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e102",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e103",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e104",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e105",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e106",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e107",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e108",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e109",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e110",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e111",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e112",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e113",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e114",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e115",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e116",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e117",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e118",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e119",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e120",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e121",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e122",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e123",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e124",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e125",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e126",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e127",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e128",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e129",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e130",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e131",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e132",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e133",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e134",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e135",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e136",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e137",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e138",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e139",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e140",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e141",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e142",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e143",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e144",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e145",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e146",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e147",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e148",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e149",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e150",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e151",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e152",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e153",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e154",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e155",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e156",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e157",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e158",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e159",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e160",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e161",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e162",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e163",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e164",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e165",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e166",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e167",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e168",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e169",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e170",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e171",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e172",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e173",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e174",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e175",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e176",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e177",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e178",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e179",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e180",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e181",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e182",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e183",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e184",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e185",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e186",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e187",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e188",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e189",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e190",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e191",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e192",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e193",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e194",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e195",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e196",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e197",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e198",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e199",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          },
+          {
+            "id": "e200",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair encoding"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e18",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e19",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e20",
+            "targetId": "e19",
+            "relationshipType": "TRANSLATES_TO"
+          },
+          {
+            "sourceId": "e21",
+            "targetId": "e19",
+            "relationshipType": "TRANSLATES_TO"
+          },
+          {
+            "sourceId": "e22",
+            "targetId": "e19",
+            "relationshipType": "TRANSLATES_TO"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/h200",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 884457.9493329999,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 10578,
+        "extractionTimeMs": 873880,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "DATE",
+          "TIME",
+          "LOCATION",
+          "EVENT",
+          "LEGAL_TERM",
+          "JOB_TITLE",
+          "COMPANY",
+          "COUNTRY",
+          "CITY",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "EMAIL_ADDRESS",
+          "URL",
+          "MONEY",
+          "PERCENTAGE",
+          "PRODUCT",
+          "VEHICLE",
+          "LAW"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      }
+    ]
+  },
+  "stats": {
+    "structuredOutput": {
+      "type": "structured-output",
+      "totalDurationMs": 4556143.775335,
+      "averageDurationMs": 318803.61041683337,
+      "fastestResult": {
+        "model": "gemma-3-12b/h200",
+        "document": "bitcoin-paper.md",
+        "durationMs": 107051.86175000001
+      },
+      "slowestResult": {
+        "model": "qwen3-vl-30b/h200",
+        "document": "transformers-paper.md",
+        "durationMs": 538031.206042
+      },
+      "modelAverages": {
+        "gemma-3-12b/h200": 284129.83893749997,
+        "gemma-3-27b/h200": 262091.83710450004,
+        "qwen3-vl-30b/h200": 410189.1552085
+      },
+      "totalExtractions": 388,
+      "totalRelationships": 104,
+      "averageExtractionsPerDoc": 194,
+      "averageEntityTypesPerDoc": 20
+    }
+  }
+}

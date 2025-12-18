@@ -100,7 +100,7 @@ def _generate_all_configs() -> dict[str, ModelConfig]:
                 name=model_info["name"],
                 huggingface_id=model_info["huggingface_id"],
                 gpu=gpu,
-                n_gpu=1,
+                n_gpu=2,  # Use 2 GPUs for tensor parallelism
                 tool_parser=model_info.get("tool_parser"),
             )
 

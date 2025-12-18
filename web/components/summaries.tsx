@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { SummarizationResult, StructuredOutputResult } from "../types";
 
 function getShortModelName(model: string): string {
-  return model.split("/").pop() || model;
+  return model;
 }
 
 function getShortDocName(doc: string): string {

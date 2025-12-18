@@ -1,0 +1,1690 @@
+{
+  "id": "benchmark-2025-12-18T11-50-33-508Z",
+  "timestamp": "2025-12-18T11:50:33.508Z",
+  "status": "complete",
+  "models": [
+    "gemma-3-12b/a100",
+    "gemma-3-27b/a100",
+    "qwen3-vl-30b/a100"
+  ],
+  "documents": [
+    "bitcoin-paper.md",
+    "transformers-paper.md",
+    "Directorate A – Expenditure – Operations.md"
+  ],
+  "categories": [
+    "structured-output"
+  ],
+  "results": {
+    "structuredOutput": [
+      {
+        "type": "structured-output",
+        "model": "gemma-3-12b/a100",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 279421.498292,
+        "success": true,
+        "entityTypesTimeMs": 28677,
+        "extractionTimeMs": 250744,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "EMAIL_ADDRESS",
+          "URL",
+          "EVENT",
+          "PRODUCT",
+          "PUBLICATION",
+          "TIME",
+          "DATE",
+          "PERCENTAGE",
+          "MONEY",
+          "MEASUREMENT",
+          "IP_ADDRESS",
+          "COMPANY",
+          "JOB_TITLE",
+          "LEGAL_TERM",
+          "SERIAL_NUMBER",
+          "COORDINATE"
+        ],
+        "extractionCount": 24,
+        "relationshipCount": 3,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "Digital signatures"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PRODUCT",
+            "extractionText": "Bitcoin"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Usenet"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Journal of Cryptology"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "IEEE Computer Society"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "ACM Conference on Computer and Communications Security"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Sequences II: Methods in Communication, Security and Computer Science"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "b-money"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "20th Symposium on Information Theory in the Benelux"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "TIME",
+            "extractionText": "10 minutes"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "DATE",
+            "extractionText": "2008"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "2GB"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "1.2GB"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "COMPANY",
+            "extractionText": "Mint"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "gold miners"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LEGAL_TERM",
+            "extractionText": "double-spending"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "EVENT",
+            "extractionText": "20th Symposium on Information Theory in the Benelux"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e1",
+            "targetId": "e8",
+            "relationshipType": "CREATED"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e2",
+            "relationshipType": "ASSOCIATED_WITH"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e3",
+            "relationshipType": "ASSOCIATED_WITH"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-12b/a100",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 402647.144584,
+        "success": true,
+        "entityTypesTimeMs": 26466,
+        "extractionTimeMs": 376181,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "MODEL_ARCHITECTURE",
+          "MACHINE_TRANSLATION",
+          "LANGUAGE",
+          "DATASET",
+          "TASK",
+          "EVENT",
+          "JOB_TITLE",
+          "COUNTRY",
+          "CITY",
+          "UNIVERSITY",
+          "GPU",
+          "MEASUREMENT",
+          "DATE",
+          "CODE"
+        ],
+        "extractionCount": 50,
+        "relationshipCount": 20,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "MACHINE_TRANSLATION",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "German"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "DATASET",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "TASK",
+            "extractionText": "English constituency parsing"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "UNIVERSITY",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "GPU",
+            "extractionText": "GPUs"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "28.4 BLEU"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "41.8"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "CODE",
+            "extractionText": "RNNs"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "CODE",
+            "extractionText": "LSTM"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "CODE",
+            "extractionText": "ByteNet"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "CODE",
+            "extractionText": "ConvS2S"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "CODE",
+            "extractionText": "Multi-Head Attention"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "CODE",
+            "extractionText": "ReLU"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "CODE",
+            "extractionText": "softmax"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "CODE",
+            "extractionText": "PE"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "CODE",
+            "extractionText": "GPU"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Byte-pair encoding"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "word-piece"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "byte-pair"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "self-attention"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-Head Attention"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Extended Neural GPU"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "End-to-end memory networks"
+          },
+          {
+            "id": "e50",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Multi-task sequence to sequence learning"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e32",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e32",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e47",
+            "relationshipType": "MEMBER_OF"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e19",
+            "relationshipType": "IS_A"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e20",
+            "relationshipType": "TRANSLATES"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e21",
+            "relationshipType": "TRANSLATES"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e22",
+            "relationshipType": "TRANSLATES"
+          },
+          {
+            "sourceId": "e23",
+            "targetId": "e20",
+            "relationshipType": "CONTAINS"
+          },
+          {
+            "sourceId": "e23",
+            "targetId": "e21",
+            "relationshipType": "CONTAINS"
+          },
+          {
+            "sourceId": "e24",
+            "targetId": "e20",
+            "relationshipType": "INVOLVES"
+          },
+          {
+            "sourceId": "e24",
+            "targetId": "e21",
+            "relationshipType": "INVOLVES"
+          },
+          {
+            "sourceId": "e26",
+            "targetId": "e18",
+            "relationshipType": "TRAINED_ON"
+          },
+          {
+            "sourceId": "e26",
+            "targetId": "e23",
+            "relationshipType": "TRAINED_ON"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e27",
+            "relationshipType": "ACHIEVES"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e28",
+            "relationshipType": "ACHIEVES"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/a100",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 294960.85579199996,
+        "success": true,
+        "entityTypesTimeMs": 27863,
+        "extractionTimeMs": 267098,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "EMAIL_ADDRESS",
+          "URL",
+          "EVENT",
+          "PRODUCT",
+          "PUBLICATION",
+          "COMPANY",
+          "PERSON",
+          "JOB_TITLE",
+          "DATE",
+          "TIME",
+          "PERCENTAGE",
+          "MONEY",
+          "MEASUREMENT",
+          "IP_ADDRESS",
+          "COORDINATE",
+          "HASHTAG"
+        ],
+        "extractionCount": 24,
+        "relationshipCount": 0,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Bitcoin: A Peer-to-Peer Electronic Cash System"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "Digital signatures"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "hash-based proof-of-work"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "peer-to-peer network"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PRODUCT",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "b-money"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Journal of Cryptology"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Sequences II: Methods in Communication, Security and Computer Science"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Proceedings of the 4th ACM Conference on Computer and Communications Security"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "PUBLICATION",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Adam Back"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "PERSON",
+            "extractionText": "W. Dai"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "PERSON",
+            "extractionText": "H. Massias"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "PERSON",
+            "extractionText": "X.S. Avila"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "PERSON",
+            "extractionText": "J.-J. Quisquater"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "PERSON",
+            "extractionText": "S. Haber"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "PERSON",
+            "extractionText": "W.S. Stornetta"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "PERSON",
+            "extractionText": "R.C. Merkle"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "PERSON",
+            "extractionText": "W. Feller"
+          }
+        ],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-12b/a100",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 900034.432,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 26430,
+        "extractionTimeMs": 873605,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "DATE",
+          "TIME",
+          "LOCATION",
+          "EVENT",
+          "LEGAL_TERM",
+          "JOB_TITLE",
+          "COMPANY",
+          "COUNTRY",
+          "CITY",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "MONEY",
+          "PERCENTAGE",
+          "PRODUCT",
+          "EMAIL_ADDRESS",
+          "PHONE_NUMBER",
+          "URL",
+          "VEHICLE"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/a100",
+        "document": "bitcoin-paper.md",
+        "documentTokens": 4626,
+        "durationMs": 173818.365917,
+        "success": true,
+        "entityTypesTimeMs": 29087,
+        "extractionTimeMs": 144732,
+        "entityTypes": [
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "CRYPTOGRAPHIC_ALGORITHM",
+          "ORGANIZATION",
+          "EMAIL_ADDRESS",
+          "URL",
+          "EVENT",
+          "PRODUCT",
+          "TIME",
+          "DATE",
+          "PERCENTAGE",
+          "MONEY",
+          "PERSON",
+          "JOB_TITLE",
+          "COMPANY",
+          "NETWORK",
+          "MEASUREMENT",
+          "COORDINATE",
+          "HASHTAG",
+          "DIGITAL_SIGNATURE"
+        ],
+        "extractionCount": 20,
+        "relationshipCount": 0,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "PERSON",
+            "extractionText": "Satoshi Nakamoto"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "satoshin@gmx.com"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "URL",
+            "extractionText": "www.bitcoin.org"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "financial institution"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "CRYPTOGRAPHIC_ALGORITHM",
+            "extractionText": "SHA-256"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "SOFTWARE",
+            "extractionText": "Hashcash"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "PRODUCT",
+            "extractionText": "Merkle Tree"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "TIME",
+            "extractionText": "10 minutes"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EVENT",
+            "extractionText": "20th Symposium on Information Theory in the Benelux"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "EVENT",
+            "extractionText": "4th ACM Conference on Computer and Communications Security"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "PERSON",
+            "extractionText": "Adam Back"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "W. Dai"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "PERSON",
+            "extractionText": "H. Massias"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "X.S. Avila"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "PERSON",
+            "extractionText": "J.-J. Quisquater"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "S. Haber"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "PERSON",
+            "extractionText": "W.S. Stornetta"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "PERSON",
+            "extractionText": "D. Bayer"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "PERSON",
+            "extractionText": "R.C. Merkle"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "PERSON",
+            "extractionText": "W. Feller"
+          }
+        ],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/a100",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 824964.4400829999,
+        "success": true,
+        "entityTypesTimeMs": 26370,
+        "extractionTimeMs": 798595,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "LANGUAGE",
+          "MODEL_ARCHITECTURE",
+          "MACHINE_TRANSLATION_TASK",
+          "DATASET",
+          "EVENT",
+          "JOB_TITLE",
+          "COUNTRY",
+          "CITY",
+          "GPU",
+          "MEASUREMENT",
+          "DATE",
+          "CODE",
+          "ALGORITHM",
+          "NETWORK"
+        ],
+        "extractionCount": 39,
+        "relationshipCount": 17,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "MACHINE_TRANSLATION_TASK",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "German"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "28.4 BLEU"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "MEASUREMENT",
+            "extractionText": "41.8"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "GPU",
+            "extractionText": "eight GPUs"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "EVENT",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "encoder-decoder"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "DATASET",
+            "extractionText": "Penn Treebank"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "researcher"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "COUNTRY",
+            "extractionText": "Germany"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "COUNTRY",
+            "extractionText": "France"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "CITY",
+            "extractionText": "Toronto"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e3",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e5",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e7",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e29",
+            "relationshipType": "AFFILIATED_WITH"
+          },
+          {
+            "sourceId": "e11",
+            "targetId": "e29",
+            "relationshipType": "AFFILIATED_WITH"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e13",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e15",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e17",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e34",
+            "relationshipType": "IS_A"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e19",
+            "relationshipType": "USED_FOR"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/a100",
+        "document": "transformers-paper.md",
+        "documentTokens": 10200,
+        "durationMs": 383733.235959,
+        "success": true,
+        "entityTypesTimeMs": 28481,
+        "extractionTimeMs": 355252,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "EMAIL_ADDRESS",
+          "URL",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "LANGUAGE",
+          "MODEL_ARCHITECTURE",
+          "MACHINE_TRANSLATION_TASK",
+          "DATASET",
+          "GPU",
+          "DATE",
+          "EVENT",
+          "JOB_TITLE",
+          "COUNTRY",
+          "CITY",
+          "MEASUREMENT",
+          "PERCENTAGE",
+          "CODE",
+          "ALGORITHM"
+        ],
+        "extractionCount": 54,
+        "relationshipCount": 10,
+        "extractions": [
+          {
+            "id": "e1",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google"
+          },
+          {
+            "id": "e2",
+            "extractionClass": "PERSON",
+            "extractionText": "Ashish Vaswani"
+          },
+          {
+            "id": "e3",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "avaswani@google.com"
+          },
+          {
+            "id": "e4",
+            "extractionClass": "PERSON",
+            "extractionText": "Noam Shazeer"
+          },
+          {
+            "id": "e5",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "noam@google.com"
+          },
+          {
+            "id": "e6",
+            "extractionClass": "PERSON",
+            "extractionText": "Llion Jones"
+          },
+          {
+            "id": "e7",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "llion@google.com"
+          },
+          {
+            "id": "e8",
+            "extractionClass": "PERSON",
+            "extractionText": "Niki Parmar"
+          },
+          {
+            "id": "e9",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "nikip@google.com"
+          },
+          {
+            "id": "e10",
+            "extractionClass": "PERSON",
+            "extractionText": "Aidan N. Gomez"
+          },
+          {
+            "id": "e11",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "aidan@cs.toronto.edu"
+          },
+          {
+            "id": "e12",
+            "extractionClass": "PERSON",
+            "extractionText": "Jakob Uszkoreit"
+          },
+          {
+            "id": "e13",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "usz@google.com"
+          },
+          {
+            "id": "e14",
+            "extractionClass": "PERSON",
+            "extractionText": "Łukasz Kaiser"
+          },
+          {
+            "id": "e15",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "lukaszkaiser@google.com"
+          },
+          {
+            "id": "e16",
+            "extractionClass": "PERSON",
+            "extractionText": "Illia Polosukhin"
+          },
+          {
+            "id": "e17",
+            "extractionClass": "EMAIL_ADDRESS",
+            "extractionText": "illia.polosukhin@gmail.com"
+          },
+          {
+            "id": "e18",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "Transformer"
+          },
+          {
+            "id": "e19",
+            "extractionClass": "MACHINE_TRANSLATION_TASK",
+            "extractionText": "machine translation"
+          },
+          {
+            "id": "e20",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e21",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "German"
+          },
+          {
+            "id": "e22",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e23",
+            "extractionClass": "PERCENTAGE",
+            "extractionText": "28.4"
+          },
+          {
+            "id": "e24",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e25",
+            "extractionClass": "PERCENTAGE",
+            "extractionText": "41.8"
+          },
+          {
+            "id": "e26",
+            "extractionClass": "DATE",
+            "extractionText": "3.5 days"
+          },
+          {
+            "id": "e27",
+            "extractionClass": "GPU",
+            "extractionText": "eight GPUs"
+          },
+          {
+            "id": "e28",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "English constituency parsing"
+          },
+          {
+            "id": "e29",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "University of Toronto"
+          },
+          {
+            "id": "e30",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Brain"
+          },
+          {
+            "id": "e31",
+            "extractionClass": "ORGANIZATION",
+            "extractionText": "Google Research"
+          },
+          {
+            "id": "e32",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "recurrent neural networks"
+          },
+          {
+            "id": "e33",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "convolutional neural networks"
+          },
+          {
+            "id": "e34",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "encoder"
+          },
+          {
+            "id": "e35",
+            "extractionClass": "MODEL_ARCHITECTURE",
+            "extractionText": "decoder"
+          },
+          {
+            "id": "e36",
+            "extractionClass": "ALGORITHM",
+            "extractionText": "attention mechanism"
+          },
+          {
+            "id": "e37",
+            "extractionClass": "DATASET",
+            "extractionText": "WMT 2014"
+          },
+          {
+            "id": "e38",
+            "extractionClass": "GPU",
+            "extractionText": "P100 GPUs"
+          },
+          {
+            "id": "e39",
+            "extractionClass": "DATE",
+            "extractionText": "twelve hours"
+          },
+          {
+            "id": "e40",
+            "extractionClass": "TECHNOLOGY",
+            "extractionText": "tensor2tensor"
+          },
+          {
+            "id": "e41",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "English"
+          },
+          {
+            "id": "e42",
+            "extractionClass": "LANGUAGE",
+            "extractionText": "French"
+          },
+          {
+            "id": "e43",
+            "extractionClass": "DATE",
+            "extractionText": "2006"
+          },
+          {
+            "id": "e44",
+            "extractionClass": "DATE",
+            "extractionText": "2009"
+          },
+          {
+            "id": "e45",
+            "extractionClass": "DATE",
+            "extractionText": "2013"
+          },
+          {
+            "id": "e46",
+            "extractionClass": "DATE",
+            "extractionText": "2014"
+          },
+          {
+            "id": "e47",
+            "extractionClass": "DATE",
+            "extractionText": "2015"
+          },
+          {
+            "id": "e48",
+            "extractionClass": "DATE",
+            "extractionText": "2016"
+          },
+          {
+            "id": "e49",
+            "extractionClass": "DATE",
+            "extractionText": "2017"
+          },
+          {
+            "id": "e50",
+            "extractionClass": "DATE",
+            "extractionText": "100,000"
+          },
+          {
+            "id": "e51",
+            "extractionClass": "DATE",
+            "extractionText": "300K"
+          },
+          {
+            "id": "e52",
+            "extractionClass": "DATE",
+            "extractionText": "3.5"
+          },
+          {
+            "id": "e53",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "researcher"
+          },
+          {
+            "id": "e54",
+            "extractionClass": "JOB_TITLE",
+            "extractionText": "engineer"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceId": "e2",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e4",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e6",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e8",
+            "targetId": "e31",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e10",
+            "targetId": "e29",
+            "relationshipType": "MEMBER_OF"
+          },
+          {
+            "sourceId": "e12",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e14",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e16",
+            "targetId": "e30",
+            "relationshipType": "WORKS_FOR"
+          },
+          {
+            "sourceId": "e1",
+            "targetId": "e18",
+            "relationshipType": "CREATED_BY"
+          },
+          {
+            "sourceId": "e18",
+            "targetId": "e19",
+            "relationshipType": "USED_FOR"
+          }
+        ]
+      },
+      {
+        "type": "structured-output",
+        "model": "gemma-3-27b/a100",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 898066.095166,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 31558,
+        "extractionTimeMs": 866508,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "DATE",
+          "TIME",
+          "LOCATION",
+          "EVENT",
+          "LEGAL_TERM",
+          "JOB_TITLE",
+          "COMPANY",
+          "COUNTRY",
+          "CITY",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "EMAIL_ADDRESS",
+          "URL",
+          "MONEY",
+          "PERCENTAGE",
+          "PRODUCT",
+          "VEHICLE",
+          "LAW"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      },
+      {
+        "type": "structured-output",
+        "model": "qwen3-vl-30b/a100",
+        "document": "Directorate A – Expenditure – Operations.md",
+        "documentTokens": 41672,
+        "durationMs": 898058.538417,
+        "success": false,
+        "error": "Entity extraction failed: The operation timed out.",
+        "entityTypesTimeMs": 26275,
+        "extractionTimeMs": 871783,
+        "entityTypes": [
+          "ORGANIZATION",
+          "PERSON",
+          "DATE",
+          "TIME",
+          "LOCATION",
+          "EVENT",
+          "LEGAL_TERM",
+          "JOB_TITLE",
+          "COMPANY",
+          "COUNTRY",
+          "CITY",
+          "TECHNOLOGY",
+          "SOFTWARE",
+          "EMAIL_ADDRESS",
+          "URL",
+          "MONEY",
+          "PERCENTAGE",
+          "PRODUCT",
+          "VEHICLE",
+          "LAW"
+        ],
+        "extractionCount": 0,
+        "relationshipCount": 0,
+        "extractions": [],
+        "relationships": []
+      }
+    ]
+  },
+  "stats": {
+    "structuredOutput": {
+      "type": "structured-output",
+      "totalDurationMs": 5055704.60621,
+      "averageDurationMs": 393257.5901045,
+      "fastestResult": {
+        "model": "qwen3-vl-30b/a100",
+        "document": "bitcoin-paper.md",
+        "durationMs": 173818.365917
+      },
+      "slowestResult": {
+        "model": "gemma-3-27b/a100",
+        "document": "transformers-paper.md",
+        "durationMs": 824964.4400829999
+      },
+      "modelAverages": {
+        "gemma-3-12b/a100": 341034.32143799996,
+        "gemma-3-27b/a100": 559962.6479374999,
+        "qwen3-vl-30b/a100": 278775.800938
+      },
+      "totalExtractions": 211,
+      "totalRelationships": 50,
+      "averageExtractionsPerDoc": 105.5,
+      "averageEntityTypesPerDoc": 20
+    }
+  }
+}
