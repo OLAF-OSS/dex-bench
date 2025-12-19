@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.9.0...dex-bench-v0.10.0) (2025-12-19)
+
+
+### Features
+
+* add GitHub link to header for easy access ([e778022](https://github.com/OLAF-OSS/dex-bench/commit/e778022df908b80c47eac871a50807293c915591))
+* add watch mode for live reload during development ([e3d2a66](https://github.com/OLAF-OSS/dex-bench/commit/e3d2a6619d313bb28fddf77b3b70e645ef21b9a5))
+
 ## [0.9.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.8.0...dex-bench-v0.9.0) (2025-12-19)
 
 
