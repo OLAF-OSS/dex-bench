@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import type { BenchmarkRun, AggregatedData, BenchmarkCategory } from "../types";
 import { aggregateAllRuns } from "../lib/aggregate-data";
 import { getDisplayName } from "../lib/parse-model";
@@ -20,13 +20,76 @@ type AnalysisTab =
   | "documents"
   | "reliability";
 
+const VALID_TABS: AnalysisTab[] = [
+  "leaderboard",
+  "gpu-comparison",
+  "documents",
+  "reliability",
+];
+const VALID_CATEGORIES: BenchmarkCategory[] = [
+  "summarization",
+  "structured-output",
+];
+
+function parseHashState(): {
+  tab?: AnalysisTab;
+  category?: BenchmarkCategory;
+  gpu?: string | null;
+} {
+  const hash = window.location.hash.slice(1);
+  if (!hash) return {};
+
+  const params = new URLSearchParams(hash);
+  const tab = params.get("tab") as AnalysisTab | null;
+  const category = params.get("category") as BenchmarkCategory | null;
+  const gpu = params.get("gpu");
+
+  return {
+    tab: tab && VALID_TABS.includes(tab) ? tab : undefined,
+    category:
+      category && VALID_CATEGORIES.includes(category) ? category : undefined,
+    gpu: gpu === "all" ? null : gpu || undefined,
+  };
+}
+
+function updateHashState(
+  tab: AnalysisTab,
+  category: BenchmarkCategory,
+  gpu: string | null,
+) {
+  const params = new URLSearchParams();
+  params.set("tab", tab);
+  params.set("category", category);
+  params.set("gpu", gpu ?? "all");
+  window.history.replaceState(null, "", `#${params.toString()}`);
+}
+
 export function AnalysisPage({ runs }: AnalysisPageProps) {
   const data = useMemo(() => aggregateAllRuns(runs), [runs]);
-  const [activeTab, setActiveTab] = useState<AnalysisTab>("leaderboard");
+
+  // Initialize state from URL hash
+  const getInitialState = useCallback(() => {
+    const hashState = parseHashState();
+    return {
+      tab: hashState.tab ?? "leaderboard",
+      category:
+        hashState.category ??
+        (data.hasSummarization ? "summarization" : "structured-output"),
+      gpu: hashState.gpu !== undefined ? hashState.gpu : null,
+    };
+  }, [data.hasSummarization]);
+
+  const initial = getInitialState();
+  const [activeTab, setActiveTab] = useState<AnalysisTab>(initial.tab);
   const [activeCategory, setActiveCategory] = useState<BenchmarkCategory>(
-    data.hasSummarization ? "summarization" : "structured-output",
+    initial.category,
   );
-  const [gpuFilter, setGpuFilter] = useState<string | null>(null);
+  const [gpuFilter, setGpuFilter] = useState<string | null>(initial.gpu);
+
+  // Sync state to URL hash
+  useEffect(() => {
+    updateHashState(activeTab, activeCategory, gpuFilter);
+  }, [activeTab, activeCategory, gpuFilter]);
 
   const filteredPerformances = useMemo(() => {
     if (!gpuFilter) return data.modelPerformances;
