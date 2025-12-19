@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.8.0...dex-bench-v0.9.0) (2025-12-19)
+
+
+### Features
+
+* add benchmark results for L40S ([cf9e7fe](https://github.com/OLAF-OSS/dex-bench/commit/cf9e7fe33b0758ee467b2cea5e0ff330fb891f9a))
+
 ## [0.8.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.7.0...dex-bench-v0.8.0) (2025-12-18)
 
 
