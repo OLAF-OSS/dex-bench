@@ -67,6 +67,7 @@ export interface Relationship {
   sourceId: string;
   targetId: string;
   relationshipType: string;
+  description?: string;
 }
 
 export interface StructuredOutputResult extends BaseBenchmarkResult {
@@ -117,6 +118,70 @@ export interface BenchmarkRun {
   categories: BenchmarkCategory[];
   results: BenchmarkRunResults;
   stats: BenchmarkRunStats;
+}
+
+// ============================================================================
+// Aggregated Analysis Types
+// ============================================================================
+
+export interface ParsedModel {
+  fullName: string;
+  baseName: string;
+  provider: string;
+  gpu: string | null;
+  isSelfHosted: boolean;
+}
+
+export interface ModelGpuPerformance {
+  modelId: string;
+  parsed: ParsedModel;
+  summarization: {
+    avgDurationMs: number;
+    avgTokensPerSecond: number;
+    totalRuns: number;
+    successRate: number;
+  } | null;
+  structuredOutput: {
+    avgDurationMs: number;
+    avgExtractions: number;
+    avgRelationships: number;
+    totalRuns: number;
+    successRate: number;
+  } | null;
+}
+
+export interface DocumentPerformance {
+  document: string;
+  documentTokens: number;
+  models: {
+    modelId: string;
+    parsed: ParsedModel;
+    avgDurationMs: number;
+    successRate: number;
+    tokensPerSecond?: number;
+    extractions?: number;
+  }[];
+}
+
+export interface AggregatedData {
+  /** All unique model+GPU combinations with their performance */
+  modelPerformances: ModelGpuPerformance[];
+  /** Performance breakdown by document */
+  documentPerformances: DocumentPerformance[];
+  /** All unique GPUs found */
+  uniqueGpus: string[];
+  /** All unique base model names */
+  uniqueBaseModels: string[];
+  /** All unique providers */
+  uniqueProviders: string[];
+  /** All unique documents */
+  uniqueDocuments: string[];
+  /** Total number of benchmark runs */
+  totalRuns: number;
+  /** Whether summarization data is available */
+  hasSummarization: boolean;
+  /** Whether structured output data is available */
+  hasStructuredOutput: boolean;
 }
 
 declare global {

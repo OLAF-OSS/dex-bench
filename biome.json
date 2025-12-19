@@ -26,6 +26,7 @@
     "rules": {
       "recommended": true,
       "suspicious": {
+        "noArrayIndexKey": "warn",
         "noUnknownAtRules": "off",
         "noConsole": {
           "level": "info",

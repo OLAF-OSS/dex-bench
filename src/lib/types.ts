@@ -72,6 +72,7 @@ export interface Relationship {
   sourceId: string;
   targetId: string;
   relationshipType: string;
+  description?: string;
 }
 
 export interface StructuredOutputResult extends BaseBenchmarkResult {
