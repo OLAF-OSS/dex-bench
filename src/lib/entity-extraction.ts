@@ -124,7 +124,11 @@ export async function extractEntities({
   const parsed = result.value.object as z.infer<typeof extractionSchema>;
 
   // Validate the parsed result has the expected structure
-  if (!parsed || !Array.isArray(parsed.extractions) || !Array.isArray(parsed.relationships)) {
+  if (
+    !parsed ||
+    !Array.isArray(parsed.extractions) ||
+    !Array.isArray(parsed.relationships)
+  ) {
     console.error("Invalid extraction response:", JSON.stringify(parsed));
     return {
       error: `Invalid structured output: expected { extractions: [], relationships: [] }, got ${JSON.stringify(parsed)}`,

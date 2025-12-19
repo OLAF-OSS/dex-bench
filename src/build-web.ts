@@ -184,9 +184,12 @@ async function watchWeb(): Promise<void> {
   };
   es.onerror = () => setTimeout(() => window.location.reload(), 1000);
 </script>`;
-          return new Response(html.replace("</body>", `${liveReloadScript}</body>`), {
-            headers: { "Content-Type": "text/html" },
-          });
+          return new Response(
+            html.replace("</body>", `${liveReloadScript}</body>`),
+            {
+              headers: { "Content-Type": "text/html" },
+            },
+          );
         }
         return new Response(file);
       }
@@ -202,9 +205,12 @@ async function watchWeb(): Promise<void> {
   };
   es.onerror = () => setTimeout(() => window.location.reload(), 1000);
 </script>`;
-      return new Response(html.replace("</body>", `${liveReloadScript}</body>`), {
-        headers: { "Content-Type": "text/html" },
-      });
+      return new Response(
+        html.replace("</body>", `${liveReloadScript}</body>`),
+        {
+          headers: { "Content-Type": "text/html" },
+        },
+      );
     },
   });
 
@@ -213,8 +219,16 @@ async function watchWeb(): Promise<void> {
 
   // Watch for file changes
   const watcher = Bun.spawn(
-    ["find", WEB_DIR, "./results", "-type", "f", "-newer", `${DIST_DIR}/index.html`],
-    { stdout: "pipe" }
+    [
+      "find",
+      WEB_DIR,
+      "./results",
+      "-type",
+      "f",
+      "-newer",
+      `${DIST_DIR}/index.html`,
+    ],
+    { stdout: "pipe" },
   );
   await watcher.exited;
 
@@ -258,7 +272,7 @@ async function watchWeb(): Promise<void> {
   });
 
   // Keep process alive
-  await new Promise(() => { });
+  await new Promise(() => {});
 }
 
 async function buildWebQuiet(): Promise<void> {

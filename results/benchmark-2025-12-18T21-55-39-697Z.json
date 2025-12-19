@@ -2,19 +2,13 @@
   "id": "benchmark-2025-12-18T21-55-39-697Z",
   "timestamp": "2025-12-18T21:55:39.697Z",
   "status": "complete",
-  "models": [
-    "gemma-3-12b/l40s",
-    "gemma-3-27b/l40s",
-    "qwen3-vl-30b/l40s"
-  ],
+  "models": ["gemma-3-12b/l40s", "gemma-3-27b/l40s", "qwen3-vl-30b/l40s"],
   "documents": [
     "bitcoin-paper.md",
     "transformers-paper.md",
     "Directorate A – Expenditure – Operations.md"
   ],
-  "categories": [
-    "summarization"
-  ],
+  "categories": ["summarization"],
   "results": {
     "summarization": [
       {
