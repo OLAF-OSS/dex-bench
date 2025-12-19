@@ -15,6 +15,15 @@ import { SummariesSection, ExtractionsSection } from "./components/summaries";
 
 type TabView = "table" | "charts" | "details";
 
+const formatShortDate = (timestamp: string) => {
+  return new Date(timestamp).toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
+
 function App() {
   const allRuns: BenchmarkRun[] = window.BENCHMARK_DATA;
   const [selectedRunIndex, setSelectedRunIndex] = useState(0);
@@ -23,22 +32,6 @@ function App() {
     data.categories[0] ?? "summarization",
   );
   const [activeTab, setActiveTab] = useState<TabView>("table");
-
-  const formatDate = (timestamp: string) => {
-    return new Date(timestamp).toLocaleString("en-US", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
-  };
-
-  const formatShortDate = (timestamp: string) => {
-    return new Date(timestamp).toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
 
   const hasSummarization = !!data.results.summarization;
   const hasStructuredOutput = !!data.results.structuredOutput;
@@ -76,7 +69,7 @@ function App() {
                     {allRuns.map((run, index) => (
                       <option key={run.id} value={index}>
                         {formatShortDate(run.timestamp)} • {run.models.length}{" "}
-                        models
+                        models • {run.categories.join(", ")}
                       </option>
                     ))}
                   </select>

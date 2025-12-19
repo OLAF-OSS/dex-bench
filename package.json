@@ -13,7 +13,8 @@
     "bench:results": "bun src/bench.ts results",
     "bench:md": "bun src/bench.ts markdown",
     "bench:html": "bun src/build-web.ts",
-    "preview": "bun src/build-web.ts preview"
+    "preview": "bun src/build-web.ts preview",
+    "preview:watch": "bun src/build-web.ts watch"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.9",
