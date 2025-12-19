@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.10.0...dex-bench-v0.11.0) (2025-12-19)
+
+
+### Features
+
+* enhance analysis page and data aggregation ([8db1d30](https://github.com/OLAF-OSS/dex-bench/commit/8db1d3078bbe7831b6f8c3c684c452d53357b1c8))
+* enhance AnalysisPage with URL hash state management ([3911bce](https://github.com/OLAF-OSS/dex-bench/commit/3911bce26e62e6852a4d5a5aa7ff7b4b36d1aa2d))
+
 ## [0.10.0](https://github.com/OLAF-OSS/dex-bench/compare/dex-bench-v0.9.0...dex-bench-v0.10.0) (2025-12-19)
 
 
